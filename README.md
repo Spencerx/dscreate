@@ -41,6 +41,6 @@ git push origin master
 
 ### `ds -share <github notebook url>`
 This command accepts any link that points to a public notebook on github. When this command is run, a link is copied to your clipboard that points to the notebook on illumidesk. 
-- This command can be used to create [url model items](https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-add-an-external-URL-as-a-module-item/ta-p/967) in canvas
+- This command can be used to create [url module items](https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-add-an-external-URL-as-a-module-item/ta-p/967) in canvas
 - This command can be used with the [Cohort Lead Repository](https://github.com/learn-co-students/cohort-lead-repository) to facilitate coding exercises during 1:1s and other live sessions.
 
