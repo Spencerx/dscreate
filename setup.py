@@ -9,4 +9,5 @@ setup(name='dscreate',
       license='MIT',
       packages=['dscreate'],
       install_requires=['argparse', 'pyperclip'],
+      scripts=['bin/ds'],
       zip_safe=False)
