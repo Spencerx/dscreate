@@ -23,7 +23,7 @@ When this command is run the following things happen:
 When this command is run the following things happen
 1. An `index.ipynb` file is added to the current working directory containing all "student facing" content within the `curriculum.ipynb` file
 2. An `index.ipynb` file is added to the `.solution_files` subdirectory containing all solution content in the `curriculum.ipynb` file.
-3. This file structure is designed to be compatible for the file structure for resources in the [Cohort Lead Repository](https://github.com/learn-co-students/cohort-lead-repository)
+3. This file structure is designed to be compatible with the file structure for resources in the [Cohort Lead Repository](https://github.com/learn-co-students/cohort-lead-repository)
 
 *Brief note:*
 
