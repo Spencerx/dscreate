@@ -59,6 +59,9 @@ class SplitNotebook:
                     self.lesson_cells.append(copy)
                 else:
                     self.lesson_cells.append(cell) 
+                    copy = dict(cell)
+                    copy['metadata']['index'] = 'Placeholder'
+                    self.solution_cells.append(copy)
             count += 1  
 
     def _parse_cell(self, cell):
