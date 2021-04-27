@@ -35,23 +35,31 @@ class SplitNotebook:
         """
 
         for cell in self.data['cells']:
+            count = 0
             cell_type = cell['cell_type']
             solution, lines = self._parse_cell(cell)
             cell["source"] = lines
+            cell['metadata']['index'] = count
             if cell_type == "markdown":
                 self.solution_cells.append(cell)
 
                 if solution:
                     copy = dict(cell)
                     copy.update({"source": ['*YOUR ANSWER HERE*']})
+                    copy['metadata']['index'] = 'Placeholder'
                     self.lesson_cells.append(copy)
                 else:
                     self.lesson_cells.append(cell)
             else:
                 if solution:
                     self.solution_cells.append(cell)
+                    copy = dict(cell)
+                    copy.update({"source": ['# Your code here']})
+                    copy['metadata']['index'] = 'Placeholder'
+                    self.lesson_cells.append(copy)
                 else:
-                    self.lesson_cells.append(cell)   
+                    self.lesson_cells.append(cell) 
+            count += 1  
 
     def _parse_cell(self, cell):
         """
