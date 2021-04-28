@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='dscreate',
       version='0.1',
@@ -7,7 +7,7 @@ setup(name='dscreate',
       author='Joél Collins',
       author_email='@joelsewhere',
       license='MIT',
-      packages=['dscreate'],
+      packages=find_packages(),
       install_requires=['argparse', 'pyperclip'],
       scripts=['bin/ds'],
       zip_safe=False)

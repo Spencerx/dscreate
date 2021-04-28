@@ -16,7 +16,7 @@ class SplitNotebook:
     """
     def __init__(self):
         self.solution_tags = ["__SOLUTION__", f"#__SOLUTION__", 
-                            "===SOLUTION===", f"#===SOLUTION==="]
+                            "==SOLUTION==", f"#==SOLUTION=="]
         self.solution_cells = []
         self.lesson_cells = []
 
@@ -33,35 +33,31 @@ class SplitNotebook:
         and appends all solution and lesson cells to the
         `solution_cells` and `lesson_cells` attributes.
         """
-
+        count = 0
         for cell in self.data['cells']:
-            count = 0
             cell_type = cell['cell_type']
             solution, lines = self._parse_cell(cell)
             cell["source"] = lines
             cell['metadata']['index'] = count
+            placeholder = dict(cell)
+            placeholder['metadata'] = dict(cell['metadata'])
+            placeholder['metadata']['index'] = 'Placeholder'
             if cell_type == "markdown":
-                self.solution_cells.append(cell)
 
                 if solution:
-                    copy = dict(cell)
-                    copy.update({"source": ['*YOUR ANSWER HERE*']})
-                    copy['metadata']['index'] = 'Placeholder'
-                    self.lesson_cells.append(copy)
+                    self.solution_cells.append(cell)
+                    placeholder.update({"source": ['*YOUR ANSWER HERE*']})
+                    self.lesson_cells.append(placeholder)
                 else:
                     self.lesson_cells.append(cell)
+                    self.solution_cells.append(placeholder)
             else:
                 if solution:
                     self.solution_cells.append(cell)
-                    copy = dict(cell)
-                    copy.update({"source": ['# Your code here']})
-                    copy['metadata']['index'] = 'Placeholder'
-                    self.lesson_cells.append(copy)
+
                 else:
-                    self.lesson_cells.append(cell) 
-                    copy = dict(cell)
-                    copy['metadata']['index'] = 'Placeholder'
-                    self.solution_cells.append(copy)
+                    self.lesson_cells.append(cell)
+                    self.solution_cells.append(placeholder) 
             count += 1  
 
     def _parse_cell(self, cell):
