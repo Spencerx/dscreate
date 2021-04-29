@@ -77,7 +77,7 @@ Creating A Lesson
 * Push repository to github
 * Copy link to the top level ``index.ipynb`` file on github.
 * run ``-ds share <github link>``
-* Share link with students. 
+* A student link is added to your clipboard. Then you share it!
 
 **To make new edits to a lesson after running** ``ds -create``
 
