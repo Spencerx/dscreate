@@ -76,6 +76,32 @@ Once edits are complete, run ``ds -create`` to hide the solutions inside a hidde
 
 Creating A Lesson
 ==================
+
+**The overall proccess looks like this**
+
+1. Create project folder
+2. ``cd`` into the the project folder
+3. Run ``ds -begin``
+4. Open the ``curriculum.ipynb`` jupyter notebook
+5. Create lesson using `solution tags <#creating-solution-cells>`_ 
+6. Save the curriculum notebook
+7. run ``ds -create``
+8. Push repository to github
+9. Copy link to the top level ``index.ipynb`` file on github.
+10. run ``-ds share <github link>
+11. Share link with students. 
+
+**To make new edits to a lesson after running ``ds -create``**
+
+1. run ``ds -edit``
+2. Open the ``curriculum.ipynb`` notebook
+3. Make edits in curriculum notebook
+4. Save notebook
+5. run ``ds -create``
+
+Lesson Structure
+==================
+
 This toolkit uses the following directory structure for all lessons::
 
    lesson-directory 
@@ -97,7 +123,7 @@ This toolkit uses the following directory structure for all lessons::
 * The `data/` folder is not required, but tends to be best practice for most data science projects.
 * The ``.solution_files`` hidden folder stores the solution content.
 * The ``.solution_files/index.ipynb`` file is the notebook containing all solution code and markdown.
-* The ``.test_obj`` folder contains all pickled test objects. See :ref:`test-code`
+* The ``.test_obj`` folder contains all pickled test objects. See `Creating Tests <#creating-tests>`_
 
 
 Creating Solution Cells
