@@ -7,6 +7,7 @@
 `dscreate`
 ====================================
 
+`Read the docs <https://dscreate.readthedocs.io/>`
 
 Flatiron Iron School Data Science Toolkit
 =========================================
@@ -16,16 +17,14 @@ Flatiron Iron School Data Science Toolkit
 Table of Contents
 ==================
 
-* :ref:`cli-tools`
+* [](cli-tools)
 * :ref:`create-lesson`
 * :ref:`solution-cells`
 * :ref:`test-code`
 
 .. _cli-tools:
 
-----------------
-**CLI Tools**
-----------------
+## CLI Tools
 
 -------------
 ``ds -begin``
