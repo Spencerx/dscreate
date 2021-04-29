@@ -117,6 +117,8 @@ Place ``==SOLUTION==`` at the top of a Markdown cell. This tag should have it's 
 
 Place ``#__SOLUTION__`` at the top of the code cell. This tag should have it's own line.
 
+.. _test-code:
+
 Tests
 =====
 
