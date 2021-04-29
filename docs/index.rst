@@ -80,16 +80,16 @@ Creating A Lesson
 **The overall proccess looks like this**
 
 1. Create project folder
-2. ``cd`` into the the project folder
-3. Run ``ds -begin``
-4. Open the ``curriculum.ipynb`` jupyter notebook
-5. Create lesson using `solution tags <#creating-solution-cells>`_ 
-6. Save the curriculum notebook
-7. run ``ds -create``
-8. Push repository to github
-9. Copy link to the top level ``index.ipynb`` file on github.
-10. run ``-ds share <github link>
-11. Share link with students. 
+1. ``cd`` into the the project folder
+1. Run ``ds -begin``
+1. Open the ``curriculum.ipynb`` jupyter notebook
+1. Create lesson using `solution tags <#creating-solution-cells>`_ 
+1. Save the curriculum notebook
+1. run ``ds -create``
+1. Push repository to github
+1. Copy link to the top level ``index.ipynb`` file on github.
+1. run ``-ds share <github link>
+1. Share link with students. 
 
 **To make new edits to a lesson after running ``ds -create``**
 
