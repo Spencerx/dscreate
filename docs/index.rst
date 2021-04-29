@@ -13,6 +13,7 @@ Table of Contents
 * `Installation <#installation>`_
 * `CLI Tools <#cli-tools>`_
 * `Creating a Lesson <#creating-a-lesson>`_ 
+* `Createing Solution Cells <#solution-cells>`_
 * `Creating Tests <#test-code>`_
 
 .. _installation:
@@ -21,8 +22,6 @@ Installation
 ============
 * run ``pip install dscreate``
 
-
-.. _cli-tools:
 
 -------------
 CLI Tools
