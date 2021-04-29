@@ -174,6 +174,8 @@ Writing Test Functions
          tests.run('first_test', student_solution)
          tests.run('first_test', [1,2,3])
 
+::
+
          >>>first_test: ❌
          >>>first_test: ✅
 
@@ -201,6 +203,8 @@ Writing Test Functions
 
          student_answer = [1,2,3], [3,2,1], 'hello flatiron', 51
          tests.run('multiple_arguments', *student_answer)
+
+::
 
          >>>multiple_arguments: ✅
          >>>multiple_arguments: ❌
@@ -232,6 +236,8 @@ Writing Test Functions
 
       tests.run('output_test', student_answer_wrong)
       tests.run('output_test', student_answer_correct)
+
+::
 
       >>>output_test: Your function returned -1, but should return 3!
       >>>output_test: Your function returned the correct answer for 1 + 2!
@@ -283,6 +289,8 @@ If you have multiple tests you'd like to run, the easiest solution would be crea
             
          tests.run('Class_Example', StudentSolutionCorrect)
 
+::
+
          >>>test_for_attribute: ✅
          >>>test_method_output: Your method correctly returned 5!
 
@@ -294,6 +302,8 @@ If you have multiple tests you'd like to run, the easiest solution would be crea
                return 3
 
          tests.run('Class_Example', StudentSolutionWrong)
+
+::
 
          >>>test_for_attribute: ❌
          >>>test_method_output: Your method returned 3 when it should have returned 5!
