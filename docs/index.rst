@@ -10,10 +10,10 @@ Flatiron Iron School Data Science Toolkit
 
 Table of Contents
 ==================
-* `Installation <#installation>`_
-* `CLI Tools <#cli-tools>`_
-* `Creating a Lesson <#creating-a-lesson>`_ 
-* `Createing Solution Cells <#solution-cells>`_
+* `Installation <#id1>`_
+* `CLI Tools <#id3>`_
+* `Creating a Lesson <#id4>`_ 
+* `Creating Solution Cells <#solution-cells>`_
 * `Creating Tests <#test-code>`_
 
 .. _installation:
@@ -74,7 +74,7 @@ Once edits are complete, run ``ds -create`` to hide the solutions inside a hidde
 
 .. _creating-a-lesson:
 
-Creating A Lesson
+Creating a Lesson
 ==================
 
 **The overall proccess looks like this**
