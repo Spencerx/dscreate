@@ -3,8 +3,6 @@
 `dscreate`
 ====================================
 
-`Read the docs <https://dscreate.readthedocs.io/>`_
-
 Flatiron Iron School Data Science Toolkit
 =========================================
 
