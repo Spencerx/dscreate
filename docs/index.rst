@@ -62,7 +62,6 @@ Once edits are complete, run ``ds -create`` to hide the solutions inside a hidde
 
 -------------------------------------------------------
 
-
 Creating A Lesson
 ==================
 
