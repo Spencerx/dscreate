@@ -79,7 +79,7 @@ Creating A Lesson
 * run ``-ds share <github link>``
 * Share link with students. 
 
-**To make new edits to a lesson after running ``ds -create``**
+**To make new edits to a lesson after running** ``ds -create``
 
 * run ``ds -edit``
 * Open the ``curriculum.ipynb`` notebook
