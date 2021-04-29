@@ -8,10 +8,20 @@ Flatiron Iron School Data Science Toolkit
 
 -------------------------------------------------------
 
+Table of Contents
+==================
+* `Installation <#installation>`_
+* `CLI Tools <#cli-tools>`_
+* `Creating a Lesson <#creating-a-lesson>`_ 
+* `Creating Tests <#test-code>`_
+
+.. _installation:
 
 Installation
 ============
 * run ``pip install dscreate``
+
+.. _cli-tools:
 
 -------------
 CLI Tools
@@ -62,6 +72,8 @@ Once edits are complete, run ``ds -create`` to hide the solutions inside a hidde
 
 -------------------------------------------------------
 
+.. _creating-a-lesson:
+
 Creating A Lesson
 ==================
 
@@ -71,7 +83,7 @@ Creating A Lesson
 * ``cd`` into the the project folder
 * Run ``ds -begin``
 * Open the ``curriculum.ipynb`` jupyter notebook
-* Create lesson using `solution tags <#creating-solution-cells>`_ 
+* Create lesson using `solution tags <#solution-cells>`_ 
 * Save the curriculum notebook
 * run ``ds -create``
 * Push repository to github
@@ -86,6 +98,7 @@ Creating A Lesson
 * Make edits in curriculum notebook
 * Save notebook
 * run ``ds -create``
+
 
 Lesson Structure
 ==================
@@ -111,8 +124,9 @@ This toolkit uses the following directory structure for all lessons::
 * The `data/` folder is not required, but tends to be best practice for most data science projects.
 * The ``.solution_files`` hidden folder stores the solution content.
 * The ``.solution_files/index.ipynb`` file is the notebook containing all solution code and markdown.
-* The ``.test_obj`` folder contains all pickled test objects. See `Creating Tests <#creating-tests>`_
+* The ``.test_obj`` folder contains all pickled test objects. See `Creating Tests <#test-code>`_
 
+.. _solution-cells:
 
 Creating Solution Cells
 =======================
