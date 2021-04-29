@@ -128,6 +128,7 @@ This toolkit uses the following directory structure for all lessons::
 * The ``.test_obj`` folder contains all pickled test objects. See `Creating Tests <#creating-tests>`_
 
 
+
 Creating Solution Cells
 =======================
 
