@@ -11,7 +11,6 @@
 
 `Read the docs <https://dscreate.readthedocs.io/>`_
 
--------------------------------------------------------
 
 Installation
 ============
