@@ -7,10 +7,6 @@
 `dscreate`
 ====================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
 
 Flatiron Iron School Data Science Toolkit
 =========================================
