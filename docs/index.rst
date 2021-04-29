@@ -12,7 +12,7 @@ Table of Contents
 ==================
 * `Installation <#id1>`_
 * `CLI Tools <#id3>`_
-* `Creating a Lesson <#id4>`_ 
+* `Creating a Lesson <#id5>`_ 
 * `Creating Solution Cells <#solution-cells>`_
 * `Creating Tests <#test-code>`_
 
