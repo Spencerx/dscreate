@@ -8,15 +8,6 @@ Flatiron Iron School Data Science Toolkit
 
 -------------------------------------------------------
 
-Table of Contents
-==================
-
-* Installation_
-* `CLI Tools`_
-* `Creating a Lesson`_
-* `Creating Solution Cells`_
-* `Creating Tests`_
-
 
 Installation
 ============
