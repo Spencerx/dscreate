@@ -11,11 +11,12 @@ Flatiron Iron School Data Science Toolkit
 Table of Contents
 ==================
 
-* `Installation <#installation>`_
-* `CLI Tools <#cli-tools>`_
-* `Creating a Lesson <#creating-a-lesson>`_
-* `Creating Solution Cells <#creating-solution-cells>`_
-* `Creating Tests <#creating-tests>`_
+* Installation_
+* `CLI Tools`_
+* `Creating a Lesson`_
+* `Creating Solution Cells`_
+* `Creating Tests`_
+
 
 Installation
 ============
