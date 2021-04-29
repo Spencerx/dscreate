@@ -19,7 +19,7 @@ Table of Contents
 
 * `CLI Tools <#cli-tools>`_
 * `Creating a Lesson <#creating-a-lesson>`_
-* `Creating Solution Cells <#creating-solution-cells`_
+* `Creating Solution Cells <#creating-solution-cells>`_
 * `Creating Tests <#creating-tests>`_
 
 .. _cli-tools:
