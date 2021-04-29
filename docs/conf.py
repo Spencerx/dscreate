@@ -19,7 +19,7 @@
 
 project = 'dscreate'
 copyright = '2021, Joél Collins, Alex Griffith'
-author = 'Joél Collins, Alex Griffith'
+author = 'Joél Collins, Ben Oren, Alex Griffith'
 
 
 # -- General configuration ---------------------------------------------------
