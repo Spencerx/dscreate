@@ -1,16 +1,13 @@
 .. dscreate documentation master file, created by
-   sphinx-quickstart on Wed Apr 28 17:16:41 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+sphinx-quickstart on Wed Apr 28 17:16:41 2021.
+You can adapt this file completely to your liking, but it should at least
+contain the root `toctree` directive.
 
 ====================================
 `dscreate`
 ====================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
+`Read the docs <https://dscreate.readthedocs.io/>`_
 
 Flatiron Iron School Data Science Toolkit
 =========================================
@@ -20,16 +17,16 @@ Flatiron Iron School Data Science Toolkit
 Table of Contents
 ==================
 
-* :ref:`cli-tools`
-* :ref:`create-lesson`
-* :ref:`solution-cells`
-* :ref:`test-code`
+* `CLI Tools <#cli-tools>`_
+* `Creating a Lesson <#creating-a-lesson>`_
+* `Creating Solution Cells <#creating-solution-cells>`_
+* `Creating Tests <#creating-tests>`_
 
 .. _cli-tools:
 
-----------------
-**CLI Tools**
-----------------
+-------------
+CLI Tools
+-------------
 
 -------------
 ``ds -begin``
@@ -39,7 +36,8 @@ When this command is run the following things happen:
 * A ``data/`` folder is added to the current working directory
 * A ``.solution_files`` subdirectory is added to the current working directory
 * A ``curriculum.ipynb`` file is added to the current working directory
-   * This notebook contains instructions for creating solution tags. See :ref:`solution-cells`.
+   
+   * This notebook contains instructions for creating solution tags. See `Creating Solution Cells <#creating-solution-cells>`_.
    * All curriculum content needs to be created in this file in order to use ``ds -create``.
 
 
@@ -48,10 +46,11 @@ When this command is run the following things happen:
 -------------
 When this command is run the following things happen:
 
-* An ``index.ipynb`` file is added to the current working directory containing all "student facing" content within the ``curriculum.ipynb`` file
-* An ``index.ipynb`` file is added to the ``.solution_files`` subdirectory containing all solution content in the ``curriculum.ipynb`` file.
-* The ``curriculum.ipynb`` file is deleted
-   * To make future edits to this project, the curriculum notebook must be generated. See :ref:`generate-curriculum`.
+- An ``index.ipynb`` file is added to the current working directory containing all "student facing" content within the ``curriculum.ipynb`` file
+- An ``index.ipynb`` file is added to the ``.solution_files`` subdirectory containing all solution content in the ``curriculum.ipynb`` file.
+- The ``curriculum.ipynb`` file is deleted
+   
+   - To make future edits to this project, the curriculum notebook must be generated using `ds -edit`.
 
 
 -------------
@@ -59,7 +58,7 @@ When this command is run the following things happen:
 -------------
 When this command is run the following things happen:
 
-* The metadata inside the lesson and solution notebooks us used to recompile the ``curriculum.ipynb`` notebook.
+* The metadata inside the lesson and solution notebooks is used to recompile the ``curriculum.ipynb`` notebook.
 
 Once the curriculum notebook is compiled, edits to the lesson can be made inside ``curriculum.ipynb``.
 Once edits are complete, run ``ds -create`` to hide the solutions inside a hidden folder.
@@ -74,10 +73,35 @@ Once edits are complete, run ``ds -create`` to hide the solutions inside a hidde
 
 -------------------------------------------------------
 
-.. _create-lesson:
 
 Creating A Lesson
 ==================
+
+**The overall proccess looks like this**
+
+1. Create project folder
+2. ``cd`` into the the project folder
+3. Run ``ds -begin``
+4. Open the ``curriculum.ipynb`` jupyter notebook
+5. Create lesson using `solution tags <#creating-solution-cells>`_ 
+6. Save the curriculum notebook
+7. run ``ds -create``
+8. Push repository to github
+9. Copy link to the top level ``index.ipynb`` file on github.
+10. run ``-ds share <github link>
+11. Share link with students. 
+
+**To make new edits to a lesson after running ``ds -create``**
+
+1. run ``ds -edit``
+2. Open the ``curriculum.ipynb`` notebook
+3. Make edits in curriculum notebook
+4. Save notebook
+5. run ``ds -create``
+
+Lesson Structure
+==================
+
 This toolkit uses the following directory structure for all lessons::
 
    lesson-directory 
@@ -99,10 +123,8 @@ This toolkit uses the following directory structure for all lessons::
 * The `data/` folder is not required, but tends to be best practice for most data science projects.
 * The ``.solution_files`` hidden folder stores the solution content.
 * The ``.solution_files/index.ipynb`` file is the notebook containing all solution code and markdown.
-* The ``.test_obj`` folder contains all pickled test objects. See :ref:`test-code`
+* The ``.test_obj`` folder contains all pickled test objects. See `Creating Tests <#creating-tests>`_
 
-
-.. _solution-cells:
 
 Creating Solution Cells
 =======================
@@ -119,8 +141,8 @@ Place ``#__SOLUTION__`` at the top of the code cell. This tag should have it's o
 
 .. _test-code:
 
-Tests
-=====
+Creating Tests
+==============
 
 `dscreate` offers a couple options for adding tests to your curriculum materials.
 
