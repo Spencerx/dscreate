@@ -15,7 +15,6 @@ Table of Contents
 * `Creating a Lesson <#creating-a-lesson>`_ 
 * `Creating Tests <#test-code>`_
 
-
 .. _installation:
 
 Installation
