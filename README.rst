@@ -48,6 +48,7 @@ When this command is run the following things happen:
 - An ``index.ipynb`` file is added to the current working directory containing all "student facing" content within the ``curriculum.ipynb`` file
 - An ``index.ipynb`` file is added to the ``.solution_files`` subdirectory containing all solution content in the ``curriculum.ipynb`` file.
 - The ``curriculum.ipynb`` file is deleted
+  
    - To make future edits to this project, the curriculum notebook must be generated using `ds -edit`.
 
 
