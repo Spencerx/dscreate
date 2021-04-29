@@ -36,6 +36,7 @@ When this command is run the following things happen:
 * A ``data/`` folder is added to the current working directory
 * A ``.solution_files`` subdirectory is added to the current working directory
 * A ``curriculum.ipynb`` file is added to the current working directory
+  
    * This notebook contains instructions for creating solution tags. See `Creating Solution Cells <#creating-solution-cells>`_.
    * All curriculum content needs to be created in this file in order to use ``ds -create``.
 
