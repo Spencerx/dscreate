@@ -24,7 +24,9 @@ Table of Contents
 
 .. _cli-tools:
 
-## CLI Tools
+-------------
+CLI Tools
+-------------
 
 -------------
 ``ds -begin``
