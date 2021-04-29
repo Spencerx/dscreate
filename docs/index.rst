@@ -130,6 +130,9 @@ This toolkit uses the following directory structure for all lessons::
 Creating Solution Cells
 =======================
 
+What ``ds -create`` is used, all solution cells are removed from the top level ``index.ipynb`` file 
+and moved to the ``index.ipynb`` file in the ``.solution_files`` hidden folder. 
+
 Solution cells can be created for both code and Markdown cells in Jupyter Notebooks.
 
 **To create a solution Markdown cell**
@@ -151,6 +154,9 @@ NOTE: All tests are created and run using the `Tests` class within the `tests` s
 
          from dscreate.tests import Tests
          tests = Tests()
+
+Below, is an example of a test for a simple problem. In this scenario a student is
+tasked with generating the list ``[1,2,3]``. 
 
 ------------------------         
 Writing Test Functions
@@ -249,6 +255,11 @@ If you have multiple tests you'd like to run, the easiest solution would be crea
 
 * *All test methods must begin with the word `test`*
 * If you would like to return the output of a test, set the argument `output=True` for the test method.
+
+**Below is an example of a test class for the following student task:**
+
+   "In the cell below, create a class that has an attribute called "attribute" and a method called "method". 
+   The method should return the number 5."
 
 ::
 
