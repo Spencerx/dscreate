@@ -237,7 +237,7 @@ Writing Test Functions
       >>>output_test: Your function returned the correct answer for 1 + 2!
 
 ---------------------       
-Writing A Test Class
+Writing a Test Class
 ---------------------
 
 If you have multiple tests you'd like to run, the easiest solution would be create a class like below
