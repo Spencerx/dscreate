@@ -18,9 +18,9 @@ Table of Contents
 ==================
 
 * `CLI Tools <#cli-tools>`_
-* :ref:`create-lesson`
-* :ref:`solution-cells`
-* :ref:`test-code`
+* `Creating a Lesson <#creating-a-lesson>`_
+* `Creating Solution Cells <#creating-solution-cells`_
+* `Creating Tests <#creating-tests>`_
 
 .. _cli-tools:
 
@@ -71,7 +71,6 @@ Once edits are complete, run ``ds -create`` to hide the solutions inside a hidde
 
 -------------------------------------------------------
 
-.. _create-lesson:
 
 Creating A Lesson
 ==================
@@ -99,8 +98,6 @@ This toolkit uses the following directory structure for all lessons::
 * The ``.test_obj`` folder contains all pickled test objects. See :ref:`test-code`
 
 
-.. _solution-cells:
-
 Creating Solution Cells
 =======================
 
@@ -116,8 +113,8 @@ Place ``#__SOLUTION__`` at the top of the code cell. This tag should have it's o
 
 .. _test-code:
 
-Tests
-=====
+Creating Tests
+==============
 
 `dscreate` offers a couple options for adding tests to your curriculum materials.
 
