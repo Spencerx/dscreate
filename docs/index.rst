@@ -12,8 +12,6 @@ Flatiron Iron School Data Science Toolkit
 Installation
 ============
 * run ``pip install dscreate``
-  
-
 
 -------------
 CLI Tools
@@ -79,7 +77,7 @@ Creating A Lesson
 * run ``ds -create``
 * Push repository to github
 * Copy link to the top level ``index.ipynb`` file on github.
-* run ``-ds share <github link>
+* run ``-ds share <github link>``
 * Share link with students. 
 
 **To make new edits to a lesson after running ``ds -create``**
