@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'dscreate'
-copyright = '2021, Joél Collins, Alex Griffith'
+copyright = '2021, Joél Collins, Ben Oren, Alex Griffith'
 author = 'Joél Collins, Ben Oren, Alex Griffith'
 
 
