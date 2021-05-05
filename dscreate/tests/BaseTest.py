@@ -1,3 +1,7 @@
+"""
+Base class for tests. Primarily provides Markdown Outputs.
+"""
+
 from IPython.display import display, Markdown
 
 class BaseTest:
@@ -10,8 +14,10 @@ class BaseTest:
         display(markdown)
             
     def print_results(self, key, test, *args, main=False, output=False):
-        if main:
+        if main and output:
             result = test(self)
+        elif main:
+            result = test()
         else:
             result = test(*args)
         if output:

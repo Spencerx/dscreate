@@ -56,7 +56,7 @@ When this command is run the following things happen:
 -------------
 When this command is run the following things happen:
 
-* The metadata inside the lesson and solution notebooks is used to recompile the ``curriculum.ipynb`` notebook.
+* The metadata inside the lesson and solution notebooks are used to recompile the ``curriculum.ipynb`` notebook.
 
 Once the curriculum notebook is compiled, edits to the lesson can be made inside ``curriculum.ipynb``.
 Once edits are complete, run ``ds -create`` to hide the solutions inside a hidden folder.
