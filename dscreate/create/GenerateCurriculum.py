@@ -41,7 +41,13 @@ class GenerateCurriculum:
         self.cells += data['cells']
 
     def sort_cells(self):
-        cells = [cell for cell in self.cells if cell['metadata']['index'] != 'Placeholder']
+        cells = []
+        for cell in self.cells:
+            if 'index' in cell['metadata']:
+                if cell['metadata']['index'] != 'Placeholder':
+                    cells.append(cell)
+            else:
+                continue
         self.notebook['cells'] = sorted(cells, key=lambda x: x['metadata']['index'])
         
 
