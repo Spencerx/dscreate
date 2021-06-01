@@ -1,4 +1,4 @@
-import marshal
+import pickle
 import types
 
 from .BaseTest import BaseTest
@@ -15,11 +15,11 @@ class TestGenerator(BaseTest):
         """
         for function in data['functions']:
             serialized = data['functions'][function]
-            loaded_function = types.FunctionType(marshal.loads(serialized), globals())
+            loaded_function = types.FunctionType(pickle.loads(serialized), globals())
             if function == '__init__':
                 loaded_function(self, *args)
             else:
-                setattr(TestGenerator, function, loaded_function)
+                setattr(self, function, loaded_function)
 
     def main(self):
         """

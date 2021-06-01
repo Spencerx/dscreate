@@ -15,9 +15,9 @@ class BaseTest:
             
     def print_results(self, key, test, *args, main=False, output=False):
         if main and output:
-            result = test(self)
+            result = test(self, True)
         elif main:
-            result = test()
+            result = test(self)
         else:
             result = test(*args)
         if output:

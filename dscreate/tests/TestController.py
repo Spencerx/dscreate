@@ -1,7 +1,6 @@
 import os
 import types
 import pickle
-import marshal
 from IPython.display import display, Markdown
 
 from .BaseTest import BaseTest
@@ -54,14 +53,14 @@ class Tests(BaseTest):
         # source: https://stackoverflow.com/a/29250620
         if isinstance(callable, types.FunctionType):
             data['kind'] = 'function'
-            callable_ = marshal.dumps(callable.__code__)
+            callable_ = pickle.dumps(callable.__code__)
             data['functions'] = callable_
         elif isinstance(callable, type):
             data['kind'] = 'class' 
             data['functions'] = {}
             for item in callable.__dict__:
                 if isinstance(callable.__dict__[item], types.FunctionType):
-                    serialized = marshal.dumps(callable.__dict__[item].__code__)
+                    serialized = pickle.dumps(callable.__dict__[item].__code__)
                     data['functions'][item] = serialized
         path = os.path.join(self.test_dir, name.strip().lower() + '.pkl')
         file = open(path, 'wb')
@@ -90,11 +89,11 @@ class Tests(BaseTest):
         file.close()
         
         if data['kind'] == 'function' and data['assertion']:
-            function = types.FunctionType(marshal.loads(data['functions']), globals())
+            function = types.FunctionType(pickle.loads(data['functions']), globals())
             self.print_results(name, function, *args)
             
         elif data['kind'] == 'function':
-            function = types.FunctionType(marshal.loads(data['functions']), globals())
+            function = types.FunctionType(pickle.loads(data['functions']), globals())
             output = function(*args)
             markdown = Markdown(f"""**{name}:** {output}""")
             display(markdown)
