@@ -1,28 +1,34 @@
 import os
+import subprocess
 from IPython.display import clear_output
+
+
+def run_bash_command(command):
+    process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
+    process.communicate()
 
 def spark_setup():
   print('Setting up PySpark.')
-  !pip install tqdm -q
+  run_bash_command('pip install tqdm -q')
   from tqdm import tqdm
   pbar = tqdm(total=7)
-  !apt -qq update 
+  run_bash_command('apt -qq update ')
   clear_output()
   print('Updating system configurations.')
   pbar.update(1)
-  !apt-get install openjdk-8-jdk-headless -qq > /dev/null
+  run_bash_command('apt-get install openjdk-8-jdk-headless -qq > /dev/null')
   clear_output()
   print('Downloading spark-2.4.8-bin-hadoop2.')
   pbar.update(1)
-  !wget -q https://downloads.apache.org/spark/spark-2.4.8/spark-2.4.8-bin-hadoop2.7.tgz
+  run_bash_command('wget -q https://downloads.apache.org/spark/spark-2.4.8/spark-2.4.8-bin-hadoop2.7.tgz')
   clear_output()
   print('Unzipping file')
   pbar.update(1)
-  !tar xf spark-2.4.8-bin-hadoop2.7.tgz
+  run_bash_command('tar xf spark-2.4.8-bin-hadoop2.7.tgz')
   clear_output()
   print('Installing findspark')
   pbar.update(1)
-  !pip install -q findspark
+  run_bash_command('pip install -q findspark')
   clear_output()
   print('Setting environment paths.')
   pbar.update(1)
