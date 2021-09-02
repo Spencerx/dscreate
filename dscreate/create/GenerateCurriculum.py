@@ -15,7 +15,7 @@ class GenerateCurriculum:
     """
     def __init__(self):
         self.cells = []
-        self.solution_path = os.path.join('.solution_files', 'index.ipynb')
+        solution_path = os.path.join('.solution_files', 'index.ipynb')
         self.notebook = {
                             "cells": [],
                             "metadata": {},
@@ -26,7 +26,7 @@ class GenerateCurriculum:
         
 
     def get_solution_cells(self):
-        with open(self.solution_path, 'r') as file:
+        with open(solution_path, 'r') as file:
             data = json.load(file)
         
         for idx in range(len(data['cells'])):
