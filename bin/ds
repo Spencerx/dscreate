@@ -5,16 +5,17 @@ File for running the `ds` instructor tools.
 """
 
 import os
+import sys
 import argparse
 from dscreate.utils import *
 from dscreate.create import *
 from traitlets.config.loader import PyFileConfigLoader
 from nbgrader.apps import NbGraderAPI
 
+# ============================= PARSE ARGUMENTS ==================================
 parser = argparse.ArgumentParser(description='Flatiron Data Science Instructor Tools')
 
-parser.add_argument('command', choices=['create', 'generate',
-                                        'share', 'edit'],
+parser.add_argument('command', choices=['create', 'generate', 'edit', 'share'],
                     help='''
 
                     create    – Positional argument. 
@@ -43,14 +44,15 @@ parser.add_argument('command', choices=['create', 'generate',
                                 - Converts the release notebook to mardown and saves as a README on the master branch
                                 - Pushes changes
 
-                    share     – Positional argument.
-                                This command requires a third positional argument in the form of a github notebook url.
-                                This comment adds to the user's clipboard, a link that opens a github notebook 
-                                on an illumidesk server. 
-
                     edit      – Positional argument.
                                 This command generates a `curriculum.ipynb` notebook using the files
                                 inside the `.solution_files` directory. 
+
+                    share     – Positional argument.
+                                Requirement: A third positional argument in the form of a url pointing to a github notebook
+
+                                A url that opens the jupyter notebook in an illumidesk server is copied to the 
+                                user's clipboard.
                     ''')
 
 parser.add_argument('-dir', action='store_true', default=False, dest='dir',
@@ -60,9 +62,9 @@ parser.add_argument('-dir', action='store_true', default=False, dest='dir',
                     within the cwd. This split method can be useful when compiling multiple lessons within a single directory. 
                     ''')
 
+args, kwargs = parser.parse_known_args()
 
 color = Color()                            
-args = parser.parse_args()
 
 # TODO add a begin command that allows sets up an assignment directory with the correct files. 
 # if args.command == "begin":
@@ -71,38 +73,72 @@ args = parser.parse_args()
 #     print(color.BOLD, color.CYAN, '💻 Lesson directory created! Curriculum materials should be developed in the curriculum.ipynb file!', color.END)
 #     print()
 
+# ============================ DIRECTORY SPLIT ====================================
 if args.command == "create" and args.dir:
-    splitter = SplitNotebook(filename='curriculum.ipynb')
-    lesson_cells, solution_cells = splitter.split_notebooks()
+    splitter = SplitNotebook(filename='curriculum.ipynb', dir=True)
+    lesson_cells, solution_cells = splitter.split_notebook()
+    
     solution_dir = '.solution_files'
     if not os.path.isdir(solution_dir):
         os.mkdir(solution_dir)
+    
     solution_path = os.path.join(solution_dir, 'index')
     splitter.write_notebook(solution_path, solution_cells)
     splitter.write_notebook('index', lesson_cells)
     os.remove("curriculum.ipynb")
+    generate_readme('index.ipynb', '.' + os.sep, 'README')
+    generate_readme(solution_path + '.ipynb', 
+                    solution_dir + os.sep, 'README')
     print()
     print(color.BOLD, color.CYAN, '📒 Solution and Lesson Notebooks have been created!', color.END)
     print()
     print(color.BOLD, color.GREEN, 'To access the curriculum notebook, run ds -curriculum', color.END)
     print()
-
+# ========================== BRANCH SPLIT ========================================
 elif args.command == "create":
 
+    # Ensure a curriculum branch exists
     branches = os.path.join('.git', 'refs', 'heads')
     if 'curriculum' not in os.listdir(branches):
         raise ValueError('A curriculum branch must exist.')
 
-    # Commit curriculum changes
+    # Create a git controller
     repo = GitModel()
+
+    # Ensure the curriculum branch is checked out
+    if repo.active_branch.name != 'curriculum':
+        print()
+        raise ValueError(f'You are currently on {repo.active_branch.name}.\nPlease checkout the curriculum branch.')
+
+    # Generate Curriculum Readme
+    generate_readme('index.ipynb', '.' + os.sep, 'README')
+
+    # Commit curriculum changes
+    print('Commiting curriculum changes...')
     splitter = SplitNotebook()
     commit_msg = repo.get_commit_message()
     repo.add_and_commit(commit_msg)
 
+    # Create master if doesn't exist
+    if 'master' not in os.listdir(branches):
+        print('Creating a master branch...')
+        solution = repo.create_head('master')
+        origin = repo.remote()
+        origin.push('master')
+
+    # Create solution is doesn't exist
+    if 'solution' not in os.listdir(branches):
+        print('Creating a solution branch...')
+        solution = repo.create_head('solution')
+        origin = repo.remote()
+        origin.push('solution')
+
     # Split notebook
+    print('Splitting notebook...')
     lesson_cells, solution_cells = splitter.split_notebook()
 
     # Update master branch
+    print('Updating master branch...')
     repo.git.checkout('master')
     repo.git.checkout('curriculum', '.')
     splitter.write_notebook('index', lesson_cells)
@@ -110,6 +146,7 @@ elif args.command == "create":
     repo.add_and_commit(commit_msg)
 
     # Update solution branch
+    print('Updating solution branch...')
     repo.git.checkout('solution')
     repo.git.checkout('curriculum', '.')
     splitter.write_notebook('index', solution_cells)
@@ -117,10 +154,16 @@ elif args.command == "create":
     repo.add_and_commit(commit_msg)
 
     # Push changes
+    print('Pushing changes to remote...')
     repo.git.push('origin', 'master')
     repo.git.push('origin', 'solution')
     repo.git.push('origin', 'curriculum')
 
+    # End on curriculum
+    repo.git.checkout('Curriculum')
+    print('Complete!')
+
+# ======================= REGENERATE curriculum.ipynb (dir split) =========================
 if args.command == "edit":
     generator = GenerateCurriculum()
     generator.main()
@@ -130,17 +173,18 @@ if args.command == "edit":
 
 if args.command == "share":
     share = ShareNotebook()
-    share.main(args.url)
+    share.main(kwargs[0])
     print()
     print(color.BOLD, color.CYAN, '📋 An Illumidesk link has been added to your clipboard!', color.END)
     print()
 
+# =============================== NBGRADER SPLIT =======================================
 if args.command == 'generate':
 
     ASSIGNMENT = os.getcwd().split(os.sep)[-1]
 
     # create a config object to specify options for nbgrader
-    top_directory = get_top_directory()
+    top_directory = get_nbgrader_directory()
     config_path = os.path.join(top_directory, 'nbgrader_config.py')
     config_loader = PyFileConfigLoader(config_path)
     config = config_loader.load_config()

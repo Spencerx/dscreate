@@ -14,10 +14,11 @@ class SplitNotebook:
             is added to the solution notebook and is replaced with
             `*YOUR ANSWER HERE*` in the lesson notebook.
     """
-    def __init__(self, filename='index.ipynb'):
-        solution_tags = ["__SOLUTION__", f"#__SOLUTION__", 
+    def __init__(self, filename='index.ipynb', dir=False):
+        self.solution_tags = ["__SOLUTION__", f"#__SOLUTION__", 
                             "==SOLUTION==", f"#==SOLUTION=="]
         self.data = self.get_notebook_json(filename=filename)
+        self.dir = dir
 
     def get_notebook_json(self, filename="index.ipynb"):
         """
@@ -44,6 +45,7 @@ class SplitNotebook:
             placeholder = dict(cell)
             placeholder['metadata'] = dict(cell['metadata'])
             placeholder['metadata']['index'] = 'Placeholder'
+            
             if cell_type == "markdown":
 
                 if solution:
@@ -59,7 +61,8 @@ class SplitNotebook:
 
                 else:
                     lesson_cells.append(cell)
-                    solution_cells.append(placeholder) 
+                    if self.dir:
+                        solution_cells.append(placeholder) 
             count += 1 
         return lesson_cells, solution_cells 
 
@@ -76,7 +79,7 @@ class SplitNotebook:
         lines = []
         for line in cell["source"]:
             found = False
-            for tag in solution_tags:
+            for tag in self.solution_tags:
                 if tag in line.strip().split(" "):
                     is_solution = True
                     found = True

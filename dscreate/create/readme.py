@@ -1,3 +1,5 @@
+import os
+import re
 import nbformat
 from nbconvert import MarkdownExporter
 from nbconvert.writers import FilesWriter
@@ -34,4 +36,18 @@ def generate_readme(notebook_path, dir_path, filename):
     c.FilesWriter.build_directory = index_files
     fw = FilesWriter(config=c)
     fw.write(output, resources, notebook_name=filename)
-    shutil.move(input_path, output_path)
+    
+    old_readme_file = open(input_path)
+    old_readme = old_readme_file.read()
+    old_readme_file.close()
+    os.remove(input_path)
+    pattern = '!\[[^\]]*\]\((.*?)\s*("(?:.*[^"])")?\s*\)'
+    image_paths = re.findall(pattern, old_readme)
+
+    new_readme = str(old_readme)
+    for path in image_paths:
+        new_readme = new_readme.replace(path[0], 'index_files' + os.sep + path[0])
+
+    readme_file = open(output_path, 'w')
+    readme_file.write(new_readme)
+    readme_file.close()
