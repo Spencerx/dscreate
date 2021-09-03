@@ -30,23 +30,50 @@ Table of Contents
 CLI Tools
 -------------
 
--------------
-``ds -begin``
--------------
-When this command is run the following things happen:
-
-* A ``data/`` folder is added to the current working directory
-* A ``.solution_files`` subdirectory is added to the current working directory
-* A ``curriculum.ipynb`` file is added to the current working directory
-  
-   * This notebook contains instructions for creating solution tags. See `Creating Solution Cells <#creating-solution-cells>`_.
-   * All curriculum content needs to be created in this file in order to use ``ds -create``.
-
 
 -------------
-``ds -create``
+``ds create``
 -------------
-When this command is run the following things happen:
+**Requirements:**
+
+- This command must be run from a `curriculum` branch
+- An `index.ipynb` file must exist on the `curriculum` branch
+
+**When this command is run the following things happen:**
+
+- A README.md file if generated for the curriculum notebook
+- The curriculum notebook is split
+   - Student facing materials are added to an `index.ipynb` file on the `master` branch
+   - Solutions are added to to an `index.ipynb` file on the `solution` branch
+- READMEs and created for both `master` and `solution` branches
+- Changes are pushed to github for each branch
+
+
+-------------
+``ds generate``
+-------------
+
+**Requirements:**
+
+- This command must be run from a `master` branch
+- An `index.ipynb` file must exist on the `master` branch
+
+**When this command is run the following things happen:**
+
+- The assignment is generated via the NbGrader API
+- The source notebook is convered to markdown and saved as a README on the `master` branch
+- The `master` branch is merged into the `solution` branch
+- The release notebook is converted to markdown and saved as a README on the `master` branch
+- Changes are pushed to github for each branch
+
+-------------
+``ds create -dir``
+-------------
+**Requirements**
+
+- A `curriculum.ipynb` notebook must exist.
+
+**When this command is run the following things happen:**
 
 - An ``index.ipynb`` file is added to the current working directory containing all "student facing" content within the ``curriculum.ipynb`` file
 - An ``index.ipynb`` file is added to the ``.solution_files`` subdirectory containing all solution content in the ``curriculum.ipynb`` file.
@@ -54,9 +81,8 @@ When this command is run the following things happen:
   
    - To make future edits to this project, the curriculum notebook must be generated using `ds -edit`.
 
-
 -------------
-``ds -edit``
+``ds edit``
 -------------
 When this command is run the following things happen:
 
@@ -67,7 +93,7 @@ Once edits are complete, run ``ds -create`` to hide the solutions inside a hidde
 
 
 -------------
-``ds -share <Github notebook url>``
+``ds share <Github notebook url>``
 -------------
 
 * This command accepts any link that points to a public notebook on github. When this command is run, a link is copied to your clipboard that points to the notebook on illumidesk.
@@ -77,30 +103,30 @@ Once edits are complete, run ``ds -create`` to hide the solutions inside a hidde
 
 .. _creating-a-lesson:
 
-Creating A Lesson
+Creating A Directory Split Lesson 
 ==================
 
 **The overall proccess looks like this**
 
 1. Create project folder
 2. ``cd`` into the the project folder
-3. Run ``ds -begin``
+3. Create a `curriculum.ipynb` notebook
 4. Open the ``curriculum.ipynb`` jupyter notebook
 5. Create lesson using `solution tags <#creating-solution-cells>`_ 
 6. Save the curriculum notebook
-7. run ``ds -create``
+7. run ``ds create -dir``
 8. Push repository to github
 9. Copy link to the top level ``index.ipynb`` file on github.
-10. run ``-ds share <github link>
+10. run ``ds share <github link>
 11. Share link with students. 
 
 **To make new edits to a lesson after running ``ds -create``**
 
-1. run ``ds -edit``
+1. run ``ds edit``
 2. Open the ``curriculum.ipynb`` notebook
 3. Make edits in curriculum notebook
 4. Save notebook
-5. run ``ds -create``
+5. run ``ds create``
 
 Lesson Structure
 ==================
