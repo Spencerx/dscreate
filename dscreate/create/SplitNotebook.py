@@ -63,6 +63,8 @@ class SplitNotebook:
                     lesson_cells.append(cell)
                     if self.dir:
                         solution_cells.append(placeholder) 
+                    else:
+                        solution_cells.append(cell)
             count += 1 
         return lesson_cells, solution_cells 
 
