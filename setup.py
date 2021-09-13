@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='dscreate',
-      version='0.1.86',
+      version='0.1.87',
       description='Flatiron Iron School Data Science Tools',
       url='http://github.com/learn-co-curriculum/dscreate',
       author='Joél Collins',

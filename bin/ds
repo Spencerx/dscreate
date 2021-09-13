@@ -86,9 +86,9 @@ if args.command == "create" and args.dir:
     splitter.write_notebook(solution_path, solution_cells)
     splitter.write_notebook('index', lesson_cells)
     os.remove("curriculum.ipynb")
-    generate_readme('index.ipynb', '.' + os.sep, 'README')
+    generate_readme('index.ipynb',  'README')
     generate_readme(solution_path + '.ipynb', 
-                    solution_dir + os.sep, 'README')
+                    solution_dir + os.sep + 'README')
     print()
     print(color.BOLD, color.CYAN, '📒 Solution and Lesson Notebooks have been created!', color.END)
     print()
@@ -106,12 +106,12 @@ elif args.command == "create":
     repo = GitModel()
 
     # Ensure the curriculum branch is checked out
-    if repo.active_branch.name != 'curriculum':
+    if repo.active_branch.name.lower() != 'curriculum':
         print()
         raise ValueError(f'You are currently on {repo.active_branch.name}.\nPlease checkout the curriculum branch.')
 
     # Generate Curriculum Readme
-    generate_readme('index.ipynb', '.' + os.sep, 'README')
+    generate_readme('index.ipynb', 'README')
 
     # Commit curriculum changes
     print('Commiting curriculum changes...')
@@ -126,7 +126,7 @@ elif args.command == "create":
         origin = repo.remote()
         origin.push('master')
 
-    # Create solution is doesn't exist
+    # Create solution if doesn't exist
     if 'solution' not in os.listdir(branches):
         print('Creating a solution branch...')
         solution = repo.create_head('solution')
@@ -142,7 +142,7 @@ elif args.command == "create":
     repo.git.checkout('master')
     repo.git.checkout('curriculum', '.')
     splitter.write_notebook('index', lesson_cells)
-    generate_readme('index.ipynb', '.' + os.sep, 'README')
+    generate_readme('index.ipynb','README')
     repo.add_and_commit(commit_msg)
 
     # Update solution branch
@@ -150,7 +150,7 @@ elif args.command == "create":
     repo.git.checkout('solution')
     repo.git.checkout('curriculum', '.')
     splitter.write_notebook('index', solution_cells)
-    generate_readme('index.ipynb', '.' + os.sep, 'README')
+    generate_readme('index.ipynb', 'README')
     repo.add_and_commit(commit_msg)
 
     # Push changes
@@ -206,7 +206,7 @@ if args.command == 'generate':
     if not os.path.isfile(source_notebook_path):
         raise ValueError('The assignment notebook must be named index.ipynb')
     # Save source readme to master branch
-    generate_readme(source_notebook_path, source_path, 'README')
+    generate_readme(source_notebook_path, 'README' )
 
     # Create a git interface
     repo = GitModel()
@@ -233,7 +233,7 @@ if args.command == 'generate':
     release_notebook_path = os.path.join(release_path, 'index.ipynb')
 
     # Save release readme to master branch
-    generate_readme(release_notebook_path, source_path, 'README')
+    generate_readme(release_notebook_path, 'README')
 
     # Commit changes to master branch
     repo.add_and_commit(commit_msg="Update release readme")
