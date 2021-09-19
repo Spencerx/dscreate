@@ -44,6 +44,9 @@ def nbgrader_generate(notebook_path, config=None):
     # Set up the config
     if not config:
         c = Config()
+    else:
+        c = config
+        
     c.NotebookExporter.preprocessors = [ClearSolutions,
                                         LockCells,
                                         ComputeChecksums,
