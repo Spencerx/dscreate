@@ -5,7 +5,6 @@ from nbconvert.writers import FilesWriter
 
 converter_flags = {'inline': ({'BaseConverter': {'inline': True}}, 
 "Write solution files to `.solution_files` instead of a solution branch")}
-converter_flags.update(dscreate_flags)
 
 class BaseConverter:
 
