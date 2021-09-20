@@ -67,7 +67,8 @@ class BaseConverter:
                 os.mkdir(self.solution_dir)
 
             self.writer.build_directory = self.solution_dir 
-            self.writer.write(output, resources, notebook_name=resources['unique_key'])
+            
+        self.writer.write(output, resources, notebook_name=resources['unique_key'])
 
         
         
