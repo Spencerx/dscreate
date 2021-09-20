@@ -41,6 +41,7 @@ class BaseConverter:
         self.writer = FilesWriter(parent=self, config=self.config)
         self.exporter = self.exporter_class(parent=self, config=self.config)
         self._init_preprocessors()
+        self.convert_notebook()
 
     def _init_preprocessors(self) -> None:
         self.exporter._preprocessors = []
