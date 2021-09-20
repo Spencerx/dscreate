@@ -9,9 +9,21 @@ from traitlets import Application, List, default, Unicode
 from dscreate.utils import GitModel
 from .ReadmeCreateApp import ReadmeCreate
 
+dscreate_flags = {
+    'local': (
+        {'GitModel' : {'push' : False}},
+        "Add and commit changes locally without pushing to the remote."
+    ),
+    'no-stage': (
+        {'GitModel' : {'stage': False}},
+        "Do not commit changes."
+    )
+}
+
 class DsCreate(Application):
 
     name = 'DsCreate'
+    flags = dscreate_flags
     description = """
         The base app for dscreate applications.
         This app primarily handles the set up of configuration files for dscreate.
