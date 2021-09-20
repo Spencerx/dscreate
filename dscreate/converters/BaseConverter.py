@@ -16,7 +16,7 @@ class BaseConverter(LoggingConfigurable):
     exporter = Instance(Exporter)
     exporter_class = Type(NotebookExporter, klass=Exporter).tag(config=True)
     preprocessors = List([])
-
+    solution = Bool(False)
     
     solution_dir = Unicode(config=True)
     @default('solution_dir')
@@ -24,10 +24,6 @@ class BaseConverter(LoggingConfigurable):
         cwd = os.getcwd()
         return u'{}'.format(os.path.join(cwd, '.solution_files'))
 
-    solution = Bool()
-    @default('solution')
-    def solution_default(self) -> bool:
-        return False
 
     inline = Bool(config=True)
     @default('inline')

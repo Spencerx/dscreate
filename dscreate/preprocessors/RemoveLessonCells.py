@@ -1,8 +1,8 @@
 from traitlets import Set
-from nbconvert.preprocessors import Preprocessor
+from .BasePreprocessor import DsCreatePreprocessor
 
 
-class RemoveLessonCells(Preprocessor):
+class RemoveLessonCells(DsCreatePreprocessor):
 
     solution_tags = Set({'#__SOLUTION__', '#==SOLUTION==', '__SOLUTION__', '==SOLUTION=='},
             help=("Tags indicating which cells are to be removed"

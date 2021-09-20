@@ -1,8 +1,8 @@
 from traitlets import Set, Int
-from nbconvert.preprocessors import Preprocessor
+from .BasePreprocessor import DsCreatePreprocessor
 
 
-class AddCellIndex(Preprocessor):
+class AddCellIndex(DsCreatePreprocessor):
 
     index = Int(0)
 

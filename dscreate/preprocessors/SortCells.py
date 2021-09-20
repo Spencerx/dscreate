@@ -1,6 +1,6 @@
-from nbconvert.preprocessors import Preprocessor
+from .BasePreprocessor import DsCreatePreprocessor
 
-class SortCells(Preprocessor):
+class SortCells(DsCreatePreprocessor):
 
     def preprocess(self, nb, resources):
 

@@ -1,7 +1,7 @@
 from traitlets import Set
-from nbconvert.preprocessors import Preprocessor
+from .BasePreprocessor import DsCreatePreprocessor
 
-class RemoveMarkdownSolution(Preprocessor):
+class RemoveMarkdownSolution(DsCreatePreprocessor):
 
     markdown_tags = Set({'==SOLUTION==', '__SOLUTION__'},
             help=("Tags indicating which cells are written answer cells."
