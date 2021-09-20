@@ -14,15 +14,17 @@ dscreate_flags = {
         {'GitModel' : {'push' : False}},
         "Add and commit changes locally without pushing to the remote."
     ),
-    'no-stage': (
-        {'GitModel' : {'stage': False}},
-        "Do not commit changes."
-    )
-}
+    }
+
+dscreate_aliases = {
+    'commit': 'GitModel.commit',
+    'm':'GitModel.commit_message',
+    }
 
 class DsCreate(Application):
 
     name = 'DsCreate'
+    aliases = dscreate_aliases
     flags = dscreate_flags
     description = """
         The base app for dscreate applications.
