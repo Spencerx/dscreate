@@ -12,5 +12,10 @@ class CheckoutController(BaseController):
         return self.config.Pipeline.branches[self.config.Commit.count]
 
     def start(self) -> None:
+        active_branch = self.active_branch.name
+        if not isintance(self.config.traversed_branches, list):
+            self.config.traversed_branches = []
+        self.config.traversed_branches.append(active_branch)
+        
         branch = self.get_branch()
         self.git.checkout(branch)

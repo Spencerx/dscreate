@@ -5,8 +5,6 @@ from traitlets.config import LoggingConfigurable, Config
 from nbconvert.exporters import Exporter, NotebookExporter
 from nbconvert.writers import FilesWriter
 
-converter_flags = {'inline': ({'BaseConverter': {'inline': True}}, 
-"Write solution files to `.solution_files` instead of a solution branch")}
 
 class BaseConverter(LoggingConfigurable):
 
@@ -15,7 +13,7 @@ class BaseConverter(LoggingConfigurable):
     writer = Instance(FilesWriter)
     exporter = Instance(Exporter)
     exporter_class = Type(NotebookExporter, klass=Exporter).tag(config=True)
-    preprocessors = List([])
+    preprocessors = List([], config=True)
     solution = Bool(False)
     
     solution_dir = Unicode(config=True)
@@ -30,15 +28,16 @@ class BaseConverter(LoggingConfigurable):
     def inline_default(self) -> bool:
         return False
 
-    output_name = Unicode(config=True)
-    @default('output_name')
+    output = Unicode(config=True)
+    @default('output')
     def output_name_default(self) -> str:
         return u'index'
 
     notebook_path = Unicode(config=True)
     @default('notebook_path')
     def notebook_path_default(self) -> str:
-        return os.path.join(os.getcwd() + 'index.ipynb')
+
+        return os.path.join(os.getcwd(), 'index.ipynb')
 
     def __init__(self, **kwargs: typing.Any) -> None:
         """
@@ -57,6 +56,8 @@ class BaseConverter(LoggingConfigurable):
         self.exporter = self.exporter_class(parent=self, config=self.config)
         self._init_preprocessors()
         self.convert_notebook()
+        if self.inline:
+            self.config.inline_tracker += 1
 
     def _init_preprocessors(self) -> None:
         """
@@ -87,7 +88,7 @@ class BaseConverter(LoggingConfigurable):
         """
         resources = {}
         resources['unique_key'] = self.output_name
-        resources['output_files_dir'] = f'{self.output_name}_files'
+        resources['output_files_dir'] = f'{self.output}_files'
         return resources
 
     def write_notebook(self, output, resources) -> None:
@@ -101,6 +102,8 @@ class BaseConverter(LoggingConfigurable):
             self.writer.build_directory = self.solution_dir 
 
         self.writer.write(output, resources, notebook_name=resources['unique_key'])
+
+
 
     
 

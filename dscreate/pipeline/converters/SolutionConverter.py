@@ -1,5 +1,5 @@
 from .BaseConverter import BaseConverter
-from ..preprocessors import RemoveLessonCells, ExecuteCells
+from ..preprocessors import *
 
 from traitlets import default
 
@@ -12,5 +12,8 @@ class SolutionConverter(BaseConverter):
 
     @default('preprocessors')
     def preprocessors_default(self) -> list:
-        return [RemoveLessonCells, ExecuteCells]
+        if self.inline:
+            return [RemoveLessonCells, ExecuteCells]
+        elif self.inline:
+            return [ClearOutput, AddCellIndex, RemoveLessonCells, ExecuteCells]
 

@@ -7,19 +7,30 @@ from traitlets import Application, List, default, Unicode
 
 # Package objects
 from dscreate.utils import GitModel
-from .ReadmeCreateApp import ReadmeCreate
+from ..pipeline import *
 
 dscreate_flags = {
     'local': (
-        {'GitModel' : {'push' : False}},
-        "Add and commit changes locally without pushing to the remote."
+        {'PushController' : {'enabled' : False}},
+        "Create assignment, add, and commit changes locally without pushing to the remote."
     ),
+    'inline': (
+    {'CreateApp': {
+    'pipeline_steps': [Readme,
+                       Solution,
+                       Lesson,
+                       Readme,
+                       Commit, 
+                       Push]},
+    'branches': []},
+    {'BaseConverter': {'inline': True}}, "Create inline directory split.")
     }
 
 dscreate_aliases = {
-    'commit': 'GitModel.commit',
-    'm':'GitModel.commit_message',
+    'commit': 'CommitController.enabled',
+    'm':'CommitController.commit_msg',
     }
+
 
 class DsCreate(Application):
 
@@ -35,7 +46,6 @@ class DsCreate(Application):
         2. Finds a configuration file if specified with the `--config_file` argument.
         3. Activates the `.start` method for the traitlets 
            `Application` object which activates the SubApps `.start` method.
-        4. Initializes a `.git` attribute
     """
 
     classes = List()
@@ -78,8 +88,11 @@ class DsCreate(Application):
 
     def start(self):
         self._load_configs()
+        if self.inline:
+            c = Config()
+            c.inline_tracker = 1
+            self.config.merge(c)
         super(DsCreate, self).start()
-        self.git = GitModel()
 
 
 
