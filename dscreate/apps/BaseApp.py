@@ -7,7 +7,7 @@ from traitlets import Application, List, default, Unicode
 
 # Package objects
 from dscreate.utils import GitModel
-from ..pipeline import *
+from .. import pipeline
 
 dscreate_flags = {
     'local': (
@@ -55,7 +55,23 @@ class DsCreate(Application):
 
     @default('classes')
     def _classes_default(self) -> TypingList[MetaHasTraits]:
-        return [GitModel, ReadmeCreate]
+        return [DsCreate]
+
+    def all_configurable_classes(self) -> TypingList[MetaHasTraits]:
+        """Get a list of all configurable classes for nbgrader
+        """
+        classes = DsCreate._classes_default(self)
+
+        for _, (app, _) in self.subcommands.items():
+            if len(app.class_traits(config=True)) > 0:
+                classes.append(app)
+
+        for pp_name in pipeline.__all__:
+            pg = getattr(pipeline, pp_name)
+            if pp.class_traits(config=True):
+                classes.append(pp)
+
+        return classes
 
     @default("config_file_name")
     def _config_file_name_default(self) -> str:
