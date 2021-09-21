@@ -1,6 +1,8 @@
 from .BaseConverter import BaseConverter
 from ..preprocessors import RemoveLessonCells, ExecuteCells
 
+from traitlets import default
+
 
 class SolutionConverter(BaseConverter):
 

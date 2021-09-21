@@ -1,4 +1,5 @@
 from nbconvert.preprocessors import Preprocessor
+from traitlets import Bool
 
 class DsCreatePreprocessor(Preprocessor):
 

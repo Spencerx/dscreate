@@ -1,7 +1,7 @@
 import os
 import typing
-from traitlets import List, Config, Bool, default, Instance, Type, Unicode
-from traitlets.config import LoggingConfigurable
+from traitlets import List, Bool, default, Instance, Type, Unicode
+from traitlets.config import LoggingConfigurable, Config
 from nbconvert.exporters import Exporter, NotebookExporter
 from nbconvert.writers import FilesWriter
 
