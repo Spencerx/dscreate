@@ -1,2 +1,2 @@
-from dscreate.apps import main
+from dscreate.apps.DsCreateApp import main
 main()
