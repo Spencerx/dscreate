@@ -8,6 +8,8 @@ from . import CommitController, BaseController
 
 class PushController(BaseController):
 
+    name = 'push-controller'
+
     enabled = Bool(config=True)
     remote = Unicode(config=True)
     @default('remote')

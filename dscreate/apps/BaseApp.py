@@ -3,7 +3,8 @@ from os.path import exists
 from appdirs import user_data_dir
 from typing import List as TypingList
 from traitlets.traitlets import MetaHasTraits
-from traitlets import Application, List, default, Unicode
+from traitlets import  List, default, Unicode, Bool
+from traitlets.config import Application, Config
 
 # Package objects
 from dscreate.utils import GitModel
@@ -15,16 +16,9 @@ dscreate_flags = {
         "Create assignment, add, and commit changes locally without pushing to the remote."
     ),
     'inline': (
-    {'CreateApp': {
-    'pipeline_steps': [Readme,
-                       Solution,
-                       Lesson,
-                       Readme,
-                       Commit, 
-                       Push]},
-    'branches': []},
-    {'BaseConverter': {'inline': True}}, "Create inline directory split.")
-    }
+    {'DsCreate': {'inline': True},
+     'CollectCurriculum': {'edit_file': 'curriculum.ipynb'}}, "Create inline directory split.")
+}
 
 dscreate_aliases = {
     'commit': 'CommitController.enabled',
@@ -48,17 +42,21 @@ class DsCreate(Application):
            `Application` object which activates the SubApps `.start` method.
     """
 
-    classes = List()
-    app_dir = Unicode()
-    config_file_name =  Unicode(config=True, help="Specify a config file to load.")
-    system_config_path = Unicode()
+    classes = List(config=True)
+    config_file = Unicode(config=True)
+    
+
+    inline = Bool(config=True)
+    @default('inline')
+    def inline_default(self) -> bool:
+        return False
 
     @default('classes')
     def _classes_default(self) -> TypingList[MetaHasTraits]:
         return [DsCreate]
 
     def all_configurable_classes(self) -> TypingList[MetaHasTraits]:
-        """Get a list of all configurable classes for nbgrader
+        """Get a list of all configurable classes for dscreate
         """
         classes = DsCreate._classes_default(self)
 
@@ -67,20 +65,23 @@ class DsCreate(Application):
                 classes.append(app)
 
         for pp_name in pipeline.__all__:
-            pg = getattr(pipeline, pp_name)
+            pp = getattr(pipeline, pp_name)
             if pp.class_traits(config=True):
                 classes.append(pp)
 
         return classes
 
+    config_file_name =  Unicode(config=True, help="Specify a config file to load.")
     @default("config_file_name")
     def _config_file_name_default(self) -> str:
         return u'dscreate_config.py'
 
+    app_dir = Unicode(config=True)
     @default('app_dir')
     def app_dir_default(self) -> str:
         return u'{}'.format(user_data_dir(self.name, 'flatiron'))
 
+    system_config_path = Unicode(config=True)
     @default('system_config_path')
     def system_config_path_default(self) -> str:
         return u'{}'.format(os.path.join(self.app_dir, self.config_file_name))
@@ -88,11 +89,11 @@ class DsCreate(Application):
     def write_default_config(self) -> None:
         if not exists(self.app_dir):
             os.mkdir(self.app_dir)
-        if not exists(self.default_config):
+        if not exists(self.system_config_path):
             config = self.generate_config_file()
             if isinstance(config, bytes):
                 config = config.decode('utf8')
-            with open(self.default_config, 'w+') as file:
+            with open(self.system_config_path, 'w+') as file:
                 file.write(config)
 
     def _load_configs(self) -> None:
@@ -102,13 +103,15 @@ class DsCreate(Application):
             path, config_file_name = os.path.split(self.config_file)
             self.load_config_file(config_file_name, path=path)
 
+
     def start(self):
-        self._load_configs()
-        if self.inline:
-            c = Config()
-            c.inline_tracker = 1
-            self.config.merge(c)
         super(DsCreate, self).start()
+        self._load_configs()
+        c = Config()
+        c.inline.enabled = self.inline
+        c.inline.tracker = int(self.inline)
+        self.config.merge(c)
+        
 
 
 

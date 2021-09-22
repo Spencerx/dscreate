@@ -1,26 +1,20 @@
 from . import BaseConverter
-from nbconvert.exporters import MarkdownExporter
 from traitlets import default, Unicode
-import os
+from nbconvert.exporters import MarkdownExporter
 
-class ReadmeConverter(BaseConverter):
 
-    name = 'readme-converter'
+class SourceConverter(BaseConverter):
 
+    name = 'source-converter'
     exporter_class = MarkdownExporter
+
     notebook_path = Unicode(config=True)
     output = 'README'
 
     @default('notebook_path')
     def notebook_path_default(self) -> str:
-        if self.config.inline.enabled and self.config.inline.solution:
-            return os.path.join(self.solution_dir,  'index.ipynb')
-        
         return 'index.ipynb'
 
-    @default('preprocessors')
-    def preprocessors_default(self) -> list:
-        return []
 
     def convert_notebook(self) -> None:
         """
@@ -29,5 +23,7 @@ class ReadmeConverter(BaseConverter):
         3. Write the notebook to file.
         """
         resources = self.init_notebook_resources()
-        output, resources = self.exporter.from_filename(self.notebook_path, resources=resources)
+        output, resources = self.exporter.from_notebook_node(self.config.source_notebook, resources=resources)
         self.write_notebook(output, resources)
+
+        

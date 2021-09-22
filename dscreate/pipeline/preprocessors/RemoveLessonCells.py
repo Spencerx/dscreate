@@ -9,7 +9,7 @@ class RemoveLessonCells(DsCreatePreprocessor):
             )).tag(config=True)
 
 
-    def check_cell_conditions(self, cell, resources, index):
+    def is_solution(self, cell):
         """
         Checks that a cell has a solution tag. 
         """
@@ -25,14 +25,15 @@ class RemoveLessonCells(DsCreatePreprocessor):
             return nb, resources
 
         # Filter out cells that meet the conditions
-        nb.cells = [self.preprocess_cell(cell, resources, index)[0]
-                    for index, cell in enumerate(nb.cells)
-                    if self.check_cell_conditions(cell, resources, index)
-                    or cell.cell_type == 'markdown']
+        cells = []
+        for cell in nb.cells:
+            if self.is_solution(cell) or cell.cell_type == 'markdown':
+                cells.append(self.preprocess_cell(cell))
+        nb.cells = cells
 
         return nb, resources
 
-    def preprocess_cell(self, cell, resources, cell_index):
+    def preprocess_cell(self, cell):
         """
         Removes the solution tag from the solution cells.
         """
@@ -40,4 +41,4 @@ class RemoveLessonCells(DsCreatePreprocessor):
         lines = cell.source.split('\n')
         no_tags = [line for line in lines if line not in self.solution_tags]
         cell.source = '\n'.join(no_tags)
-        return cell, resources
+        return cell

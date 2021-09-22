@@ -1,7 +1,6 @@
 from .AddCellIndex import AddCellIndex
-from .RemoveCodeSolutions import RemoveCodeSolution
+from .RemoveSolutions import RemoveSolutions
 from .RemoveLessonCells import RemoveLessonCells
-from .RemoveMarkdownSolutions import RemoveMarkdownSolution
 from .SortCells import SortCells
 from .ClearOutput import ClearOutput
 from .ExecuteCells import ExecuteCells
@@ -9,9 +8,8 @@ from .ExecuteCells import ExecuteCells
 
 __all__ = [
     'AddCellIndex',
-    'RemoveCodeSolution',
+    'RemoveSolutions',
     'RemoveLessonCells',
-    'RemoveMarkdownSolution',
     'SortCells',
     'ClearOutput',
     'ExecuteCells'

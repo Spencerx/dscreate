@@ -2,12 +2,19 @@ from .BaseController import BaseController
 from .. import DsPipeline
 from git import GitCommandError
 from traitlets import Bool, Unicode, Int
+from traitlets import default
 
 class CommitController(BaseController):
+
+    name = 'commit-controller'
 
     commit_msg = Unicode(config=True)
     count = Int(config=True)
     enabled = Bool(config=True)
+
+    @default('commit_msg')
+    def commit_msg_default(self) -> str:
+        return f'Updating {self.active_branch.name}'
 
     def add_and_commit(self, commit_msg=None):
         self.git.add(".")

@@ -1,10 +1,18 @@
 from .BaseConverter import BaseConverter
-from ..preprocessors import ClearOutput, RemoveCodeSolution, RemoveMarkdownSolution
+from ..preprocessors import ClearOutput, RemoveSolutions
 
 from traitlets import default
 
 class MasterConverter(BaseConverter):
 
+    name = 'master-converter'
+
     @default('preprocessors')
     def preprocessors_default(self) -> list:
-        return [ClearOutput, RemoveCodeSolution, RemoveMarkdownSolution]
+        return [ClearOutput, RemoveSolutions]
+
+    def start(self) -> None:
+        super(MasterConverter, self).start()
+
+        if self.config.inline.enabled:
+            self.config.inline.solution = False

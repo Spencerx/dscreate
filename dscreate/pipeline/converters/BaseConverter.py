@@ -1,15 +1,14 @@
 import os
 import typing
 from traitlets import List, Bool, default, Instance, Type, Unicode
-from traitlets.config import LoggingConfigurable, Config
+from traitlets.config import Configurable, Config
 from nbconvert.exporters import Exporter, NotebookExporter
 from nbconvert.writers import FilesWriter
 
 
-class BaseConverter(LoggingConfigurable):
+class BaseConverter(Configurable):
 
     name = u'dscreate-base-converter'
-    flags = converter_flags
     writer = Instance(FilesWriter)
     exporter = Instance(Exporter)
     exporter_class = Type(NotebookExporter, klass=Exporter).tag(config=True)
@@ -22,22 +21,10 @@ class BaseConverter(LoggingConfigurable):
         cwd = os.getcwd()
         return u'{}'.format(os.path.join(cwd, '.solution_files'))
 
-
-    inline = Bool(config=True)
-    @default('inline')
-    def inline_default(self) -> bool:
-        return False
-
     output = Unicode(config=True)
     @default('output')
     def output_name_default(self) -> str:
         return u'index'
-
-    notebook_path = Unicode(config=True)
-    @default('notebook_path')
-    def notebook_path_default(self) -> str:
-
-        return os.path.join(os.getcwd(), 'index.ipynb')
 
     def __init__(self, **kwargs: typing.Any) -> None:
         """
@@ -53,11 +40,11 @@ class BaseConverter(LoggingConfigurable):
         Activate the converter
         """
         self.writer = FilesWriter(parent=self, config=self.config)
-        self.exporter = self.exporter_class(parent=self, config=self.config)
+        self.exporter = self.exporter_class()
         self._init_preprocessors()
         self.convert_notebook()
-        if self.inline:
-            self.config.inline_tracker += 1
+        if self.config.inline.enabled:
+            self.config.inline.tracker += 1
 
     def _init_preprocessors(self) -> None:
         """
@@ -74,7 +61,7 @@ class BaseConverter(LoggingConfigurable):
         3. Write the notebook to file.
         """
         resources = self.init_notebook_resources()
-        output, resources = self.exporter.from_filename(self.notebook_path, resources=resources)
+        output, resources = self.exporter.from_notebook_node(self.config.source_notebook, resources=resources)
         self.write_notebook(output, resources)
 
     def init_notebook_resources(self) -> dict:
@@ -87,7 +74,7 @@ class BaseConverter(LoggingConfigurable):
         the name of the original notebook.
         """
         resources = {}
-        resources['unique_key'] = self.output_name
+        resources['unique_key'] = self.output
         resources['output_files_dir'] = f'{self.output}_files'
         return resources
 
@@ -96,12 +83,12 @@ class BaseConverter(LoggingConfigurable):
         Sets the output directory for the file write
         and writes the file to disk. 
         """
-        if self.inline and self.solution:
+        if self.config.inline.enabled and self.solution:
             if not os.path.exists(self.solution_dir):
                 os.mkdir(self.solution_dir)
             self.writer.build_directory = self.solution_dir 
 
-        self.writer.write(output, resources, notebook_name=resources['unique_key'])
+        self.writer.write(output, resources, notebook_name=self.output)
 
 
 
