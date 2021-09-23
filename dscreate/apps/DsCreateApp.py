@@ -12,6 +12,7 @@ from . import (
     DsCreate,
     CreateApp,
     GenerateApp,
+    ShareApp
 )
 from traitlets.traitlets import MetaHasTraits
 from typing import List
@@ -54,6 +55,15 @@ class DsCreateApp(DsCreate):
                 """
             ).strip()
         ),
+        share=(
+            ShareApp,
+            dedent(
+                """
+                Add a url to your clipboard that opens a github hosted jupyter notebook
+                in illumidesk.
+                """
+            )
+        )
     )
 
     @default("classes")

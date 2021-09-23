@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'dscreate'
+copyright = '2021, Flatiron'
+author = 'Joél Collins'
 
 release = '0.1'
 version = '0.1.0'
