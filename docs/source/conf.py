@@ -16,12 +16,16 @@ version = '0.1.87'
 
 # -- General configuration
 
+master_doc = 'index'
+
 extensions = [
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    "sphinx.ext.githubpages",
+    "sphinx.ext.napoleon",
 ]
 
 intersphinx_mapping = {

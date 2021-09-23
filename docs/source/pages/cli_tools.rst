@@ -1,10 +1,13 @@
--------------
-CLI Tools
--------------
+.. _cli-tools:
 
--------------
-``ds -begin``
--------------
+CLI Tools
+===========
+
+
+--------------
+``ds -begin```
+--------------
+
 When this command is run the following things happen:
 
 * A ``data/`` folder is added to the current working directory

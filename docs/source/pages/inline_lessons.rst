@@ -1,3 +1,5 @@
+.. _inline-lessons:
+
 Inline Lessons
 ==================
 

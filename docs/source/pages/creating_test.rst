@@ -1,3 +1,5 @@
+.. _creating-tests:
+
 Creating Tests
 ==============
 

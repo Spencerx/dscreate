@@ -1,3 +1,5 @@
+.. _creating-solution-cells:
+
 Creating Solution Cells
 =======================
 
