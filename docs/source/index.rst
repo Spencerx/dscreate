@@ -19,5 +19,3 @@ Contents
    pages/solution_cells
    pages/inline_lessons
    pages/creating_tests
-
-

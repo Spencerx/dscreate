@@ -2,8 +2,11 @@ CLI Tools
 ===========
 
 -------------
-``ds create``
+Master, Curriculum, Solution
 -------------
+
+``ds create``
+
 **Requirements:**
 
 - This command must be run from a `curriculum` branch
@@ -19,8 +22,10 @@ CLI Tools
 - Changes are pushed to github for each branch
 
 -------------
-``ds generate``
+``nbgrader`` Master, Solution
 -------------
+
+``ds generate``
 
 **Requirements:**
 
@@ -37,8 +42,11 @@ CLI Tools
 
 
 -------------
-``ds create -dir``
+In directory split
 -------------
+
+``ds create --inline``
+
 **Requirements**
 
 - A `curriculum.ipynb` notebook must exist.
