@@ -1,22 +1,15 @@
 # Configuration file for the Sphinx documentation builder.
 
-# import os
-# import sys
-
-# sys.path.insert(0, os.path.abspath("../"))
-
 # -- Project information
 
-project = 'dscreate'
-copyright = '2021, Flatiron School'
-author = 'Joél Collins'
+project = 'Lumache'
+copyright = '2021, Graziella'
+author = 'Graziella'
 
 release = '0.1'
-version = '0.1.87'
+version = '0.1.0'
 
 # -- General configuration
-
-master_doc = 'index'
 
 extensions = [
     'sphinx.ext.duration',
@@ -24,8 +17,6 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
-    "sphinx.ext.githubpages",
-    "sphinx.ext.napoleon",
 ]
 
 intersphinx_mapping = {
