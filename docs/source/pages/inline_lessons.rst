@@ -1,7 +1,5 @@
-.. _inline-lessons:
-
 Inline Lessons
-==================
+==============
 
 **The overall proccess looks like this**
 

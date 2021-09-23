@@ -1,12 +1,9 @@
-.. _cli-tools:
-
 CLI Tools
 ===========
 
-
---------------
-``ds -begin```
---------------
+------------------------  
+ds -begin
+------------------------  
 
 When this command is run the following things happen:
 
