@@ -23,11 +23,11 @@ which...
 
 * Splits a jupyter notebook into student facing and teacher facing content.
 * Saves the student facing materials to a jupyter notebook on the ``master`` branch 
- of a git repository.
+  of a git repository.
 * Saves the teacher facing materials to a jupyter notebook on the ``solution`` branch 
-of a git repository.
+  of a git repository.
 * Saves the curriculum edit jupyter notebook to the ``curriculum`` branch
-of a git repository.
+  of a git repository.
 
 The code written in 2019 works quite well and is used to this day for generating and deploying 
 Flatiron Data Science curriculum.
@@ -41,7 +41,8 @@ scripts for these two splitting procedures. In September 2021, dscreate was rewr
 to use an nbconvert pipeline so...
 
 * The splitting procedures could be configured by the user.
-* Users could understand the sequence of transformations without needing to read an entire ``.py`` script and to prevent users from needing to understand how the "engine" works in order to understand the steps of a notebook split. 
+* Users could understand the sequence of transformations without needing to read an entire ``.py`` 
+  script and to prevent users from needing to understand how the "engine" works in order to understand the steps of a notebook split. 
 * To ensure further development could follow consistent design conventions. 
 
 The overall goal for this package is to centralize tooling used by the Flatiron School Data Science program, 
