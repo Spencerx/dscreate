@@ -12,7 +12,7 @@ or who are simply curious about how the software works.
 **This document will cover:**
 
 * The motivation for dscreate
-* The individual components  of a dscreate pipeline
+* The individual components of a dscreate pipeline
 
 ----------
 Motivation
