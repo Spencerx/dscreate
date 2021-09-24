@@ -54,8 +54,26 @@ at Flatiron School.
 ``dscreate`` Pipeline Components
 --------------------------------
 
+DsPipeline
+----------
+
+A DsPipeline is the top level pipeline of a notebook split procedure. The are the main functionality of notebook splitting apps
+that are found in the ``apps/`` directory on github. A breakdown of the different components of a DsPipeline are visualized below. 
+
+*Click the image to enlarge!*
+
 .. image:: ../images/dspipeline.png
    :width: 600
+
+
+DsConverter
+-----------
+
+A DsConverter is a nested pipeline which applies transformations to a jupyter notebook and saves the 
+transformed notebook to disk. Dsconverter objects rely heavily on ``nbconvert`` which does most of heavy
+lifting.
+
+*Click the image to enlarge!*
 
 .. image:: ../images/dsconverter.png
    :width: 600
