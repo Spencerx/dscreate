@@ -5,7 +5,7 @@ import os
 
 class ReadmeConverter(BaseConverter):
 
-    name = 'readme-converter'
+    name = 'Generating README...'
 
     exporter_class = MarkdownExporter
     notebook_path = Unicode(config=True)

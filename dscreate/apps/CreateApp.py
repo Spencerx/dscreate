@@ -4,6 +4,8 @@ from traitlets.config import Config
 from typing import List as TypingList
 from traitlets.traitlets import MetaHasTraits
 from ..pipeline import *
+from git import Repo
+import os
 from .. import pipeline
 
 
@@ -67,9 +69,31 @@ class CreateApp(DsCreate):
         return ['curriculum', 'master', 'solution']
 
 
+    def validate_branches(self) -> None:
+        if not '.git' in os.listdir():
+            raise ValueError('ds create must be run from the root of a git repository.')
+
+        branches = os.path.join('.git', 'refs', 'heads')
+        if self.edit_branch not in os.listdir(branches):
+            raise ValueError('A curriculum branch must exist.')
+
+        repo = Repo('.')
+
+        if repo.active_branch.name.lower() != self.edit_branch:
+            raise ValueError(f'ds create must be run from the {self.edit_branch} branch')
+
+        for branch in self.branches:
+            if branch not in os.listdir(branches):
+                print(f'Creating {branch} branch...')
+                repo.create_head(branch)
+                origin = repo.remote()
+                origin.push(branch)
+        
     
     def start(self) -> None:
         super().start()
+
+        self.validate_branches()
 
         c = Config()
         c.edit_branch = self.edit_branch

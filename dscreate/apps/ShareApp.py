@@ -1,5 +1,5 @@
 from .BaseApp import DsCreate
-from traitlets import default Unicode
+from traitlets import default, Unicode
 import pyperclip
 
 
@@ -41,10 +41,10 @@ class ShareApp(DsCreate):
     def start(self) -> None:
         super().start()
 
-        if len(self.extra_args[0]) != 1:
+        if len(self.extra_args) != 1:
             raise ValueError('A github notebook url must be provided.')
-
         url = self.extra_args[0]
         org, repo, branch, file_path = self.get_file_path(url)
         link = self.get_assignment_url(org, repo, branch, file_path)
         pyperclip.copy(link)
+        print('An illumidesk link has been added to your clipboard.')

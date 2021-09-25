@@ -6,11 +6,10 @@ from traitlets import default
 
 class CommitController(BaseController):
 
-    name = 'commit-controller'
+    name = 'Committing Changes'
 
     commit_msg = Unicode(config=True)
     count = Int(config=True)
-    enabled = Bool(config=True)
 
     @default('commit_msg')
     def commit_msg_default(self) -> str:

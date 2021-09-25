@@ -7,7 +7,7 @@ from nbgrader.preprocessors import (ClearSolutions, LockCells,
 
 class ReleaseConverter(BaseConverter):
 
-    name = 'release-converter'
+    name = 'Generating Release README...'
     exporter_class = MarkdownExporter
 
     @default('preprocessors')

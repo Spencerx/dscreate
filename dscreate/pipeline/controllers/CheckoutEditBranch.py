@@ -6,7 +6,7 @@ from . import CommitController
 
 class CheckoutEditBranch(BaseController):
 
-    name = 'checkout-edit-branch'
+    name = 'Checking out the edit branch...'
 
     def start(self) -> None:
         edit_branch = self.config.traversed_branches[0]

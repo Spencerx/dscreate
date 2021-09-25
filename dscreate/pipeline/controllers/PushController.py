@@ -8,9 +8,8 @@ from . import CommitController, BaseController
 
 class PushController(BaseController):
 
-    name = 'push-controller'
+    name = 'Pushing to remote...'
 
-    enabled = Bool(config=True)
     remote = Unicode(config=True)
     @default('remote')
     def branch_default(self) -> str:

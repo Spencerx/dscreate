@@ -16,6 +16,7 @@ class DsPipeline(Configurable):
     def start(self) -> None:
         for step in self.steps:
             pipeline_step = step(config=self.config)
-            print('\n', pipeline_step.name)
-            pipeline_step.start()
-            self.config.merge(pipeline_step.config)
+            if pipeline_step.enabled:
+                print(pipeline_step.name)
+                pipeline_step.start()
+                self.config.merge(pipeline_step.config)

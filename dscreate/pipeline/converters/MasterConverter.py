@@ -5,7 +5,7 @@ from traitlets import default
 
 class MasterConverter(BaseConverter):
 
-    name = 'master-converter'
+    name = 'Updating master branch...'
 
     @default('preprocessors')
     def preprocessors_default(self) -> list:

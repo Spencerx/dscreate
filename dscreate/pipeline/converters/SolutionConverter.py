@@ -6,7 +6,7 @@ from traitlets import default
 
 class SolutionConverter(BaseConverter):
 
-    name = 'solution-converter'
+    name = 'Updating solution branch...'
 
     @default('solution')
     def solution_default(self) -> bool:

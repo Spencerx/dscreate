@@ -14,4 +14,5 @@ from . import preprocessors
 preproc_all = preprocessors.__all__
 
 
-__all__ = ['DsPipeline', 'CollectCurriculum'] + controllers_all + converters_all + preproc_all
+__all__ = ['DsPipeline', 
+'CollectCurriculum'] + controllers_all + converters_all + preproc_all

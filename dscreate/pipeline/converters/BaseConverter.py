@@ -14,6 +14,11 @@ class BaseConverter(Configurable):
     exporter_class = Type(NotebookExporter, klass=Exporter).tag(config=True)
     preprocessors = List([], config=True)
     solution = Bool(False)
+
+    enabled = Bool(config=True)
+    @default('enabled')
+    def enabled_default(self) -> bool:
+        return True
     
     solution_dir = Unicode(config=True)
     @default('solution_dir')
@@ -40,7 +45,7 @@ class BaseConverter(Configurable):
         Activate the converter
         """
         self.writer = FilesWriter(parent=self, config=self.config)
-        self.exporter = self.exporter_class()
+        self.exporter = self.exporter_class(config=self.config)
         self._init_preprocessors()
         self.convert_notebook()
         if self.config.inline.enabled:
@@ -52,7 +57,9 @@ class BaseConverter(Configurable):
         with the `register_preprocessor` method.
         """
         for pp in self.preprocessors:
+
             self.exporter.register_preprocessor(pp)
+
 
     def convert_notebook(self) -> None:
         """

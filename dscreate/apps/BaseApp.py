@@ -21,8 +21,10 @@ dscreate_flags = {
 }
 
 dscreate_aliases = {
+    'push':'PushController.enabled',
     'commit': 'CommitController.enabled',
     'm':'CommitController.commit_msg',
+    'execute': 'ExecuteCells.enabled'
     }
 
 

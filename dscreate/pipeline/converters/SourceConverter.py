@@ -5,7 +5,7 @@ from nbconvert.exporters import MarkdownExporter
 
 class SourceConverter(BaseConverter):
 
-    name = 'source-converter'
+    name = 'Updating solution branch...'
     exporter_class = MarkdownExporter
 
     notebook_path = Unicode(config=True)

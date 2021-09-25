@@ -1,12 +1,15 @@
 from .BaseController import BaseController
 from .. import DsPipeline
 from git import GitCommandError
-from traitlets import Bool
+from traitlets import Bool, Unicode, default
 from . import CommitController
 
 class CheckoutController(BaseController):
 
-    name = 'checkout-controller'
+    name = Unicode(config=True)
+    @default('name')
+    def name_default(self) -> str:
+        return 'Checking out {}...'.format(self.get_branch())
 
     def get_branch(self):
         if not isinstance(self.config.CommitController.count, int):
@@ -14,12 +17,7 @@ class CheckoutController(BaseController):
         return self.config.DsPipeline.branches[self.config.CommitController.count]
 
     def merge_edit_branch(self):
-        current_branch = self.active_branch
-        edit_branch = self.branches[self.config.edit_branch]
-        base = self.merge_base(current_branch, edit_branch)
-        self.index.merge_tree(edit_branch, base=base)
-        self.index.commit(f'Merge {edit_branch} into {current_branch.name}.', 
-        parent_commits=(current_branch.commit, edit_branch.commit))
+        self.git.merge(self.config.traversed_branches[0], X='theirs')
 
     def start(self) -> None:
         active_branch = self.active_branch.name

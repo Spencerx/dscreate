@@ -5,7 +5,8 @@ import nbformat
 
 class CollectCurriculum(Configurable):
 
-    name = 'collect-curriculum'
+    name = 'Reading curriculum file...'
+    enabled = True
     
     edit_file = Unicode(config=True)
     @default('edit_file')
