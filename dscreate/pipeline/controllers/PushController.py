@@ -1,4 +1,3 @@
-
 from git import GitCommandError
 from traitlets import Bool, Unicode, default
 
