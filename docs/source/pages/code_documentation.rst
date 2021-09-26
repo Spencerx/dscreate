@@ -1,14 +1,13 @@
+-----------
+DsPipeline
+-----------
 
-    -----------
-    DsPipeline
-    -----------
-    
     The primary pipeline for dscreate
 
     DsPipeline's primary variable is ``steps`` containing converter and controller objects.
     Every object included in steps must have ``enabled`` and ``printout`` attributes, and a ``.start``  method
     
-    DsPipeline.branches : List
+DsPipeline.branches : List
     Default: ``[]``
 
     No description
@@ -31,15 +30,14 @@ DsPipeline.steps : List
 
 None
 
+-----------
+CollectCurriculum
+-----------
 
-    -----------
-    CollectCurriculum
-    -----------
-    
     CollectCurriculum reads in the edit_file and stores the notebook in the application
     configuration object.
     
-    CollectCurriculum.edit_branch : Unicode
+CollectCurriculum.edit_branch : Unicode
     Default: ``''``
 
     No description
@@ -54,11 +52,10 @@ CollectCurriculum.edit_file : Unicode
 
 None
 
+-----------
+BaseController
+-----------
 
-    -----------
-    BaseController
-    -----------
-    
     The base controller object. 
 
     **Behavior:**
@@ -70,7 +67,7 @@ None
     ``enabled``
     * When enabled is true, the controller is used during the notebook split
     
-    BaseController.branches : List
+BaseController.branches : List
     Default: ``['curriculum', 'master', 'solution']``
 
     No description
@@ -88,11 +85,10 @@ BaseController.enabled : Bool
         2. Inherit git repo attributes
         
 
+-----------
+CheckoutController
+-----------
 
-    -----------
-    CheckoutController
-    -----------
-    
     Checkout branches set by the running application.
 
     This controller relies on a configuration object that contains the following variables
@@ -106,7 +102,7 @@ BaseController.enabled : Bool
     dscreate uses a "force" merge strategy which overwrites each branch with the most recent edit branch commit.
     It is equivalent to running ``git merge <name of branch> -X theirs``
     
-    CheckoutController.branches : List
+CheckoutController.branches : List
     Default: ``['curriculum', 'master', 'solution']``
 
     No description
@@ -138,11 +134,10 @@ None
 
 None
 
+-----------
+CommitController
+-----------
 
-    -----------
-    CommitController
-    -----------
-    
     Commits changes to a git branch.
 
     This object has a ``commit_msg`` attribute that can be set from command line using the ``-m`` argument.
@@ -150,7 +145,7 @@ None
     If a commit message is not provided the commit message defaults to 'Updating  <name of branch>'
 
     
-    CommitController.branches : List
+CommitController.branches : List
     Default: ``['curriculum', 'master', 'solution']``
 
     No description
@@ -181,16 +176,15 @@ None
 
 None
 
+-----------
+PushController
+-----------
 
-    -----------
-    PushController
-    -----------
-    
     Pushing changes to the remote.
 
     Remote is a configurable variables that defaults to 'origin'
     
-    PushController.branches : List
+PushController.branches : List
     Default: ``['curriculum', 'master', 'solution']``
 
     No description
@@ -216,14 +210,13 @@ None
 
 None
 
+-----------
+CheckoutEditBranch
+-----------
 
-    -----------
-    CheckoutEditBranch
-    -----------
-    
     This controller checkouts the first branch of the branches configuration variable.
     
-    CheckoutEditBranch.branches : List
+CheckoutEditBranch.branches : List
     Default: ``['curriculum', 'master', 'solution']``
 
     No description
@@ -238,11 +231,10 @@ CheckoutEditBranch.enabled : Bool
 
 None
 
+-----------
+BaseConverter
+-----------
 
-    -----------
-    BaseConverter
-    -----------
-    
     The base converter that is inherited by all dscreate converters.
 
     The base converter initializes and activates the exporter and filewriter objects.
@@ -253,7 +245,7 @@ None
 
     When the base converter is used a step in the pipeline, the edit_file is written to disk unchanged.
     
-    BaseConverter.enabled : Bool
+BaseConverter.enabled : Bool
     Default: ``False``
 
     No description
@@ -334,16 +326,15 @@ BaseConverter.solution_dir : Unicode
         and writes the file to disk. 
         
 
+-----------
+MasterConverter
+-----------
 
-    -----------
-    MasterConverter
-    -----------
-    
     The master converter is used to generate the student facing notebook.
 
     The preprocessors default to the nbconvert ClearOutput and dscreate RemoveSolutions preprocessors.
     
-    MasterConverter.enabled : Bool
+MasterConverter.enabled : Bool
     Default: ``False``
 
     No description
@@ -373,14 +364,13 @@ MasterConverter.solution_dir : Unicode
 
 None
 
+-----------
+ReleaseConverter
+-----------
 
-    -----------
-    ReleaseConverter
-    -----------
-    
     ReleaseConverter replicates ``nbgrader generate``
     
-    ReleaseConverter.enabled : Bool
+ReleaseConverter.enabled : Bool
     Default: ``False``
 
     No description
@@ -409,14 +399,13 @@ ReleaseConverter.solution_dir : Unicode
         3. Write the notebook to file.
         
 
+-----------
+SolutionConverter
+-----------
 
-    -----------
-    SolutionConverter
-    -----------
-    
     SolutionConverter generates the teacher facing  notebook.
     
-    SolutionConverter.enabled : Bool
+SolutionConverter.enabled : Bool
     Default: ``False``
 
     No description
@@ -446,11 +435,10 @@ SolutionConverter.solution_dir : Unicode
 
 None
 
+-----------
+ReadmeConverter
+-----------
 
-    -----------
-    ReadmeConverter
-    -----------
-    
     Generates the readme for a notebook.
 
     This converter has a ``notebook_path`` configurable variable that indicates what notebook should be converted.
@@ -459,7 +447,7 @@ None
 
     No preprocessors are applied by the ReadmeConverter.
     
-    ReadmeConverter.enabled : Bool
+ReadmeConverter.enabled : Bool
     Default: ``False``
 
     No description
@@ -488,14 +476,13 @@ ReadmeConverter.solution_dir : Unicode
         3. Write the notebook to file.
         
 
+-----------
+SourceConverter
+-----------
 
-    -----------
-    SourceConverter
-    -----------
-    
     SourceConverter generates a teacher facing readme for an nbgrader assignment.
     
-    SourceConverter.enabled : Bool
+SourceConverter.enabled : Bool
     Default: ``False``
 
     No description
@@ -514,15 +501,14 @@ SourceConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
+-----------
+AddCellIndex
+-----------
 
-    -----------
-    AddCellIndex
-    -----------
-    
     AddCellIndex adds a metadata.index variable to a notebook and determines if a cell is a solution cell.
     This preprocessor is used primarily for ``--inline`` splits.
     
-    AddCellIndex.default_language : Unicode
+AddCellIndex.default_language : Unicode
     Default: ``'ipython'``
 
     Deprecated default highlight language as of 5.0, please use language_info metadata instead
@@ -559,11 +545,10 @@ None
         No transformation is applied.
         
 
+-----------
+RemoveSolutions
+-----------
 
-    -----------
-    RemoveSolutions
-    -----------
-    
     RemoveSolutions removes cells that contain a solution tag. 
 
     This preprocess identifies both code and solution cells:
@@ -571,7 +556,7 @@ None
     code solution tags defaults to: {'#__SOLUTION__', '#==SOLUTION=='}
     markdown solution tags defaults to: {'==SOLUTION==','__SOLUTION__'}
     
-    RemoveSolutions.code_tags : Set
+RemoveSolutions.code_tags : Set
     Default: ``{'#==SOLUTION==', '#__SOLUTION__'}``
 
     Tags indicating which cells are to be removed
@@ -621,16 +606,15 @@ None
 
 None
 
+-----------
+RemoveLessonCells
+-----------
 
-    -----------
-    RemoveLessonCells
-    -----------
-    
     RemoveLessonCells removes cells that do not contain a tag included in the ``solution_tags`` variable.
 
     ``solution_tags`` are a  configurable variable. Defaults to {'#__SOLUTION__', '#==SOLUTION==', '__SOLUTION__', '==SOLUTION=='}
     
-    RemoveLessonCells.default_language : Unicode
+RemoveLessonCells.default_language : Unicode
     Default: ``'ipython'``
 
     Deprecated default highlight language as of 5.0, please use language_info metadata instead
@@ -675,15 +659,14 @@ None
         Removes the solution tag from the solution cells.
         
 
+-----------
+SortCells
+-----------
 
-    -----------
-    SortCells
-    -----------
-    
     Sorts the cells of a notebook according to the metadata.index variable
     and adds a solution tag back to solution cells.
     
-    SortCells.default_language : Unicode
+SortCells.default_language : Unicode
     Default: ``'ipython'``
 
     Deprecated default highlight language as of 5.0, please use language_info metadata instead
@@ -713,14 +696,13 @@ None
 
 None
 
+-----------
+ClearOutput
+-----------
 
-    -----------
-    ClearOutput
-    -----------
-    
     ClearOutput removes the outputs for notebook cells.
     
-    ClearOutput.default_language : Unicode
+ClearOutput.default_language : Unicode
     Default: ``'ipython'``
 
     Deprecated default highlight language as of 5.0, please use language_info metadata instead
@@ -743,14 +725,13 @@ ClearOutput.remove_metadata_fields : Set
     Default: ``{'collapsed', 'scrolled'}``
 
     No description
+-----------
+ExecuteCells
+-----------
 
-    -----------
-    ExecuteCells
-    -----------
-    
     ExecuteCells runs code cells in a notebook.
     
-    ExecuteCells.allow_error_names : List
+ExecuteCells.allow_error_names : List
     Default: ``[]``
 
 

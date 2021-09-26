@@ -9,12 +9,7 @@ def create_class_docs(dsobject):
     description = dsobject.description
     configs = dsobject.class_config_rst_doc()
     
-    doc = f'''
-    -----------
-    {name}
-    -----------
-    {description}
-    {configs}'''
+    doc = f'''-----------\n{name}\n-----------\n{description}\n{configs}'''
     
     return doc
 
