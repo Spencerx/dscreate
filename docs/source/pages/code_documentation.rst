@@ -23,6 +23,9 @@ DsCreate
         7. The traitlets ``Application.start`` method is activated, which in turn activates the  sub application's
            ``.start``  method.
     
+
+**CONFIGURABLE VARIABLES:**
+
 DsCreate.app_dir : Unicode
     Default: ``''``
 
@@ -134,6 +137,9 @@ CreateApp
     - If a branch inside the branches list has not been created, it is created.
     - For notebook splits that requires git branches, the application must be run from the edit_branch which defaults to ``curriculum``.
     
+
+**CONFIGURABLE VARIABLES:**
+
 CreateApp.app_dir : Unicode
     Default: ``''``
 
@@ -243,6 +249,9 @@ GenerateApp
     This app uses nbgrader's preprocessors to create student facing and and teacher facing versions for the README markdown files. 
     The curriculum notebook is saved to each branch. 
     
+
+**CONFIGURABLE VARIABLES:**
+
 GenerateApp.app_dir : Unicode
     Default: ``''``
 
@@ -345,6 +354,9 @@ ShareApp
     * Uses the variables from the parsed url to generate a new url
     * Adds the generated url to the user's clipboard using the python package ``pyperclip``.
     
+
+**CONFIGURABLE VARIABLES:**
+
 ShareApp.app_dir : Unicode
     Default: ``''``
 
@@ -448,6 +460,9 @@ DsPipeline
     DsPipeline's primary variable is ``steps`` containing converter and controller objects.
     Every object included in steps must have ``enabled`` and ``printout`` attributes, and a ``.start``  method
     
+
+**CONFIGURABLE VARIABLES:**
+
 DsPipeline.branches : List
     Default: ``[]``
 
@@ -481,6 +496,9 @@ CollectCurriculum
     CollectCurriculum reads in the edit_file and stores the notebook in the application
     configuration object.
     
+
+**CONFIGURABLE VARIABLES:**
+
 CollectCurriculum.edit_branch : Unicode
     Default: ``''``
 
@@ -518,6 +536,9 @@ BaseController
     ``enabled``
     * When enabled is true, the controller is used during the notebook split
     
+
+**CONFIGURABLE VARIABLES:**
+
 BaseController.branches : List
     Default: ``['curriculum', 'master', 'solution']``
 
@@ -556,6 +577,9 @@ CheckoutController
     dscreate uses a "force" merge strategy which overwrites each branch with the most recent edit branch commit.
     It is equivalent to running ``git merge <name of branch> -X theirs``
     
+
+**CONFIGURABLE VARIABLES:**
+
 CheckoutController.branches : List
     Default: ``['curriculum', 'master', 'solution']``
 
@@ -602,6 +626,9 @@ CommitController
     If a commit message is not provided the commit message defaults to 'Updating  <name of branch>'
 
     
+
+**CONFIGURABLE VARIABLES:**
+
 CommitController.branches : List
     Default: ``['curriculum', 'master', 'solution']``
 
@@ -644,6 +671,9 @@ PushController
 
     Remote is a configurable variables that defaults to 'origin'
     
+
+**CONFIGURABLE VARIABLES:**
+
 PushController.branches : List
     Default: ``['curriculum', 'master', 'solution']``
 
@@ -679,6 +709,9 @@ CheckoutEditBranch
 
     This controller checkouts the first branch of the branches configuration variable.
     
+
+**CONFIGURABLE VARIABLES:**
+
 CheckoutEditBranch.branches : List
     Default: ``['curriculum', 'master', 'solution']``
 
@@ -715,6 +748,9 @@ BaseConverter
 
     When the base converter is used a step in the pipeline, the edit_file is written to disk unchanged.
     
+
+**CONFIGURABLE VARIABLES:**
+
 BaseConverter.enabled : Bool
     Default: ``False``
 
@@ -807,6 +843,9 @@ MasterConverter
 
     The preprocessors default to the nbconvert ClearOutput and dscreate RemoveSolutions preprocessors.
     
+
+**CONFIGURABLE VARIABLES:**
+
 MasterConverter.enabled : Bool
     Default: ``False``
 
@@ -846,6 +885,9 @@ ReleaseConverter
 
     ReleaseConverter replicates ``nbgrader generate``
     
+
+**CONFIGURABLE VARIABLES:**
+
 ReleaseConverter.enabled : Bool
     Default: ``False``
 
@@ -884,6 +926,9 @@ SolutionConverter
 
     SolutionConverter generates the teacher facing  notebook.
     
+
+**CONFIGURABLE VARIABLES:**
+
 SolutionConverter.enabled : Bool
     Default: ``False``
 
@@ -929,6 +974,9 @@ ReadmeConverter
 
     No preprocessors are applied by the ReadmeConverter.
     
+
+**CONFIGURABLE VARIABLES:**
+
 ReadmeConverter.enabled : Bool
     Default: ``False``
 
@@ -967,6 +1015,9 @@ SourceConverter
 
     SourceConverter generates a teacher facing readme for an nbgrader assignment.
     
+
+**CONFIGURABLE VARIABLES:**
+
 SourceConverter.enabled : Bool
     Default: ``False``
 
@@ -1000,6 +1051,9 @@ AddCellIndex
     AddCellIndex adds a metadata.index variable to a notebook and determines if a cell is a solution cell.
     This preprocessor is used primarily for ``--inline`` splits.
     
+
+**CONFIGURABLE VARIABLES:**
+
 AddCellIndex.default_language : Unicode
     Default: ``'ipython'``
 
@@ -1051,6 +1105,9 @@ RemoveSolutions
     code solution tags defaults to: {'#__SOLUTION__', '#==SOLUTION=='}
     markdown solution tags defaults to: {'==SOLUTION==','__SOLUTION__'}
     
+
+**CONFIGURABLE VARIABLES:**
+
 RemoveSolutions.code_tags : Set
     Default: ``{'#==SOLUTION==', '#__SOLUTION__'}``
 
@@ -1112,6 +1169,9 @@ RemoveLessonCells
 
     ``solution_tags`` are a  configurable variable. Defaults to {'#__SOLUTION__', '#==SOLUTION==', '__SOLUTION__', '==SOLUTION=='}
     
+
+**CONFIGURABLE VARIABLES:**
+
 RemoveLessonCells.default_language : Unicode
     Default: ``'ipython'``
 
@@ -1167,6 +1227,9 @@ SortCells
     Sorts the cells of a notebook according to the metadata.index variable
     and adds a solution tag back to solution cells.
     
+
+**CONFIGURABLE VARIABLES:**
+
 SortCells.default_language : Unicode
     Default: ``'ipython'``
 
@@ -1206,6 +1269,9 @@ ClearOutput
 
     ClearOutput removes the outputs for notebook cells.
     
+
+**CONFIGURABLE VARIABLES:**
+
 ClearOutput.default_language : Unicode
     Default: ``'ipython'``
 
@@ -1238,6 +1304,9 @@ ExecuteCells
 
     ExecuteCells runs code cells in a notebook.
     
+
+**CONFIGURABLE VARIABLES:**
+
 ExecuteCells.allow_error_names : List
     Default: ``[]``
 
