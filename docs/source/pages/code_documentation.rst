@@ -77,30 +77,39 @@ DsCreate.system_config_path : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: all_configurable_classes
 
    ``all_configurable_classes(self) -> List[traitlets.traitlets.MetaHasTraits]:``
+
    Get a list of all configurable classes for dscreate
         
 
 .. admonition:: write_default_config
 
    ``write_default_config(self) -> None:``
+
    None
 
 .. admonition:: _load_configs
 
    ``_load_configs(self) -> None:``
+
    None
 
 .. admonition:: add_all_configurables
 
    ``add_all_configurables(self):``
+
    None
 
 .. admonition:: start
 
    ``start(self):``
+
    None
 
 CreateApp
@@ -199,14 +208,20 @@ CreateApp.system_config_path : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: validate_branches
 
    ``validate_branches(self) -> None:``
+
    None
 
 .. admonition:: start
 
    ``start(self) -> None:``
+
    None
 
 GenerateApp
@@ -301,9 +316,14 @@ GenerateApp.system_config_path : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: start
 
    ``start(self) -> None:``
+
    
         Activates the application.
 
@@ -384,9 +404,14 @@ ShareApp.system_config_path : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: get_file_path
 
    ``get_file_path(self, url):``
+
    
         Pull out the organization, repository name, branch, and file path
         from a github url.
@@ -395,6 +420,7 @@ ShareApp.system_config_path : Unicode
 .. admonition:: get_assignment_url
 
    ``get_assignment_url(self, org, repo, branch, file_path):``
+
    
         org - The name of a github organization.
         repo - The name of a github repository.
@@ -407,6 +433,7 @@ ShareApp.system_config_path : Unicode
 .. admonition:: start
 
    ``start(self) -> None:``
+
    None
 
 ----------
@@ -430,9 +457,14 @@ DsPipeline.steps : List
     Default: ``[]``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: __init__
 
    ``__init__(self, **kwargs) -> None:``
+
    
         Set up configuration file.
         
@@ -440,6 +472,7 @@ DsPipeline.steps : List
 .. admonition:: start
 
    ``start(self) -> None:``
+
    None
 
 CollectCurriculum
@@ -457,9 +490,14 @@ CollectCurriculum.edit_file : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: start
 
    ``start(self) -> None:``
+
    None
 
 ----------
@@ -489,9 +527,14 @@ BaseController.enabled : Bool
     Default: ``False``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: __init__
 
    ``__init__(self, **kwargs) -> None:``
+
    
         1. Set up configuration file.
         2. Inherit git repo attributes
@@ -527,19 +570,26 @@ CheckoutController.printout : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: get_branch
 
    ``get_branch(self):``
+
    None
 
 .. admonition:: merge_edit_branch
 
    ``merge_edit_branch(self):``
+
    None
 
 .. admonition:: start
 
    ``start(self) -> None:``
+
    None
 
 CommitController
@@ -571,14 +621,20 @@ CommitController.enabled : Bool
     Default: ``False``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: add_and_commit
 
    ``add_and_commit(self, commit_msg=None):``
+
    None
 
 .. admonition:: start
 
    ``start(self) -> None:``
+
    None
 
 PushController
@@ -602,14 +658,20 @@ PushController.remote : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: get_branch
 
    ``get_branch(self):``
+
    None
 
 .. admonition:: start
 
    ``start(self) -> None:``
+
    None
 
 CheckoutEditBranch
@@ -626,9 +688,14 @@ CheckoutEditBranch.enabled : Bool
     Default: ``False``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: start
 
    ``start(self) -> None:``
+
    None
 
 ----------
@@ -672,9 +739,14 @@ BaseConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: __init__
 
    ``__init__(self, **kwargs: Any) -> None:``
+
    
         Set up configuration file.
         
@@ -682,6 +754,7 @@ BaseConverter.solution_dir : Unicode
 .. admonition:: start
 
    ``start(self) -> None:``
+
    
         Activate the converter
         
@@ -689,6 +762,7 @@ BaseConverter.solution_dir : Unicode
 .. admonition:: _init_preprocessors
 
    ``_init_preprocessors(self) -> None:``
+
    
         Here we add the preprocessors to the exporter pipeline
         with the `register_preprocessor` method.
@@ -697,6 +771,7 @@ BaseConverter.solution_dir : Unicode
 .. admonition:: convert_notebook
 
    ``convert_notebook(self) -> None:``
+
    
         1. Create a resources object that tells the exporter how to format link urls for images.
         2. Pass the notebook through the preprocessor and convert to the desired format via the exporter.
@@ -706,6 +781,7 @@ BaseConverter.solution_dir : Unicode
 .. admonition:: init_notebook_resources
 
    ``init_notebook_resources(self) -> dict:``
+
    
         The resources argument, when passed into an exporter,
         tell the exporter what directory to include in the url 
@@ -718,6 +794,7 @@ BaseConverter.solution_dir : Unicode
 .. admonition:: write_notebook
 
    ``write_notebook(self, output, resources) -> None:``
+
    
         Sets the output directory for the file write
         and writes the file to disk. 
@@ -754,9 +831,14 @@ MasterConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: start
 
    ``start(self) -> None:``
+
    None
 
 ReleaseConverter
@@ -783,9 +865,14 @@ ReleaseConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: convert_notebook
 
    ``convert_notebook(self) -> None:``
+
    
         1. Create a resources object that tells the exporter how to format link urls for images.
         2. Pass the notebook through the preprocessor and convert to the desired format via the exporter.
@@ -821,9 +908,14 @@ SolutionConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: start
 
    ``start(self) -> None:``
+
    None
 
 ReadmeConverter
@@ -856,9 +948,14 @@ ReadmeConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: convert_notebook
 
    ``convert_notebook(self) -> None:``
+
    
         1. Create a resources object that tells the exporter how to format link urls for images.
         2. Pass the notebook through the preprocessor and convert to the desired format via the exporter.
@@ -889,6 +986,10 @@ SourceConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
+
+
+**METHODS**
+
 ----------
 Preprocessors
 ----------
@@ -922,14 +1023,20 @@ AddCellIndex.solution_tags : Set
     Default: ``{'#==SOLUTION==', '#__SOLUTION__', '==SOLUTION==', '__SOLUTIO...``
 
     Tags indicating which cells are to be removed
+
+
+**METHODS**
+
 .. admonition:: preprocess
 
    ``preprocess(self, nb, resources):``
+
    None
 
 .. admonition:: preprocess_cell
 
    ``preprocess_cell(self, cell, resources, cell_index):``
+
    
         No transformation is applied.
         
@@ -972,9 +1079,14 @@ RemoveSolutions.markdown_tags : Set
     Default: ``{'==SOLUTION==', '__SOLUTION__'}``
 
     No description
+
+
+**METHODS**
+
 .. admonition:: is_code_solution
 
    ``is_code_solution(self, cell):``
+
    
         Checks that a cell has a tag that is to be removed
         Returns: Boolean.
@@ -984,11 +1096,13 @@ RemoveSolutions.markdown_tags : Set
 .. admonition:: is_markdown_solution
 
    ``is_markdown_solution(self, cell):``
+
    None
 
 .. admonition:: preprocess
 
    ``preprocess(self, nb, resources):``
+
    None
 
 RemoveLessonCells
@@ -1021,9 +1135,14 @@ RemoveLessonCells.solution_tags : Set
     Default: ``{'#==SOLUTION==', '#__SOLUTION__', '==SOLUTION==', '__SOLUTIO...``
 
     Tags indicating which cells are to be removed
+
+
+**METHODS**
+
 .. admonition:: is_solution
 
    ``is_solution(self, cell):``
+
    
         Checks that a cell has a solution tag. 
         
@@ -1031,11 +1150,13 @@ RemoveLessonCells.solution_tags : Set
 .. admonition:: preprocess
 
    ``preprocess(self, nb, resources):``
+
    None
 
 .. admonition:: preprocess_cell
 
    ``preprocess_cell(self, cell):``
+
    
         Removes the solution tag from the solution cells.
         
@@ -1064,14 +1185,20 @@ SortCells.enabled : Bool
     Default: ``True``
 
     Whether to use this preprocessor when running dscreate
+
+
+**METHODS**
+
 .. admonition:: preprocess
 
    ``preprocess(self, nb, resources):``
+
    None
 
 .. admonition:: preprocess_cell
 
    ``preprocess_cell(self, cell, resources, cell_index):``
+
    None
 
 ClearOutput
@@ -1102,6 +1229,10 @@ ClearOutput.remove_metadata_fields : Set
     Default: ``{'collapsed', 'scrolled'}``
 
     No description
+
+
+**METHODS**
+
 ExecuteCells
 ----------------------------
 
@@ -1296,4 +1427,8 @@ ExecuteCells.timeout_func : Any
     Not setting ``timeout_func`` will cause the client to
     default to using the ``timeout`` trait for all cells. The
     ``timeout_func`` trait overrides ``timeout`` if it is not ``None``.
+
+
+
+**METHODS**
 

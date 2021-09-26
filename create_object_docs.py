@@ -18,7 +18,7 @@ def create_method_docs(dsobject):
     args = str(inspect.signature(dsobject))
     doc = dsobject.__doc__
     
-    return f".. admonition:: {name}\n\n   ``{name}{args}:``\n   {doc}\n\n"
+    return f".. admonition:: {name}\n\n   ``{name}{args}:``\n\n   {doc}\n\n"
     
 
 def create_dsobject_docs():
@@ -37,6 +37,7 @@ def create_dsobject_docs():
                 docs += f'----------\n{group.title()}\n----------\n\n'
             obj_docs = create_class_docs(obj)
             docs += obj_docs
+            docs += '\n\n**METHODS**\n\n'
             methods = []
             for key in obj.__dict__:
                 if type(obj.__dict__[key]) == FunctionType:
