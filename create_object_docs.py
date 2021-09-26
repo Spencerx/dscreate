@@ -35,7 +35,8 @@ def create_dsobject_docs():
             obj = getattr(pipeline, obj_name)
             obj_group = obj.__module__.split('.')[-2]
             if obj_group != group:
-                docs += f'----------{group}----------'
+                group = obj_group
+                docs += f'----------{group}----------\n\n'
             obj_docs = create_class_docs(obj)
             docs += obj_docs
             methods = []
