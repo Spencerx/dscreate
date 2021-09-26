@@ -1,4 +1,415 @@
 ----------
+Apps
+----------
+
+DsCreate
+----------------------------
+
+        The base app for dscreate applications.
+        This app primarily handles the set up of configuration files for dscreate.
+
+        *Behavior:*
+
+        1. The first time a dscreate CLI app is activated, the system configuration directory is created using
+           the ``appdirs`` python package.
+        2. A subdirectory called ``ds`` is created and a ``dscreate_config.py`` file
+           is added to the ``ds`` subdirectory. This serves as the global configuration file for dscreate. 
+        3. A subdirectory for the activated application is created inside the system configuration directory.
+        4. A ``dscreate_config.py`` file is added to the application subdirectory. This serves as a localized configuration
+           file for a specific dscreate application.
+        5. If the configuration directories already exist, the configuration files are loaded into a ``traitlets`` config
+           object which will be used to alter the settings of the application components.
+        6. Additional configuration files can be used if specified with the ``--config_file`` argument.
+        7. The traitlets ``Application.start`` method is activated, which in turn activates the  sub application's
+           ``.start``  method.
+    
+DsCreate.app_dir : Unicode
+    Default: ``''``
+
+    No description
+
+DsCreate.classes : List
+    Default: ``[]``
+
+    No description
+
+DsCreate.config_file : Unicode
+    Default: ``''``
+
+    No description
+
+DsCreate.config_file_name : Unicode
+    Default: ``'dscreate_config.py'``
+
+    Specify a config file to load.
+
+DsCreate.dsconfig : Unicode
+    Default: ``''``
+
+    No description
+
+DsCreate.log_datefmt : Unicode
+    Default: ``'%Y-%m-%d %H:%M:%S'``
+
+    The date format used by logging formatters for %(asctime)s
+
+DsCreate.log_format : Unicode
+    Default: ``'[%(name)s]%(highlevel)s %(message)s'``
+
+    The Logging format template
+
+DsCreate.log_level : Int
+    Default: ``50``
+
+    No description
+
+DsCreate.show_config : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout
+
+DsCreate.show_config_json : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout (as JSON)
+
+DsCreate.system_config_path : Unicode
+    Default: ``''``
+
+    No description
+.. admonition:: all_configurable_classes
+
+   ``all_configurable_classes(self) -> List[traitlets.traitlets.MetaHasTraits]:``
+   Get a list of all configurable classes for dscreate
+        
+
+.. admonition:: write_default_config
+
+   ``write_default_config(self) -> None:``
+   None
+
+.. admonition:: _load_configs
+
+   ``_load_configs(self) -> None:``
+   None
+
+.. admonition:: add_all_configurables
+
+   ``add_all_configurables(self):``
+   None
+
+.. admonition:: start
+
+   ``start(self):``
+   None
+
+CreateApp
+----------------------------
+
+    Splits a notebook into student and teacher facing materials using dscreate solution tags.
+    
+    **Behavior:**
+
+    CreateApp uses three major variables.
+
+    1. ``pipeline_steps``
+        * This variable is a list containing the converters and controllers that are applied to the repository.
+    2. ``branches``
+        * This variable is a list containing the name of git branches and is used by CheckoutControllers (included in the ``pipeline_steps`` list) to move sequentially across the branches.
+        * *It is worth noting that the ``pipeline_steps`` list cannot contain more CheckoutControllers than the length of ``branches``.
+    3. ``inline``
+        * This variable is a bool that indicates whether or not to split the notebooks on solely on the active branch. When inline is True, the solution files are stored in a ``.solution_files`` directory.
+        * inline is set to True via the ``--inline`` flag.
+        * When inline is true, a ``curriculum.ipynb`` file used as the ``edit_file``.
+
+    - If a branch inside the branches list has not been created, it is created.
+    - For notebook splits that requires git branches, the application must be run from the edit_branch which defaults to ``curriculum``.
+    
+CreateApp.app_dir : Unicode
+    Default: ``''``
+
+    No description
+
+CreateApp.branches : List
+    Default: ``['curriculum', 'master', 'solution']``
+
+    No description
+
+CreateApp.classes : List
+    Default: ``[]``
+
+    No description
+
+CreateApp.config_file : Unicode
+    Default: ``''``
+
+    No description
+
+CreateApp.config_file_name : Unicode
+    Default: ``'dscreate_config.py'``
+
+    Specify a config file to load.
+
+CreateApp.dsconfig : Unicode
+    Default: ``''``
+
+    No description
+
+CreateApp.edit_branch : Unicode
+    Default: ``'curriculum'``
+
+    No description
+
+CreateApp.inline : Bool
+    Default: ``False``
+
+    No description
+
+CreateApp.log_datefmt : Unicode
+    Default: ``'%Y-%m-%d %H:%M:%S'``
+
+    The date format used by logging formatters for %(asctime)s
+
+CreateApp.log_format : Unicode
+    Default: ``'[%(name)s]%(highlevel)s %(message)s'``
+
+    The Logging format template
+
+CreateApp.log_level : Int
+    Default: ``50``
+
+    No description
+
+CreateApp.pipeline_steps : List
+    Default: ``[]``
+
+    No description
+
+CreateApp.show_config : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout
+
+CreateApp.show_config_json : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout (as JSON)
+
+CreateApp.system_config_path : Unicode
+    Default: ``''``
+
+    No description
+.. admonition:: validate_branches
+
+   ``validate_branches(self) -> None:``
+   None
+
+.. admonition:: start
+
+   ``start(self) -> None:``
+   None
+
+GenerateApp
+----------------------------
+
+    Splits an nbgrader assignment into student facing and teacher facing files
+    and uses the arguments to determine which sub application should be activated.
+
+    **Behavior:**
+
+    GenerateApp uses three major variables.
+
+    1. ``pipeline_steps``
+        * This variable is a list containing the converters and controllers that are applied to the repository.
+    2. ``branches``
+        * This variable is a list containing the name of git branches and is used by CheckoutControllers (included in the ``pipeline_steps`` list) to move sequentially across the branches.
+        * *It is worth noting that the ``pipeline_steps`` list cannot contain more CheckoutControllers than the length of ``branches``.
+    
+    This app uses nbgrader's preprocessors to create student facing and and teacher facing versions for the README markdown files. 
+    The curriculum notebook is saved to each branch. 
+    
+GenerateApp.app_dir : Unicode
+    Default: ``''``
+
+    No description
+
+GenerateApp.branches : List
+    Default: ``['master', 'solution']``
+
+
+    Sets the branches used for the notebook  split.
+    Default: ['master', 'solution']
+
+
+GenerateApp.classes : List
+    Default: ``[]``
+
+    No description
+
+GenerateApp.config_file : Unicode
+    Default: ``''``
+
+    No description
+
+GenerateApp.config_file_name : Unicode
+    Default: ``'dscreate_config.py'``
+
+    Specify a config file to load.
+
+GenerateApp.dsconfig : Unicode
+    Default: ``''``
+
+    No description
+
+GenerateApp.edit_branch : Unicode
+    Default: ``''``
+
+    Sets the name of the git branch used for curriculum development.
+                                      Default: 'curriculum'
+
+GenerateApp.log_datefmt : Unicode
+    Default: ``'%Y-%m-%d %H:%M:%S'``
+
+    The date format used by logging formatters for %(asctime)s
+
+GenerateApp.log_format : Unicode
+    Default: ``'[%(name)s]%(highlevel)s %(message)s'``
+
+    The Logging format template
+
+GenerateApp.log_level : Int
+    Default: ``50``
+
+    No description
+
+GenerateApp.pipeline_steps : List
+    Default: ``[]``
+
+    No description
+
+GenerateApp.show_config : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout
+
+GenerateApp.show_config_json : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout (as JSON)
+
+GenerateApp.system_config_path : Unicode
+    Default: ``''``
+
+    No description
+.. admonition:: start
+
+   ``start(self) -> None:``
+   
+        Activates the application.
+
+        * Adds the name of the edit branch to the application configuration object.
+        * Configures the DsPipeline object
+        * Adds the branches to the controller objects
+        * Initializes a DsPipeline
+        * Activates thee pipeline
+        
+
+ShareApp
+----------------------------
+
+    Creates a link that opens a github hosted jupyter notebook on illumidesk.
+
+    **Behavior:**
+
+    * Parses a url that is pointing to a jupyter notebook on github
+    * Uses the variables from the parsed url to generate a new url
+    * Adds the generated url to the user's clipboard using the python package ``pyperclip``.
+    
+ShareApp.app_dir : Unicode
+    Default: ``''``
+
+    No description
+
+ShareApp.classes : List
+    Default: ``[]``
+
+    No description
+
+ShareApp.config_file : Unicode
+    Default: ``''``
+
+    No description
+
+ShareApp.config_file_name : Unicode
+    Default: ``'dscreate_config.py'``
+
+    Specify a config file to load.
+
+ShareApp.dsconfig : Unicode
+    Default: ``''``
+
+    No description
+
+ShareApp.edit_branch : Unicode
+    Default: ``''``
+
+    No description
+
+ShareApp.log_datefmt : Unicode
+    Default: ``'%Y-%m-%d %H:%M:%S'``
+
+    The date format used by logging formatters for %(asctime)s
+
+ShareApp.log_format : Unicode
+    Default: ``'[%(name)s]%(highlevel)s %(message)s'``
+
+    The Logging format template
+
+ShareApp.log_level : Int
+    Default: ``50``
+
+    No description
+
+ShareApp.show_config : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout
+
+ShareApp.show_config_json : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout (as JSON)
+
+ShareApp.system_config_path : Unicode
+    Default: ``''``
+
+    No description
+.. admonition:: get_file_path
+
+   ``get_file_path(self, url):``
+   
+        Pull out the organization, repository name, branch, and file path
+        from a github url.
+        
+
+.. admonition:: get_assignment_url
+
+   ``get_assignment_url(self, org, repo, branch, file_path):``
+   
+        org - The name of a github organization.
+        repo - The name of a github repository.
+        branch - The name of a github repository branch.
+        file_path - The path pointing to a jupyter notebook in a github repository.
+        Returns: An illumidesk link that will clone the notebook onto your personal
+                server and open the notebook.
+        
+
+.. admonition:: start
+
+   ``start(self) -> None:``
+   None
+
+----------
 Pipeline
 ----------
 
@@ -19,19 +430,17 @@ DsPipeline.steps : List
     Default: ``[]``
 
     No description
-**__init__**
+.. admonition:: __init__
 
-``__init__(self, **kwargs) -> None:``
-
-
+   ``__init__(self, **kwargs) -> None:``
+   
         Set up configuration file.
         
 
-**start**
+.. admonition:: start
 
-``start(self) -> None:``
-
-No description
+   ``start(self) -> None:``
+   None
 
 CollectCurriculum
 ----------------------------
@@ -48,11 +457,10 @@ CollectCurriculum.edit_file : Unicode
     Default: ``''``
 
     No description
-**start**
+.. admonition:: start
 
-``start(self) -> None:``
-
-No description
+   ``start(self) -> None:``
+   None
 
 ----------
 Controllers
@@ -81,11 +489,10 @@ BaseController.enabled : Bool
     Default: ``False``
 
     No description
-**__init__**
+.. admonition:: __init__
 
-``__init__(self, **kwargs) -> None:``
-
-
+   ``__init__(self, **kwargs) -> None:``
+   
         1. Set up configuration file.
         2. Inherit git repo attributes
         
@@ -120,23 +527,20 @@ CheckoutController.printout : Unicode
     Default: ``''``
 
     No description
-**get_branch**
+.. admonition:: get_branch
 
-``get_branch(self):``
+   ``get_branch(self):``
+   None
 
-No description
+.. admonition:: merge_edit_branch
 
-**merge_edit_branch**
+   ``merge_edit_branch(self):``
+   None
 
-``merge_edit_branch(self):``
+.. admonition:: start
 
-No description
-
-**start**
-
-``start(self) -> None:``
-
-No description
+   ``start(self) -> None:``
+   None
 
 CommitController
 ----------------------------
@@ -167,17 +571,15 @@ CommitController.enabled : Bool
     Default: ``False``
 
     No description
-**add_and_commit**
+.. admonition:: add_and_commit
 
-``add_and_commit(self, commit_msg=None):``
+   ``add_and_commit(self, commit_msg=None):``
+   None
 
-No description
+.. admonition:: start
 
-**start**
-
-``start(self) -> None:``
-
-No description
+   ``start(self) -> None:``
+   None
 
 PushController
 ----------------------------
@@ -200,17 +602,15 @@ PushController.remote : Unicode
     Default: ``''``
 
     No description
-**get_branch**
+.. admonition:: get_branch
 
-``get_branch(self):``
+   ``get_branch(self):``
+   None
 
-No description
+.. admonition:: start
 
-**start**
-
-``start(self) -> None:``
-
-No description
+   ``start(self) -> None:``
+   None
 
 CheckoutEditBranch
 ----------------------------
@@ -226,11 +626,10 @@ CheckoutEditBranch.enabled : Bool
     Default: ``False``
 
     No description
-**start**
+.. admonition:: start
 
-``start(self) -> None:``
-
-No description
+   ``start(self) -> None:``
+   None
 
 ----------
 Converters
@@ -273,46 +672,41 @@ BaseConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
-**__init__**
+.. admonition:: __init__
 
-``__init__(self, **kwargs: Any) -> None:``
-
-
+   ``__init__(self, **kwargs: Any) -> None:``
+   
         Set up configuration file.
         
 
-**start**
+.. admonition:: start
 
-``start(self) -> None:``
-
-
+   ``start(self) -> None:``
+   
         Activate the converter
         
 
-**_init_preprocessors**
+.. admonition:: _init_preprocessors
 
-``_init_preprocessors(self) -> None:``
-
-
+   ``_init_preprocessors(self) -> None:``
+   
         Here we add the preprocessors to the exporter pipeline
         with the `register_preprocessor` method.
         
 
-**convert_notebook**
+.. admonition:: convert_notebook
 
-``convert_notebook(self) -> None:``
-
-
+   ``convert_notebook(self) -> None:``
+   
         1. Create a resources object that tells the exporter how to format link urls for images.
         2. Pass the notebook through the preprocessor and convert to the desired format via the exporter.
         3. Write the notebook to file.
         
 
-**init_notebook_resources**
+.. admonition:: init_notebook_resources
 
-``init_notebook_resources(self) -> dict:``
-
-
+   ``init_notebook_resources(self) -> dict:``
+   
         The resources argument, when passed into an exporter,
         tell the exporter what directory to include in the url 
         for external images via `output_files_dir`. 
@@ -321,11 +715,10 @@ BaseConverter.solution_dir : Unicode
         the name of the original notebook.
         
 
-**write_notebook**
+.. admonition:: write_notebook
 
-``write_notebook(self, output, resources) -> None:``
-
-
+   ``write_notebook(self, output, resources) -> None:``
+   
         Sets the output directory for the file write
         and writes the file to disk. 
         
@@ -361,11 +754,10 @@ MasterConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
-**start**
+.. admonition:: start
 
-``start(self) -> None:``
-
-No description
+   ``start(self) -> None:``
+   None
 
 ReleaseConverter
 ----------------------------
@@ -391,11 +783,10 @@ ReleaseConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
-**convert_notebook**
+.. admonition:: convert_notebook
 
-``convert_notebook(self) -> None:``
-
-
+   ``convert_notebook(self) -> None:``
+   
         1. Create a resources object that tells the exporter how to format link urls for images.
         2. Pass the notebook through the preprocessor and convert to the desired format via the exporter.
         3. Write the notebook to file.
@@ -430,11 +821,10 @@ SolutionConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
-**start**
+.. admonition:: start
 
-``start(self) -> None:``
-
-No description
+   ``start(self) -> None:``
+   None
 
 ReadmeConverter
 ----------------------------
@@ -466,11 +856,10 @@ ReadmeConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
-**convert_notebook**
+.. admonition:: convert_notebook
 
-``convert_notebook(self) -> None:``
-
-
+   ``convert_notebook(self) -> None:``
+   
         1. Create a resources object that tells the exporter how to format link urls for images.
         2. Pass the notebook through the preprocessor and convert to the desired format via the exporter.
         3. Write the notebook to file.
@@ -533,17 +922,15 @@ AddCellIndex.solution_tags : Set
     Default: ``{'#==SOLUTION==', '#__SOLUTION__', '==SOLUTION==', '__SOLUTIO...``
 
     Tags indicating which cells are to be removed
-**preprocess**
+.. admonition:: preprocess
 
-``preprocess(self, nb, resources):``
+   ``preprocess(self, nb, resources):``
+   None
 
-No description
+.. admonition:: preprocess_cell
 
-**preprocess_cell**
-
-``preprocess_cell(self, cell, resources, cell_index):``
-
-
+   ``preprocess_cell(self, cell, resources, cell_index):``
+   
         No transformation is applied.
         
 
@@ -585,27 +972,24 @@ RemoveSolutions.markdown_tags : Set
     Default: ``{'==SOLUTION==', '__SOLUTION__'}``
 
     No description
-**is_code_solution**
+.. admonition:: is_code_solution
 
-``is_code_solution(self, cell):``
-
-
+   ``is_code_solution(self, cell):``
+   
         Checks that a cell has a tag that is to be removed
         Returns: Boolean.
         True means cell should *not* be removed.
         
 
-**is_markdown_solution**
+.. admonition:: is_markdown_solution
 
-``is_markdown_solution(self, cell):``
+   ``is_markdown_solution(self, cell):``
+   None
 
-No description
+.. admonition:: preprocess
 
-**preprocess**
-
-``preprocess(self, nb, resources):``
-
-No description
+   ``preprocess(self, nb, resources):``
+   None
 
 RemoveLessonCells
 ----------------------------
@@ -637,25 +1021,22 @@ RemoveLessonCells.solution_tags : Set
     Default: ``{'#==SOLUTION==', '#__SOLUTION__', '==SOLUTION==', '__SOLUTIO...``
 
     Tags indicating which cells are to be removed
-**is_solution**
+.. admonition:: is_solution
 
-``is_solution(self, cell):``
-
-
+   ``is_solution(self, cell):``
+   
         Checks that a cell has a solution tag. 
         
 
-**preprocess**
+.. admonition:: preprocess
 
-``preprocess(self, nb, resources):``
+   ``preprocess(self, nb, resources):``
+   None
 
-No description
+.. admonition:: preprocess_cell
 
-**preprocess_cell**
-
-``preprocess_cell(self, cell):``
-
-
+   ``preprocess_cell(self, cell):``
+   
         Removes the solution tag from the solution cells.
         
 
@@ -683,17 +1064,15 @@ SortCells.enabled : Bool
     Default: ``True``
 
     Whether to use this preprocessor when running dscreate
-**preprocess**
+.. admonition:: preprocess
 
-``preprocess(self, nb, resources):``
+   ``preprocess(self, nb, resources):``
+   None
 
-No description
+.. admonition:: preprocess_cell
 
-**preprocess_cell**
-
-``preprocess_cell(self, cell, resources, cell_index):``
-
-No description
+   ``preprocess_cell(self, cell, resources, cell_index):``
+   None
 
 ClearOutput
 ----------------------------

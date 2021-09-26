@@ -17,14 +17,12 @@ def create_method_docs(dsobject):
     name = dsobject.__name__
     args = str(inspect.signature(dsobject))
     doc = dsobject.__doc__
-    if  not doc:
-        doc = 'No description'
     
-    return f"**{name}**\n\n``{name}{args}:``\n\n{doc}\n\n"
+    return f".. admonition:: {name}\n\n   ``{name}{args}:``\n   {doc}\n\n"
     
 
 def create_dsobject_docs():
-    modules = {
+    modules = {apps: apps.__all__,
               pipeline: pipeline.__all__}
     
     docs = ''
@@ -32,7 +30,7 @@ def create_dsobject_docs():
     for module in modules:
         objects = modules[module]
         for obj_name in objects:
-            obj = getattr(pipeline, obj_name)
+            obj = getattr(module, obj_name)
             obj_group = obj.__module__.split('.')[-2]
             if obj_group != group:
                 group = obj_group
