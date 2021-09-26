@@ -14,10 +14,17 @@ Contents
 --------
 
 .. toctree::
+   :maxdepth: 2
+   :caption: USER DOCUMENTATION
 
    pages/cli_tools
    pages/solution_cells
    pages/inline_lessons
    pages/creating_tests
+
+.. toctree::
+   :maxdepth: 2
+   :caption: DEVELOPER DOCUMENTATION
+
    pages/developer_documentation
    pages/code_documentation

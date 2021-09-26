@@ -27,12 +27,15 @@ def create_dsobject_docs():
     modules = {
               pipeline: pipeline.__all__}
     
-    docs = '==================\nCode Documentation\n==================\n\n'
-    
+    docs = ''
+    group = None
     for module in modules:
         objects = modules[module]
         for obj_name in objects:
             obj = getattr(pipeline, obj_name)
+            obj_group = obj.__module__.split('.')[-2]
+            if obj_group != group:
+                docs += f'----------{group}----------'
             obj_docs = create_class_docs(obj)
             docs += obj_docs
             methods = []

@@ -1,8 +1,4 @@
-==================
-Code Documentation
-==================
-
-DsPipeline
+----------None----------DsPipeline
 ----------------------------
 
     The primary pipeline for dscreate
@@ -33,7 +29,7 @@ DsPipeline.steps : List
 
 No description
 
-CollectCurriculum
+----------None----------CollectCurriculum
 ----------------------------
 
     CollectCurriculum reads in the edit_file and stores the notebook in the application
@@ -54,7 +50,7 @@ CollectCurriculum.edit_file : Unicode
 
 No description
 
-BaseController
+----------None----------BaseController
 ----------------------------
 
     The base controller object. 
@@ -86,7 +82,7 @@ BaseController.enabled : Bool
         2. Inherit git repo attributes
         
 
-CheckoutController
+----------None----------CheckoutController
 ----------------------------
 
     Checkout branches set by the running application.
@@ -134,7 +130,7 @@ No description
 
 No description
 
-CommitController
+----------None----------CommitController
 ----------------------------
 
     Commits changes to a git branch.
@@ -175,7 +171,7 @@ No description
 
 No description
 
-PushController
+----------None----------PushController
 ----------------------------
 
     Pushing changes to the remote.
@@ -208,7 +204,7 @@ No description
 
 No description
 
-CheckoutEditBranch
+----------None----------CheckoutEditBranch
 ----------------------------
 
     This controller checkouts the first branch of the branches configuration variable.
@@ -228,7 +224,7 @@ CheckoutEditBranch.enabled : Bool
 
 No description
 
-BaseConverter
+----------None----------BaseConverter
 ----------------------------
 
     The base converter that is inherited by all dscreate converters.
@@ -322,7 +318,7 @@ BaseConverter.solution_dir : Unicode
         and writes the file to disk. 
         
 
-MasterConverter
+----------None----------MasterConverter
 ----------------------------
 
     The master converter is used to generate the student facing notebook.
@@ -359,7 +355,7 @@ MasterConverter.solution_dir : Unicode
 
 No description
 
-ReleaseConverter
+----------None----------ReleaseConverter
 ----------------------------
 
     ReleaseConverter replicates ``nbgrader generate``
@@ -393,7 +389,7 @@ ReleaseConverter.solution_dir : Unicode
         3. Write the notebook to file.
         
 
-SolutionConverter
+----------None----------SolutionConverter
 ----------------------------
 
     SolutionConverter generates the teacher facing  notebook.
@@ -428,7 +424,7 @@ SolutionConverter.solution_dir : Unicode
 
 No description
 
-ReadmeConverter
+----------None----------ReadmeConverter
 ----------------------------
 
     Generates the readme for a notebook.
@@ -468,7 +464,7 @@ ReadmeConverter.solution_dir : Unicode
         3. Write the notebook to file.
         
 
-SourceConverter
+----------None----------SourceConverter
 ----------------------------
 
     SourceConverter generates a teacher facing readme for an nbgrader assignment.
@@ -492,7 +488,7 @@ SourceConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
-AddCellIndex
+----------None----------AddCellIndex
 ----------------------------
 
     AddCellIndex adds a metadata.index variable to a notebook and determines if a cell is a solution cell.
@@ -535,7 +531,7 @@ No description
         No transformation is applied.
         
 
-RemoveSolutions
+----------None----------RemoveSolutions
 ----------------------------
 
     RemoveSolutions removes cells that contain a solution tag. 
@@ -595,7 +591,7 @@ No description
 
 No description
 
-RemoveLessonCells
+----------None----------RemoveLessonCells
 ----------------------------
 
     RemoveLessonCells removes cells that do not contain a tag included in the ``solution_tags`` variable.
@@ -647,7 +643,7 @@ No description
         Removes the solution tag from the solution cells.
         
 
-SortCells
+----------None----------SortCells
 ----------------------------
 
     Sorts the cells of a notebook according to the metadata.index variable
@@ -683,7 +679,7 @@ No description
 
 No description
 
-ClearOutput
+----------None----------ClearOutput
 ----------------------------
 
     ClearOutput removes the outputs for notebook cells.
@@ -711,7 +707,7 @@ ClearOutput.remove_metadata_fields : Set
     Default: ``{'collapsed', 'scrolled'}``
 
     No description
-ExecuteCells
+----------None----------ExecuteCells
 ----------------------------
 
     ExecuteCells runs code cells in a notebook.
