@@ -28,4 +28,9 @@ Contents
 
    pages/developer_documentation
    pages/code_documentation
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Setup and Configuration
+   
    pages/config_options
