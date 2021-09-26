@@ -84,36 +84,26 @@ DsCreate.system_config_path : Unicode
 
 **METHODS**
 
-.. admonition:: all_configurable_classes
-
-   ``all_configurable_classes(self) -> List[traitlets.traitlets.MetaHasTraits]:``
+.. admonition:: ``all_configurable_classes(self) -> List[traitlets.traitlets.MetaHasTraits]:``
 
    Get a list of all configurable classes for dscreate
         
 
-.. admonition:: write_default_config
+.. admonition:: ``write_default_config(self) -> None:``
 
-   ``write_default_config(self) -> None:``
+   No description
 
-   None
+.. admonition:: ``_load_configs(self) -> None:``
 
-.. admonition:: _load_configs
+   No description
 
-   ``_load_configs(self) -> None:``
+.. admonition:: ``add_all_configurables(self):``
 
-   None
+   No description
 
-.. admonition:: add_all_configurables
+.. admonition:: ``start(self):``
 
-   ``add_all_configurables(self):``
-
-   None
-
-.. admonition:: start
-
-   ``start(self):``
-
-   None
+   No description
 
 CreateApp
 ----------------------------
@@ -218,17 +208,13 @@ CreateApp.system_config_path : Unicode
 
 **METHODS**
 
-.. admonition:: validate_branches
+.. admonition:: ``validate_branches(self) -> None:``
 
-   ``validate_branches(self) -> None:``
+   No description
 
-   None
+.. admonition:: ``start(self) -> None:``
 
-.. admonition:: start
-
-   ``start(self) -> None:``
-
-   None
+   No description
 
 GenerateApp
 ----------------------------
@@ -329,9 +315,7 @@ GenerateApp.system_config_path : Unicode
 
 **METHODS**
 
-.. admonition:: start
-
-   ``start(self) -> None:``
+.. admonition:: ``start(self) -> None:``
 
    
         Activates the application.
@@ -420,18 +404,14 @@ ShareApp.system_config_path : Unicode
 
 **METHODS**
 
-.. admonition:: get_file_path
-
-   ``get_file_path(self, url):``
+.. admonition:: ``get_file_path(self, url):``
 
    
         Pull out the organization, repository name, branch, and file path
         from a github url.
         
 
-.. admonition:: get_assignment_url
-
-   ``get_assignment_url(self, org, repo, branch, file_path):``
+.. admonition:: ``get_assignment_url(self, org, repo, branch, file_path):``
 
    
         org - The name of a github organization.
@@ -442,11 +422,9 @@ ShareApp.system_config_path : Unicode
                 server and open the notebook.
         
 
-.. admonition:: start
+.. admonition:: ``start(self) -> None:``
 
-   ``start(self) -> None:``
-
-   None
+   No description
 
 ----------
 Pipeline
@@ -476,19 +454,15 @@ DsPipeline.steps : List
 
 **METHODS**
 
-.. admonition:: __init__
-
-   ``__init__(self, **kwargs) -> None:``
+.. admonition:: ``__init__(self, **kwargs) -> None:``
 
    
         Set up configuration file.
         
 
-.. admonition:: start
+.. admonition:: ``start(self) -> None:``
 
-   ``start(self) -> None:``
-
-   None
+   No description
 
 CollectCurriculum
 ----------------------------
@@ -512,11 +486,9 @@ CollectCurriculum.edit_file : Unicode
 
 **METHODS**
 
-.. admonition:: start
+.. admonition:: ``start(self) -> None:``
 
-   ``start(self) -> None:``
-
-   None
+   No description
 
 ----------
 Controllers
@@ -552,9 +524,7 @@ BaseController.enabled : Bool
 
 **METHODS**
 
-.. admonition:: __init__
-
-   ``__init__(self, **kwargs) -> None:``
+.. admonition:: ``__init__(self, **kwargs) -> None:``
 
    
         1. Set up configuration file.
@@ -598,23 +568,17 @@ CheckoutController.printout : Unicode
 
 **METHODS**
 
-.. admonition:: get_branch
+.. admonition:: ``get_branch(self):``
 
-   ``get_branch(self):``
+   No description
 
-   None
+.. admonition:: ``merge_edit_branch(self):``
 
-.. admonition:: merge_edit_branch
+   No description
 
-   ``merge_edit_branch(self):``
+.. admonition:: ``start(self) -> None:``
 
-   None
-
-.. admonition:: start
-
-   ``start(self) -> None:``
-
-   None
+   No description
 
 CommitController
 ----------------------------
@@ -652,17 +616,13 @@ CommitController.enabled : Bool
 
 **METHODS**
 
-.. admonition:: add_and_commit
+.. admonition:: ``add_and_commit(self, commit_msg=None):``
 
-   ``add_and_commit(self, commit_msg=None):``
+   No description
 
-   None
+.. admonition:: ``start(self) -> None:``
 
-.. admonition:: start
-
-   ``start(self) -> None:``
-
-   None
+   No description
 
 PushController
 ----------------------------
@@ -692,17 +652,13 @@ PushController.remote : Unicode
 
 **METHODS**
 
-.. admonition:: get_branch
+.. admonition:: ``get_branch(self):``
 
-   ``get_branch(self):``
+   No description
 
-   None
+.. admonition:: ``start(self) -> None:``
 
-.. admonition:: start
-
-   ``start(self) -> None:``
-
-   None
+   No description
 
 CheckoutEditBranch
 ----------------------------
@@ -725,11 +681,9 @@ CheckoutEditBranch.enabled : Bool
 
 **METHODS**
 
-.. admonition:: start
+.. admonition:: ``start(self) -> None:``
 
-   ``start(self) -> None:``
-
-   None
+   No description
 
 ----------
 Converters
@@ -779,34 +733,26 @@ BaseConverter.solution_dir : Unicode
 
 **METHODS**
 
-.. admonition:: __init__
-
-   ``__init__(self, **kwargs: Any) -> None:``
+.. admonition:: ``__init__(self, **kwargs: Any) -> None:``
 
    
         Set up configuration file.
         
 
-.. admonition:: start
-
-   ``start(self) -> None:``
+.. admonition:: ``start(self) -> None:``
 
    
         Activate the converter
         
 
-.. admonition:: _init_preprocessors
-
-   ``_init_preprocessors(self) -> None:``
+.. admonition:: ``_init_preprocessors(self) -> None:``
 
    
         Here we add the preprocessors to the exporter pipeline
         with the `register_preprocessor` method.
         
 
-.. admonition:: convert_notebook
-
-   ``convert_notebook(self) -> None:``
+.. admonition:: ``convert_notebook(self) -> None:``
 
    
         1. Create a resources object that tells the exporter how to format link urls for images.
@@ -814,9 +760,7 @@ BaseConverter.solution_dir : Unicode
         3. Write the notebook to file.
         
 
-.. admonition:: init_notebook_resources
-
-   ``init_notebook_resources(self) -> dict:``
+.. admonition:: ``init_notebook_resources(self) -> dict:``
 
    
         The resources argument, when passed into an exporter,
@@ -827,9 +771,7 @@ BaseConverter.solution_dir : Unicode
         the name of the original notebook.
         
 
-.. admonition:: write_notebook
-
-   ``write_notebook(self, output, resources) -> None:``
+.. admonition:: ``write_notebook(self, output, resources) -> None:``
 
    
         Sets the output directory for the file write
@@ -874,11 +816,9 @@ MasterConverter.solution_dir : Unicode
 
 **METHODS**
 
-.. admonition:: start
+.. admonition:: ``start(self) -> None:``
 
-   ``start(self) -> None:``
-
-   None
+   No description
 
 ReleaseConverter
 ----------------------------
@@ -911,9 +851,7 @@ ReleaseConverter.solution_dir : Unicode
 
 **METHODS**
 
-.. admonition:: convert_notebook
-
-   ``convert_notebook(self) -> None:``
+.. admonition:: ``convert_notebook(self) -> None:``
 
    
         1. Create a resources object that tells the exporter how to format link urls for images.
@@ -957,11 +895,9 @@ SolutionConverter.solution_dir : Unicode
 
 **METHODS**
 
-.. admonition:: start
+.. admonition:: ``start(self) -> None:``
 
-   ``start(self) -> None:``
-
-   None
+   No description
 
 ReadmeConverter
 ----------------------------
@@ -1000,9 +936,7 @@ ReadmeConverter.solution_dir : Unicode
 
 **METHODS**
 
-.. admonition:: convert_notebook
-
-   ``convert_notebook(self) -> None:``
+.. admonition:: ``convert_notebook(self) -> None:``
 
    
         1. Create a resources object that tells the exporter how to format link urls for images.
@@ -1081,15 +1015,11 @@ AddCellIndex.solution_tags : Set
 
 **METHODS**
 
-.. admonition:: preprocess
+.. admonition:: ``preprocess(self, nb, resources):``
 
-   ``preprocess(self, nb, resources):``
+   No description
 
-   None
-
-.. admonition:: preprocess_cell
-
-   ``preprocess_cell(self, cell, resources, cell_index):``
+.. admonition:: ``preprocess_cell(self, cell, resources, cell_index):``
 
    
         No transformation is applied.
@@ -1140,9 +1070,7 @@ RemoveSolutions.markdown_tags : Set
 
 **METHODS**
 
-.. admonition:: is_code_solution
-
-   ``is_code_solution(self, cell):``
+.. admonition:: ``is_code_solution(self, cell):``
 
    
         Checks that a cell has a tag that is to be removed
@@ -1150,17 +1078,13 @@ RemoveSolutions.markdown_tags : Set
         True means cell should *not* be removed.
         
 
-.. admonition:: is_markdown_solution
+.. admonition:: ``is_markdown_solution(self, cell):``
 
-   ``is_markdown_solution(self, cell):``
+   No description
 
-   None
+.. admonition:: ``preprocess(self, nb, resources):``
 
-.. admonition:: preprocess
-
-   ``preprocess(self, nb, resources):``
-
-   None
+   No description
 
 RemoveLessonCells
 ----------------------------
@@ -1199,23 +1123,17 @@ RemoveLessonCells.solution_tags : Set
 
 **METHODS**
 
-.. admonition:: is_solution
-
-   ``is_solution(self, cell):``
+.. admonition:: ``is_solution(self, cell):``
 
    
         Checks that a cell has a solution tag. 
         
 
-.. admonition:: preprocess
+.. admonition:: ``preprocess(self, nb, resources):``
 
-   ``preprocess(self, nb, resources):``
+   No description
 
-   None
-
-.. admonition:: preprocess_cell
-
-   ``preprocess_cell(self, cell):``
+.. admonition:: ``preprocess_cell(self, cell):``
 
    
         Removes the solution tag from the solution cells.
@@ -1252,17 +1170,13 @@ SortCells.enabled : Bool
 
 **METHODS**
 
-.. admonition:: preprocess
+.. admonition:: ``preprocess(self, nb, resources):``
 
-   ``preprocess(self, nb, resources):``
+   No description
 
-   None
+.. admonition:: ``preprocess_cell(self, cell, resources, cell_index):``
 
-.. admonition:: preprocess_cell
-
-   ``preprocess_cell(self, cell, resources, cell_index):``
-
-   None
+   No description
 
 ClearOutput
 ----------------------------

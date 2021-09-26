@@ -17,8 +17,10 @@ def create_method_docs(dsobject):
     name = dsobject.__name__
     args = str(inspect.signature(dsobject))
     doc = dsobject.__doc__
+    if not doc:
+        doc = 'No description'
     
-    return f".. admonition:: {name}\n\n   ``{name}{args}:``\n\n   {doc}\n\n"
+    return f".. admonition:: ``{name}{args}:``\n\n   {doc}\n\n"
     
 
 def create_dsobject_docs():
