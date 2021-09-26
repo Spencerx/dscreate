@@ -26,6 +26,6 @@ Contents
    :maxdepth: 2
    :caption: DEVELOPER DOCUMENTATION
 
-   pages/developer_documentation
+   pages/design_overview
    pages/code_documentation
    pages/config_options

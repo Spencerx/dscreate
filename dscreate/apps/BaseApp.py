@@ -93,6 +93,10 @@ class DsCreate(Application):
         return u'{}'.format(os.path.join(self.app_dir, self.config_file_name))
 
     def write_default_config(self) -> None:
+        """
+        Builds system configuration directories
+        and files.
+        """
         if not exists(self.dsconfig):
             os.mkdir(self.dsconfig)
         if not exists(self.app_dir):
@@ -105,31 +109,59 @@ class DsCreate(Application):
                 file.write(config)
 
     def _load_configs(self) -> None:
+        """
+        * Loads the default configurations for every application object.
+        * Generates system config files if they do not exist.
+        * Loads the system configuration files and overwrites the defaults with configurations set in the files.
+        * Loads config file if set by ``--config_file``
+        * Overwrites configurations with configs set via command line.
+        """
+        # Load default configurations
         self.add_all_configurables()
+        # Create system config files if they do not exist
         if not exists(self.system_config_path):
             self.write_default_config()
+        # Load system config 
         self.load_config_file(self.system_config_path)
+        # Load config from command line config_file argument
         if self.config_file:
             path, config_file_name = os.path.split(self.config_file)
             self.load_config_file(config_file_name, path=path)
+        # Overwrite configurations with configs set via command line
         self.config.merge(self.cli_config)
 
-    def add_all_configurables(self):
-
+    def add_all_configurables(self) -> None:
+        """
+        Apart from ``inline`` and ``source_notebook``, config variables are expected to be tied to
+        an application object. To ensure the application has full access to every configurable trait
+        we loop over all of the dscreate applications and pipeline objects and add their configurable 
+        traits to the application config, setting each trait to their default values.
+        """
+        # Loop over the subcommand applications set by DsCreateApp
         for _, (app, _) in self.subcommands.items():
+            # Collect the configurable traits for the subapp
             traits = app.class_traits(config=True)
             for trait in traits:
+                # Add each trait to the config with the format {Name of App: {name of trait: trait default}}
                 config = Config({app.__class__.__name__: Config({trait : traits[trait].default_value})})
                 self.config.merge(config)
 
+        # Loop over all pipeline components
         for pp_name in pipeline.__all__:
+            # Load the python object for the component
             pp = getattr(pipeline, pp_name)
+            # Collect the configurable traits
             traits = pp.class_traits(config=True)
             for trait in traits:
+                # Add each trait to the config with the format {Name of component: {name of trait: trait default}}
                 config = Config({pp.__class__.__name__: Config({trait : traits[trait].default_value})})
                 self.config.merge(config)
 
-    def start(self):
+    def start(self) -> None:
+        """
+        * Activates the traitlets ``Application.start`` method, which parses the command line.
+        * Generates the application configuration object.
+        """
         super(DsCreate, self).start()
         self._load_configs()
         

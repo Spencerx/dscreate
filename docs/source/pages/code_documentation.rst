@@ -92,19 +92,36 @@ DsCreate.system_config_path : Unicode
 
 .. admonition:: write_default_config(self) -> None:
 
-   No description
+   
+        Builds system configuration directories
+        and files.
+        
 
 .. admonition:: _load_configs(self) -> None:
 
-   No description
+   
+        * Loads the default configurations for every application object.
+        * Generates system config files if they do not exist.
+        * Loads the system configuration files and overwrites the defaults with configurations set in the files.
+        * Loads config file if set by ``--config_file``
+        * Overwrites configurations with configs set via command line.
+        
 
-.. admonition:: add_all_configurables(self):
+.. admonition:: add_all_configurables(self) -> None:
 
-   No description
+   
+        Apart from ``inline`` and ``source_notebook``, config variables are expected to be tied to
+        an application object. To ensure the application has full access to every configurable trait
+        we loop over all of the dscreate applications and pipeline objects and add their configurable 
+        traits to the application config, setting each trait to their default values.
+        
 
-.. admonition:: start(self):
+.. admonition:: start(self) -> None:
 
-   No description
+   
+        * Activates the traitlets ``Application.start`` method, which parses the command line.
+        * Generates the application configuration object.
+        
 
 CreateApp
 ----------------------------
