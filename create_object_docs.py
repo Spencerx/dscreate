@@ -9,8 +9,8 @@ def create_class_docs(dsobject):
     description = dsobject.description
     configs = dsobject().class_config_rst_doc()
     
-    doc = f'''{name}\n----------------------------\n\n{description}\n\n**CONFIGURABLE VARIABLES:**\n\n{configs}'''
-    
+    doc = f'''{name}\n****************************\n\n{description}\n\n**CONFIGURABLE VARIABLES:**\n\n{configs}'''
+                      
     return doc
 
 def create_method_docs(dsobject):
@@ -36,7 +36,7 @@ def create_dsobject_docs():
             obj_group = obj.__module__.split('.')[-2]
             if obj_group != group:
                 group = obj_group
-                docs += f'----------\n{group.title()}\n----------\n\n'
+                docs += f'{group.title()}\n########\n\n'
             obj_docs = create_class_docs(obj)
             docs += obj_docs
             docs += '\n\n**METHODS**\n\n'
