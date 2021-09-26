@@ -1,4 +1,6 @@
-----------pipeline----------
+----------
+Pipeline
+----------
 
 DsPipeline
 ----------------------------
@@ -52,7 +54,9 @@ CollectCurriculum.edit_file : Unicode
 
 No description
 
-----------controllers----------
+----------
+Controllers
+----------
 
 BaseController
 ----------------------------
@@ -228,7 +232,9 @@ CheckoutEditBranch.enabled : Bool
 
 No description
 
-----------converters----------
+----------
+Converters
+----------
 
 BaseConverter
 ----------------------------
@@ -494,7 +500,9 @@ SourceConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
-----------preprocessors----------
+----------
+Preprocessors
+----------
 
 AddCellIndex
 ----------------------------
