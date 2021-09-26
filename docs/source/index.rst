@@ -23,7 +23,7 @@ Contents
    pages/creating_tests
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: DEVELOPER DOCUMENTATION
 
    pages/design_overview
