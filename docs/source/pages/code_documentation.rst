@@ -31,7 +31,7 @@ DsPipeline.steps : List
 
 ``start(self) -> None:``
 
-None
+No description
 
 CollectCurriculum
 ----------------------------
@@ -52,7 +52,7 @@ CollectCurriculum.edit_file : Unicode
 
 ``start(self) -> None:``
 
-None
+No description
 
 BaseController
 ----------------------------
@@ -120,19 +120,19 @@ CheckoutController.printout : Unicode
 
 ``get_branch(self):``
 
-None
+No description
 
 **merge_edit_branch**
 
 ``merge_edit_branch(self):``
 
-None
+No description
 
 **start**
 
 ``start(self) -> None:``
 
-None
+No description
 
 CommitController
 ----------------------------
@@ -167,13 +167,13 @@ CommitController.enabled : Bool
 
 ``add_and_commit(self, commit_msg=None):``
 
-None
+No description
 
 **start**
 
 ``start(self) -> None:``
 
-None
+No description
 
 PushController
 ----------------------------
@@ -200,13 +200,13 @@ PushController.remote : Unicode
 
 ``get_branch(self):``
 
-None
+No description
 
 **start**
 
 ``start(self) -> None:``
 
-None
+No description
 
 CheckoutEditBranch
 ----------------------------
@@ -226,7 +226,7 @@ CheckoutEditBranch.enabled : Bool
 
 ``start(self) -> None:``
 
-None
+No description
 
 BaseConverter
 ----------------------------
@@ -357,7 +357,7 @@ MasterConverter.solution_dir : Unicode
 
 ``start(self) -> None:``
 
-None
+No description
 
 ReleaseConverter
 ----------------------------
@@ -426,7 +426,7 @@ SolutionConverter.solution_dir : Unicode
 
 ``start(self) -> None:``
 
-None
+No description
 
 ReadmeConverter
 ----------------------------
@@ -525,7 +525,7 @@ AddCellIndex.solution_tags : Set
 
 ``preprocess(self, nb, resources):``
 
-None
+No description
 
 **preprocess_cell**
 
@@ -587,13 +587,13 @@ RemoveSolutions.markdown_tags : Set
 
 ``is_markdown_solution(self, cell):``
 
-None
+No description
 
 **preprocess**
 
 ``preprocess(self, nb, resources):``
 
-None
+No description
 
 RemoveLessonCells
 ----------------------------
@@ -637,7 +637,7 @@ RemoveLessonCells.solution_tags : Set
 
 ``preprocess(self, nb, resources):``
 
-None
+No description
 
 **preprocess_cell**
 
@@ -675,13 +675,13 @@ SortCells.enabled : Bool
 
 ``preprocess(self, nb, resources):``
 
-None
+No description
 
 **preprocess_cell**
 
 ``preprocess_cell(self, cell, resources, cell_index):``
 
-None
+No description
 
 ClearOutput
 ----------------------------
