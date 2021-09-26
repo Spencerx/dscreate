@@ -5,9 +5,7 @@ Apps
 DsCreate
 ----------------------------
 
-.. admonition:: 
 
-   
         The base app for dscreate applications.
         This app primarily handles the set up of configuration files for dscreate.
 
@@ -111,9 +109,7 @@ DsCreate.system_config_path : Unicode
 CreateApp
 ----------------------------
 
-.. admonition:: 
 
-   
     Splits a notebook into student and teacher facing materials using dscreate solution tags.
     
     **Behavior:**
@@ -225,9 +221,7 @@ CreateApp.system_config_path : Unicode
 GenerateApp
 ----------------------------
 
-.. admonition:: 
 
-   
     Splits an nbgrader assignment into student facing and teacher facing files
     and uses the arguments to determine which sub application should be activated.
 
@@ -339,9 +333,7 @@ GenerateApp.system_config_path : Unicode
 ShareApp
 ----------------------------
 
-.. admonition:: 
 
-   
     Creates a link that opens a github hosted jupyter notebook on illumidesk.
 
     **Behavior:**
@@ -445,9 +437,7 @@ Pipeline
 DsPipeline
 ----------------------------
 
-.. admonition:: 
 
-   
     The primary pipeline for dscreate
 
     DsPipeline's primary variable is ``steps`` containing converter and controller objects.
@@ -482,9 +472,7 @@ DsPipeline.steps : List
 CollectCurriculum
 ----------------------------
 
-.. admonition:: 
 
-   
     CollectCurriculum reads in the edit_file and stores the notebook in the application
     configuration object.
     
@@ -515,9 +503,7 @@ Controllers
 BaseController
 ----------------------------
 
-.. admonition:: 
 
-   
     The base controller object. 
 
     **Behavior:**
@@ -555,9 +541,7 @@ BaseController.enabled : Bool
 CheckoutController
 ----------------------------
 
-.. admonition:: 
 
-   
     Checkout branches set by the running application.
 
     This controller relies on a configuration object that contains the following variables
@@ -607,9 +591,7 @@ CheckoutController.printout : Unicode
 CommitController
 ----------------------------
 
-.. admonition:: 
 
-   
     Commits changes to a git branch.
 
     This object has a ``commit_msg`` attribute that can be set from command line using the ``-m`` argument.
@@ -654,9 +636,7 @@ CommitController.enabled : Bool
 PushController
 ----------------------------
 
-.. admonition:: 
 
-   
     Pushing changes to the remote.
 
     Remote is a configurable variables that defaults to 'origin'
@@ -693,9 +673,7 @@ PushController.remote : Unicode
 CheckoutEditBranch
 ----------------------------
 
-.. admonition:: 
 
-   
     This controller checkouts the first branch of the branches configuration variable.
     
 
@@ -725,9 +703,7 @@ Converters
 BaseConverter
 ----------------------------
 
-.. admonition:: 
 
-   
     The base converter that is inherited by all dscreate converters.
 
     The base converter initializes and activates the exporter and filewriter objects.
@@ -817,9 +793,7 @@ BaseConverter.solution_dir : Unicode
 MasterConverter
 ----------------------------
 
-.. admonition:: 
 
-   
     The master converter is used to generate the student facing notebook.
 
     The preprocessors default to the nbconvert ClearOutput and dscreate RemoveSolutions preprocessors.
@@ -862,9 +836,7 @@ MasterConverter.solution_dir : Unicode
 ReleaseConverter
 ----------------------------
 
-.. admonition:: 
 
-   
     ReleaseConverter replicates ``nbgrader generate``
     
 
@@ -904,9 +876,7 @@ ReleaseConverter.solution_dir : Unicode
 SolutionConverter
 ----------------------------
 
-.. admonition:: 
 
-   
     SolutionConverter generates the teacher facing  notebook.
     
 
@@ -947,9 +917,7 @@ SolutionConverter.solution_dir : Unicode
 ReadmeConverter
 ----------------------------
 
-.. admonition:: 
 
-   
     Generates the readme for a notebook.
 
     This converter has a ``notebook_path`` configurable variable that indicates what notebook should be converted.
@@ -995,9 +963,7 @@ ReadmeConverter.solution_dir : Unicode
 SourceConverter
 ----------------------------
 
-.. admonition:: 
 
-   
     SourceConverter generates a teacher facing readme for an nbgrader assignment.
     
 
@@ -1033,9 +999,7 @@ Preprocessors
 AddCellIndex
 ----------------------------
 
-.. admonition:: 
 
-   
     AddCellIndex adds a metadata.index variable to a notebook and determines if a cell is a solution cell.
     This preprocessor is used primarily for ``--inline`` splits.
     
@@ -1082,9 +1046,7 @@ AddCellIndex.solution_tags : Set
 RemoveSolutions
 ----------------------------
 
-.. admonition:: 
 
-   
     RemoveSolutions removes cells that contain a solution tag. 
 
     This preprocess identifies both code and solution cells:
@@ -1146,9 +1108,7 @@ RemoveSolutions.markdown_tags : Set
 RemoveLessonCells
 ----------------------------
 
-.. admonition:: 
 
-   
     RemoveLessonCells removes cells that do not contain a tag included in the ``solution_tags`` variable.
 
     ``solution_tags`` are a  configurable variable. Defaults to {'#__SOLUTION__', '#==SOLUTION==', '__SOLUTION__', '==SOLUTION=='}
@@ -1202,9 +1162,7 @@ RemoveLessonCells.solution_tags : Set
 SortCells
 ----------------------------
 
-.. admonition:: 
 
-   
     Sorts the cells of a notebook according to the metadata.index variable
     and adds a solution tag back to solution cells.
     
@@ -1244,9 +1202,7 @@ SortCells.enabled : Bool
 ClearOutput
 ----------------------------
 
-.. admonition:: 
 
-   
     ClearOutput removes the outputs for notebook cells.
     
 
@@ -1282,9 +1238,7 @@ ClearOutput.remove_metadata_fields : Set
 ExecuteCells
 ----------------------------
 
-.. admonition:: 
 
-   
     ExecuteCells runs code cells in a notebook.
     
 
