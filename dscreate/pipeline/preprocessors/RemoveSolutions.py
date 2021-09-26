@@ -4,6 +4,15 @@ from .BasePreprocessor import DsCreatePreprocessor
 
 class RemoveSolutions(DsCreatePreprocessor):
 
+    description = '''
+    RemoveSolutions removes cells that contain a solution tag. 
+
+    This preprocess identifies both code and solution cells:
+
+    code solution tags defaults to: {'#__SOLUTION__', '#==SOLUTION=='}
+    markdown solution tags defaults to: {'==SOLUTION==','__SOLUTION__'}
+    '''
+    
     code_tags = Set({'#__SOLUTION__', '#==SOLUTION=='},
             help=("Tags indicating which cells are to be removed"
             )).tag(config=True)

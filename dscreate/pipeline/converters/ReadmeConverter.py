@@ -5,8 +5,17 @@ import os
 
 class ReadmeConverter(BaseConverter):
 
-    name = 'Generating README...'
+    name = 'ReadmeConverter'
+    printout = 'Generating README...'
+    description = '''
+    Generates the readme for a notebook.
 
+    This converter has a ``notebook_path`` configurable variable that indicates what notebook should be converted.
+    notebook_path defaults to 'index.ipynb' when ``--inline`` is False and ``.solution_files/index.ipynb`` when
+    ``--inline`` is True.
+
+    No preprocessors are applied by the ReadmeConverter.
+    '''
     exporter_class = MarkdownExporter
     notebook_path = Unicode(config=True)
     output = 'README'

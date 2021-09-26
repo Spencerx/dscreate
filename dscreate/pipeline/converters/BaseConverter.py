@@ -8,7 +8,19 @@ from nbconvert.writers import FilesWriter
 
 class BaseConverter(Configurable):
 
-    name = u'dscreate-base-converter'
+    name = u'base-converter'
+    printout = 'Writing notebook...'
+    description = '''
+    The base converter that is inherited by all dscreate converters.
+
+    The base converter initializes and activates the exporter and filewriter objects.
+    If the  ``--inline`` flag is used with ``ds create``, a `.solution_dir` directory is created.
+
+    The base converter has an ``--output`` argument that allows you to change the name of the output file. 
+    This variable defaults to ``'index'``
+
+    When the base converter is used a step in the pipeline, the edit_file is written to disk unchanged.
+    '''
     writer = Instance(FilesWriter)
     exporter = Instance(Exporter)
     exporter_class = Type(NotebookExporter, klass=Exporter).tag(config=True)
@@ -40,6 +52,8 @@ class BaseConverter(Configurable):
         c.Exporter.default_preprocessors = []
         self.update_config(c)
 
+
+
     def start(self) -> None:
         """
         Activate the converter
@@ -48,8 +62,6 @@ class BaseConverter(Configurable):
         self.exporter = self.exporter_class(config=self.config)
         self._init_preprocessors()
         self.convert_notebook()
-        if self.config.inline.enabled:
-            self.config.inline.tracker += 1
 
     def _init_preprocessors(self) -> None:
         """

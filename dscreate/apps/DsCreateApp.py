@@ -4,6 +4,7 @@ import os
 from textwrap import dedent
 
 from traitlets import default
+from traitlets.config import Application
 from traitlets.config.application import catch_config_error
 
 import dscreate
@@ -31,7 +32,12 @@ flags.update({
 class DsCreateApp(DsCreate):
 
     name = u'ds'
-    description = u'A package for creating jupyter notebook education materials.'
+    description = u'''
+    The command line launch application for dscreate.
+
+    This application parses the command line arguments via a traitlets ``Application`` object
+    and uses the arguments to determine which sub application should be activated.
+    '''
     version = '0.1.87'
 
     aliases = aliases
@@ -51,7 +57,8 @@ class DsCreateApp(DsCreate):
             GenerateApp,
             dedent(
                 """
-                Split an nbgrader assignment into student and teacher facing materials.
+                Split an nbgrader assignment into student and teacher facing materials
+                and generate readme markdown files for each split.
                 """
             ).strip()
         ),
@@ -65,6 +72,7 @@ class DsCreateApp(DsCreate):
             )
         )
     )
+
 
     @default("classes")
     def _classes_default(self) -> List[MetaHasTraits]:

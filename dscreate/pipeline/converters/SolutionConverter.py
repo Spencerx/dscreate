@@ -6,7 +6,11 @@ from traitlets import default
 
 class SolutionConverter(BaseConverter):
 
-    name = 'Updating solution branch...'
+    name = 'SolutionConverter'
+    printout = 'Updating solution branch...'
+    description = '''
+    SolutionConverter generates the teacher facing  notebook.
+    '''
 
     @default('solution')
     def solution_default(self) -> bool:
@@ -20,7 +24,10 @@ class SolutionConverter(BaseConverter):
             return [ClearOutput, AddCellIndex, RemoveLessonCells, ExecuteCells]
 
     def start(self) -> None:
-        super(SolutionConverter, self).start()
 
         if self.config.inline.enabled:
             self.config.inline.solution = True
+
+        super(SolutionConverter, self).start()
+
+

@@ -4,6 +4,10 @@ from .BasePreprocessor import DsCreatePreprocessor
 
 class AddCellIndex(DsCreatePreprocessor):
 
+    description = '''
+    AddCellIndex adds a metadata.index variable to a notebook and determines if a cell is a solution cell.
+    This preprocessor is used primarily for ``--inline`` splits.
+    '''
     index = Int(0)
 
     solution_tags = Set({'#__SOLUTION__', '#==SOLUTION==', '__SOLUTION__', '==SOLUTION=='},

@@ -5,7 +5,12 @@ import nbformat
 
 class CollectCurriculum(Configurable):
 
-    name = 'Reading curriculum file...'
+    name = 'CollectCurriculum'
+    printout = 'Reading curriculum file...'
+    description = '''
+    CollectCurriculum reads in the edit_file and stores the notebook in the application
+    configuration object.
+    '''
     enabled = True
     
     edit_file = Unicode(config=True)

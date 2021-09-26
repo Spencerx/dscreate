@@ -2,6 +2,11 @@ from .BasePreprocessor import DsCreatePreprocessor
 
 class SortCells(DsCreatePreprocessor):
 
+    description = '''
+    Sorts the cells of a notebook according to the metadata.index variable
+    and adds a solution tag back to solution cells.
+    '''
+    
     def preprocess(self, nb, resources):
 
         # Sort cells

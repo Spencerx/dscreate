@@ -6,7 +6,11 @@ from . import CommitController
 
 class CheckoutEditBranch(BaseController):
 
-    name = 'Checking out the edit branch...'
+    name = 'CheckoutEditBranch'
+    printout = 'Checking out the edit branch...'
+    description = '''
+    This controller checkouts the first branch of the branches configuration variable.
+    '''
 
     def start(self) -> None:
         edit_branch = self.config.traversed_branches[0]

@@ -5,8 +5,16 @@ import pyperclip
 
 class ShareApp(DsCreate):
 
-    name = u'dscreate-share'
-    description = u'Create a link that opens a github hosted jupyter notebook on github.'
+    name = u'share'
+    description = u'''
+    Creates a link that opens a github hosted jupyter notebook on illumidesk.
+
+    **Behavior:**
+
+    * Parses a url that is pointing to a jupyter notebook on github
+    * Uses the variables from the parsed url to generate a new url
+    * Adds the generated url to the user's clipboard using the python package ``pyperclip``.
+    '''
 
 
     edit_branch = Unicode(config=True)

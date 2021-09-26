@@ -7,7 +7,13 @@ from . import CommitController, BaseController
 
 class PushController(BaseController):
 
-    name = 'Pushing to remote...'
+    name = 'PushController'
+    printout = 'Pushing to remote...'
+    description = '''
+    Pushing changes to the remote.
+
+    Remote is a configurable variables that defaults to 'origin'
+    '''
 
     remote = Unicode(config=True)
     @default('remote')
@@ -16,9 +22,9 @@ class PushController(BaseController):
 
     def get_branch(self):
         if not isinstance(self.config.CommitController.count, int):
-            return self.config.DsPipeline.branches[0]
+            return self.config.BaseController.branches[0]
 
-        return self.config.DsPipeline.branches[self.config.CommitController.count - 1]
+        return self.config.BaseController.branches[self.config.CommitController.count - 1]
 
     def start(self) -> None:
         branch = self.get_branch()

@@ -4,6 +4,12 @@ from .BasePreprocessor import DsCreatePreprocessor
 
 class RemoveLessonCells(DsCreatePreprocessor):
 
+    description = '''
+    RemoveLessonCells removes cells that do not contain a tag included in the ``solution_tags`` variable.
+
+    ``solution_tags`` are a  configurable variable. Defaults to {'#__SOLUTION__', '#==SOLUTION==', '__SOLUTION__', '==SOLUTION=='}
+    '''
+    
     solution_tags = Set({'#__SOLUTION__', '#==SOLUTION==', '__SOLUTION__', '==SOLUTION=='},
             help=("Tags indicating which cells are to be removed"
             )).tag(config=True)

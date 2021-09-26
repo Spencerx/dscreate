@@ -6,7 +6,16 @@ from traitlets import default
 
 class CommitController(BaseController):
 
-    name = 'Committing Changes'
+    name = 'CommitController'
+    printout = 'Committing Changes'
+    description = '''
+    Commits changes to a git branch.
+
+    This object has a ``commit_msg`` attribute that can be set from command line using the ``-m`` argument.
+
+    If a commit message is not provided the commit message defaults to 'Updating  <name of branch>'
+
+    '''
 
     commit_msg = Unicode(config=True)
     count = Int(config=True)
