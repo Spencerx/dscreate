@@ -28,3 +28,4 @@ Contents
 
    pages/developer_documentation
    pages/code_documentation
+   pages/config_options
