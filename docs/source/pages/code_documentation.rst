@@ -1,6 +1,5 @@
------------
 DsPipeline
------------
+----------------------------
 
     The primary pipeline for dscreate
 
@@ -30,9 +29,8 @@ DsPipeline.steps : List
 
 None
 
------------
 CollectCurriculum
------------
+----------------------------
 
     CollectCurriculum reads in the edit_file and stores the notebook in the application
     configuration object.
@@ -52,9 +50,8 @@ CollectCurriculum.edit_file : Unicode
 
 None
 
------------
 BaseController
------------
+----------------------------
 
     The base controller object. 
 
@@ -85,9 +82,8 @@ BaseController.enabled : Bool
         2. Inherit git repo attributes
         
 
------------
 CheckoutController
------------
+----------------------------
 
     Checkout branches set by the running application.
 
@@ -134,9 +130,8 @@ None
 
 None
 
------------
 CommitController
------------
+----------------------------
 
     Commits changes to a git branch.
 
@@ -176,9 +171,8 @@ None
 
 None
 
------------
 PushController
------------
+----------------------------
 
     Pushing changes to the remote.
 
@@ -210,9 +204,8 @@ None
 
 None
 
------------
 CheckoutEditBranch
------------
+----------------------------
 
     This controller checkouts the first branch of the branches configuration variable.
     
@@ -231,9 +224,8 @@ CheckoutEditBranch.enabled : Bool
 
 None
 
------------
 BaseConverter
------------
+----------------------------
 
     The base converter that is inherited by all dscreate converters.
 
@@ -326,9 +318,8 @@ BaseConverter.solution_dir : Unicode
         and writes the file to disk. 
         
 
------------
 MasterConverter
------------
+----------------------------
 
     The master converter is used to generate the student facing notebook.
 
@@ -364,9 +355,8 @@ MasterConverter.solution_dir : Unicode
 
 None
 
------------
 ReleaseConverter
------------
+----------------------------
 
     ReleaseConverter replicates ``nbgrader generate``
     
@@ -399,9 +389,8 @@ ReleaseConverter.solution_dir : Unicode
         3. Write the notebook to file.
         
 
------------
 SolutionConverter
------------
+----------------------------
 
     SolutionConverter generates the teacher facing  notebook.
     
@@ -435,9 +424,8 @@ SolutionConverter.solution_dir : Unicode
 
 None
 
------------
 ReadmeConverter
------------
+----------------------------
 
     Generates the readme for a notebook.
 
@@ -476,9 +464,8 @@ ReadmeConverter.solution_dir : Unicode
         3. Write the notebook to file.
         
 
------------
 SourceConverter
------------
+----------------------------
 
     SourceConverter generates a teacher facing readme for an nbgrader assignment.
     
@@ -501,9 +488,8 @@ SourceConverter.solution_dir : Unicode
     Default: ``''``
 
     No description
------------
 AddCellIndex
------------
+----------------------------
 
     AddCellIndex adds a metadata.index variable to a notebook and determines if a cell is a solution cell.
     This preprocessor is used primarily for ``--inline`` splits.
@@ -545,9 +531,8 @@ None
         No transformation is applied.
         
 
------------
 RemoveSolutions
------------
+----------------------------
 
     RemoveSolutions removes cells that contain a solution tag. 
 
@@ -606,9 +591,8 @@ None
 
 None
 
------------
 RemoveLessonCells
------------
+----------------------------
 
     RemoveLessonCells removes cells that do not contain a tag included in the ``solution_tags`` variable.
 
@@ -659,9 +643,8 @@ None
         Removes the solution tag from the solution cells.
         
 
------------
 SortCells
------------
+----------------------------
 
     Sorts the cells of a notebook according to the metadata.index variable
     and adds a solution tag back to solution cells.
@@ -696,9 +679,8 @@ None
 
 None
 
------------
 ClearOutput
------------
+----------------------------
 
     ClearOutput removes the outputs for notebook cells.
     
@@ -725,9 +707,8 @@ ClearOutput.remove_metadata_fields : Set
     Default: ``{'collapsed', 'scrolled'}``
 
     No description
------------
 ExecuteCells
------------
+----------------------------
 
     ExecuteCells runs code cells in a notebook.
     
