@@ -5,6 +5,9 @@ Apps
 DsCreate
 ----------------------------
 
+.. admonition::
+
+   
         The base app for dscreate applications.
         This app primarily handles the set up of configuration files for dscreate.
 
@@ -84,30 +87,33 @@ DsCreate.system_config_path : Unicode
 
 **METHODS**
 
-.. admonition:: ``all_configurable_classes(self) -> List[traitlets.traitlets.MetaHasTraits]:``
+.. admonition:: all_configurable_classes(self) -> List[traitlets.traitlets.MetaHasTraits]:
 
    Get a list of all configurable classes for dscreate
         
 
-.. admonition:: ``write_default_config(self) -> None:``
+.. admonition:: write_default_config(self) -> None:
 
    No description
 
-.. admonition:: ``_load_configs(self) -> None:``
+.. admonition:: _load_configs(self) -> None:
 
    No description
 
-.. admonition:: ``add_all_configurables(self):``
+.. admonition:: add_all_configurables(self):
 
    No description
 
-.. admonition:: ``start(self):``
+.. admonition:: start(self):
 
    No description
 
 CreateApp
 ----------------------------
 
+.. admonition::
+
+   
     Splits a notebook into student and teacher facing materials using dscreate solution tags.
     
     **Behavior:**
@@ -208,17 +214,20 @@ CreateApp.system_config_path : Unicode
 
 **METHODS**
 
-.. admonition:: ``validate_branches(self) -> None:``
+.. admonition:: validate_branches(self) -> None:
 
    No description
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    No description
 
 GenerateApp
 ----------------------------
 
+.. admonition::
+
+   
     Splits an nbgrader assignment into student facing and teacher facing files
     and uses the arguments to determine which sub application should be activated.
 
@@ -315,7 +324,7 @@ GenerateApp.system_config_path : Unicode
 
 **METHODS**
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    
         Activates the application.
@@ -330,6 +339,9 @@ GenerateApp.system_config_path : Unicode
 ShareApp
 ----------------------------
 
+.. admonition::
+
+   
     Creates a link that opens a github hosted jupyter notebook on illumidesk.
 
     **Behavior:**
@@ -404,14 +416,14 @@ ShareApp.system_config_path : Unicode
 
 **METHODS**
 
-.. admonition:: ``get_file_path(self, url):``
+.. admonition:: get_file_path(self, url):
 
    
         Pull out the organization, repository name, branch, and file path
         from a github url.
         
 
-.. admonition:: ``get_assignment_url(self, org, repo, branch, file_path):``
+.. admonition:: get_assignment_url(self, org, repo, branch, file_path):
 
    
         org - The name of a github organization.
@@ -422,7 +434,7 @@ ShareApp.system_config_path : Unicode
                 server and open the notebook.
         
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    No description
 
@@ -433,6 +445,9 @@ Pipeline
 DsPipeline
 ----------------------------
 
+.. admonition::
+
+   
     The primary pipeline for dscreate
 
     DsPipeline's primary variable is ``steps`` containing converter and controller objects.
@@ -454,19 +469,22 @@ DsPipeline.steps : List
 
 **METHODS**
 
-.. admonition:: ``__init__(self, **kwargs) -> None:``
+.. admonition:: __init__(self, **kwargs) -> None:
 
    
         Set up configuration file.
         
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    No description
 
 CollectCurriculum
 ----------------------------
 
+.. admonition::
+
+   
     CollectCurriculum reads in the edit_file and stores the notebook in the application
     configuration object.
     
@@ -486,7 +504,7 @@ CollectCurriculum.edit_file : Unicode
 
 **METHODS**
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    No description
 
@@ -497,6 +515,9 @@ Controllers
 BaseController
 ----------------------------
 
+.. admonition::
+
+   
     The base controller object. 
 
     **Behavior:**
@@ -524,7 +545,7 @@ BaseController.enabled : Bool
 
 **METHODS**
 
-.. admonition:: ``__init__(self, **kwargs) -> None:``
+.. admonition:: __init__(self, **kwargs) -> None:
 
    
         1. Set up configuration file.
@@ -534,6 +555,9 @@ BaseController.enabled : Bool
 CheckoutController
 ----------------------------
 
+.. admonition::
+
+   
     Checkout branches set by the running application.
 
     This controller relies on a configuration object that contains the following variables
@@ -568,21 +592,24 @@ CheckoutController.printout : Unicode
 
 **METHODS**
 
-.. admonition:: ``get_branch(self):``
+.. admonition:: get_branch(self):
 
    No description
 
-.. admonition:: ``merge_edit_branch(self):``
+.. admonition:: merge_edit_branch(self):
 
    No description
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    No description
 
 CommitController
 ----------------------------
 
+.. admonition::
+
+   
     Commits changes to a git branch.
 
     This object has a ``commit_msg`` attribute that can be set from command line using the ``-m`` argument.
@@ -616,17 +643,20 @@ CommitController.enabled : Bool
 
 **METHODS**
 
-.. admonition:: ``add_and_commit(self, commit_msg=None):``
+.. admonition:: add_and_commit(self, commit_msg=None):
 
    No description
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    No description
 
 PushController
 ----------------------------
 
+.. admonition::
+
+   
     Pushing changes to the remote.
 
     Remote is a configurable variables that defaults to 'origin'
@@ -652,17 +682,20 @@ PushController.remote : Unicode
 
 **METHODS**
 
-.. admonition:: ``get_branch(self):``
+.. admonition:: get_branch(self):
 
    No description
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    No description
 
 CheckoutEditBranch
 ----------------------------
 
+.. admonition::
+
+   
     This controller checkouts the first branch of the branches configuration variable.
     
 
@@ -681,7 +714,7 @@ CheckoutEditBranch.enabled : Bool
 
 **METHODS**
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    No description
 
@@ -692,6 +725,9 @@ Converters
 BaseConverter
 ----------------------------
 
+.. admonition::
+
+   
     The base converter that is inherited by all dscreate converters.
 
     The base converter initializes and activates the exporter and filewriter objects.
@@ -733,26 +769,26 @@ BaseConverter.solution_dir : Unicode
 
 **METHODS**
 
-.. admonition:: ``__init__(self, **kwargs: Any) -> None:``
+.. admonition:: __init__(self, **kwargs: Any) -> None:
 
    
         Set up configuration file.
         
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    
         Activate the converter
         
 
-.. admonition:: ``_init_preprocessors(self) -> None:``
+.. admonition:: _init_preprocessors(self) -> None:
 
    
         Here we add the preprocessors to the exporter pipeline
         with the `register_preprocessor` method.
         
 
-.. admonition:: ``convert_notebook(self) -> None:``
+.. admonition:: convert_notebook(self) -> None:
 
    
         1. Create a resources object that tells the exporter how to format link urls for images.
@@ -760,7 +796,7 @@ BaseConverter.solution_dir : Unicode
         3. Write the notebook to file.
         
 
-.. admonition:: ``init_notebook_resources(self) -> dict:``
+.. admonition:: init_notebook_resources(self) -> dict:
 
    
         The resources argument, when passed into an exporter,
@@ -771,7 +807,7 @@ BaseConverter.solution_dir : Unicode
         the name of the original notebook.
         
 
-.. admonition:: ``write_notebook(self, output, resources) -> None:``
+.. admonition:: write_notebook(self, output, resources) -> None:
 
    
         Sets the output directory for the file write
@@ -781,6 +817,9 @@ BaseConverter.solution_dir : Unicode
 MasterConverter
 ----------------------------
 
+.. admonition::
+
+   
     The master converter is used to generate the student facing notebook.
 
     The preprocessors default to the nbconvert ClearOutput and dscreate RemoveSolutions preprocessors.
@@ -816,13 +855,16 @@ MasterConverter.solution_dir : Unicode
 
 **METHODS**
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    No description
 
 ReleaseConverter
 ----------------------------
 
+.. admonition::
+
+   
     ReleaseConverter replicates ``nbgrader generate``
     
 
@@ -851,7 +893,7 @@ ReleaseConverter.solution_dir : Unicode
 
 **METHODS**
 
-.. admonition:: ``convert_notebook(self) -> None:``
+.. admonition:: convert_notebook(self) -> None:
 
    
         1. Create a resources object that tells the exporter how to format link urls for images.
@@ -862,6 +904,9 @@ ReleaseConverter.solution_dir : Unicode
 SolutionConverter
 ----------------------------
 
+.. admonition::
+
+   
     SolutionConverter generates the teacher facing  notebook.
     
 
@@ -895,13 +940,16 @@ SolutionConverter.solution_dir : Unicode
 
 **METHODS**
 
-.. admonition:: ``start(self) -> None:``
+.. admonition:: start(self) -> None:
 
    No description
 
 ReadmeConverter
 ----------------------------
 
+.. admonition::
+
+   
     Generates the readme for a notebook.
 
     This converter has a ``notebook_path`` configurable variable that indicates what notebook should be converted.
@@ -936,7 +984,7 @@ ReadmeConverter.solution_dir : Unicode
 
 **METHODS**
 
-.. admonition:: ``convert_notebook(self) -> None:``
+.. admonition:: convert_notebook(self) -> None:
 
    
         1. Create a resources object that tells the exporter how to format link urls for images.
@@ -947,6 +995,9 @@ ReadmeConverter.solution_dir : Unicode
 SourceConverter
 ----------------------------
 
+.. admonition::
+
+   
     SourceConverter generates a teacher facing readme for an nbgrader assignment.
     
 
@@ -982,6 +1033,9 @@ Preprocessors
 AddCellIndex
 ----------------------------
 
+.. admonition::
+
+   
     AddCellIndex adds a metadata.index variable to a notebook and determines if a cell is a solution cell.
     This preprocessor is used primarily for ``--inline`` splits.
     
@@ -1015,11 +1069,11 @@ AddCellIndex.solution_tags : Set
 
 **METHODS**
 
-.. admonition:: ``preprocess(self, nb, resources):``
+.. admonition:: preprocess(self, nb, resources):
 
    No description
 
-.. admonition:: ``preprocess_cell(self, cell, resources, cell_index):``
+.. admonition:: preprocess_cell(self, cell, resources, cell_index):
 
    
         No transformation is applied.
@@ -1028,6 +1082,9 @@ AddCellIndex.solution_tags : Set
 RemoveSolutions
 ----------------------------
 
+.. admonition::
+
+   
     RemoveSolutions removes cells that contain a solution tag. 
 
     This preprocess identifies both code and solution cells:
@@ -1070,7 +1127,7 @@ RemoveSolutions.markdown_tags : Set
 
 **METHODS**
 
-.. admonition:: ``is_code_solution(self, cell):``
+.. admonition:: is_code_solution(self, cell):
 
    
         Checks that a cell has a tag that is to be removed
@@ -1078,17 +1135,20 @@ RemoveSolutions.markdown_tags : Set
         True means cell should *not* be removed.
         
 
-.. admonition:: ``is_markdown_solution(self, cell):``
+.. admonition:: is_markdown_solution(self, cell):
 
    No description
 
-.. admonition:: ``preprocess(self, nb, resources):``
+.. admonition:: preprocess(self, nb, resources):
 
    No description
 
 RemoveLessonCells
 ----------------------------
 
+.. admonition::
+
+   
     RemoveLessonCells removes cells that do not contain a tag included in the ``solution_tags`` variable.
 
     ``solution_tags`` are a  configurable variable. Defaults to {'#__SOLUTION__', '#==SOLUTION==', '__SOLUTION__', '==SOLUTION=='}
@@ -1123,17 +1183,17 @@ RemoveLessonCells.solution_tags : Set
 
 **METHODS**
 
-.. admonition:: ``is_solution(self, cell):``
+.. admonition:: is_solution(self, cell):
 
    
         Checks that a cell has a solution tag. 
         
 
-.. admonition:: ``preprocess(self, nb, resources):``
+.. admonition:: preprocess(self, nb, resources):
 
    No description
 
-.. admonition:: ``preprocess_cell(self, cell):``
+.. admonition:: preprocess_cell(self, cell):
 
    
         Removes the solution tag from the solution cells.
@@ -1142,6 +1202,9 @@ RemoveLessonCells.solution_tags : Set
 SortCells
 ----------------------------
 
+.. admonition::
+
+   
     Sorts the cells of a notebook according to the metadata.index variable
     and adds a solution tag back to solution cells.
     
@@ -1170,17 +1233,20 @@ SortCells.enabled : Bool
 
 **METHODS**
 
-.. admonition:: ``preprocess(self, nb, resources):``
+.. admonition:: preprocess(self, nb, resources):
 
    No description
 
-.. admonition:: ``preprocess_cell(self, cell, resources, cell_index):``
+.. admonition:: preprocess_cell(self, cell, resources, cell_index):
 
    No description
 
 ClearOutput
 ----------------------------
 
+.. admonition::
+
+   
     ClearOutput removes the outputs for notebook cells.
     
 
@@ -1216,6 +1282,9 @@ ClearOutput.remove_metadata_fields : Set
 ExecuteCells
 ----------------------------
 
+.. admonition::
+
+   
     ExecuteCells runs code cells in a notebook.
     
 

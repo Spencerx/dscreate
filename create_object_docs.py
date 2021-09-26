@@ -9,7 +9,7 @@ def create_class_docs(dsobject):
     description = dsobject.description
     configs = dsobject.class_config_rst_doc()
     
-    doc = f'''{name}\n----------------------------\n{description}\n\n**CONFIGURABLE VARIABLES:**\n\n{configs}'''
+    doc = f'''{name}\n----------------------------\n\n.. admonition::\n\n   {description}\n\n**CONFIGURABLE VARIABLES:**\n\n{configs}'''
     
     return doc
 
@@ -20,7 +20,7 @@ def create_method_docs(dsobject):
     if not doc:
         doc = 'No description'
     
-    return f".. admonition:: ``{name}{args}:``\n\n   {doc}\n\n"
+    return f".. admonition:: {name}{args}:\n\n   {doc}\n\n"
     
 
 def create_dsobject_docs():
