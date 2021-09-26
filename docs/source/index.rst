@@ -20,3 +20,4 @@ Contents
    pages/inline_lessons
    pages/creating_tests
    pages/developer_documentation
+   pages/code_documentation
