@@ -25,7 +25,7 @@ def create_dsobject_docs():
     modules = {
               pipeline: pipeline.__all__}
     
-    docs = ''
+    docs = '==================\nCode Documentation\n==================\n\n'
     
     for module in modules:
         objects = modules[module]
