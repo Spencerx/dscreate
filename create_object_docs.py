@@ -9,7 +9,8 @@ def create_class_docs(dsobject):
     description = dsobject.description
     configs = dsobject().class_config_rst_doc()
     
-    doc = f'''{name}\n****************************\n\n{description}\n\n**CONFIGURABLE VARIABLES:**\n\n{configs}'''
+    doc = f'''{name}\n----------------------------\n\n{description}\n\n**CONFIGURABLE VARIABLES:**\n\n{configs}'''
+                      
                       
     return doc
 
@@ -27,7 +28,7 @@ def create_dsobject_docs():
     modules = {apps: apps.__all__,
               pipeline: pipeline.__all__}
     
-    docs = ''
+    docs = 'Code Documentation\n=================='
     group = None
     for module in modules:
         objects = modules[module]
@@ -36,7 +37,7 @@ def create_dsobject_docs():
             obj_group = obj.__module__.split('.')[-2]
             if obj_group != group:
                 group = obj_group
-                docs += f'{group.title()}\n########\n\n'
+                docs += f'\n--------------\n{group.title()}\n--------------\n\n'
             obj_docs = create_class_docs(obj)
             docs += obj_docs
             docs += '\n\n**METHODS**\n\n'

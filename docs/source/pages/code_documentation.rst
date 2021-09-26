@@ -1,8 +1,11 @@
+Code Documentation
+==================
+--------------
 Apps
-########
+--------------
 
 DsCreate
-****************************
+----------------------------
 
 
         The base app for dscreate applications.
@@ -123,7 +126,7 @@ DsCreate.system_config_path : Unicode
         
 
 CreateApp
-****************************
+----------------------------
 
 
     Splits a notebook into student and teacher facing materials using dscreate solution tags.
@@ -235,7 +238,7 @@ CreateApp.system_config_path : Unicode
    No description
 
 GenerateApp
-****************************
+----------------------------
 
 
     Splits an nbgrader assignment into student facing and teacher facing files
@@ -347,7 +350,7 @@ GenerateApp.system_config_path : Unicode
         
 
 ShareApp
-****************************
+----------------------------
 
 
     Creates a link that opens a github hosted jupyter notebook on illumidesk.
@@ -446,11 +449,13 @@ ShareApp.system_config_path : Unicode
 
    No description
 
+
+--------------
 Pipeline
-########
+--------------
 
 DsPipeline
-****************************
+----------------------------
 
 
     The primary pipeline for dscreate
@@ -485,7 +490,7 @@ DsPipeline.steps : List
    No description
 
 CollectCurriculum
-****************************
+----------------------------
 
 
     CollectCurriculum reads in the edit_file and stores the notebook in the application
@@ -511,11 +516,13 @@ CollectCurriculum.edit_file : Unicode
 
    No description
 
+
+--------------
 Controllers
-########
+--------------
 
 BaseController
-****************************
+----------------------------
 
 
     The base controller object. 
@@ -553,7 +560,7 @@ BaseController.enabled : Bool
         
 
 CheckoutController
-****************************
+----------------------------
 
 
     Checkout branches set by the running application.
@@ -603,7 +610,7 @@ CheckoutController.printout : Unicode
    No description
 
 CommitController
-****************************
+----------------------------
 
 
     Commits changes to a git branch.
@@ -648,7 +655,7 @@ CommitController.enabled : Bool
    No description
 
 PushController
-****************************
+----------------------------
 
 
     Pushing changes to the remote.
@@ -685,7 +692,7 @@ PushController.remote : Unicode
    No description
 
 CheckoutEditBranch
-****************************
+----------------------------
 
 
     This controller checkouts the first branch of the branches configuration variable.
@@ -710,11 +717,13 @@ CheckoutEditBranch.enabled : Bool
 
    No description
 
+
+--------------
 Converters
-########
+--------------
 
 BaseConverter
-****************************
+----------------------------
 
 
     The base converter that is inherited by all dscreate converters.
@@ -804,7 +813,7 @@ BaseConverter.solution_dir : Unicode
         
 
 MasterConverter
-****************************
+----------------------------
 
 
     The master converter is used to generate the student facing notebook.
@@ -847,7 +856,7 @@ MasterConverter.solution_dir : Unicode
    No description
 
 ReleaseConverter
-****************************
+----------------------------
 
 
     ReleaseConverter replicates ``nbgrader generate``
@@ -887,7 +896,7 @@ ReleaseConverter.solution_dir : Unicode
         
 
 SolutionConverter
-****************************
+----------------------------
 
 
     SolutionConverter generates the teacher facing  notebook.
@@ -928,7 +937,7 @@ SolutionConverter.solution_dir : Unicode
    No description
 
 ReadmeConverter
-****************************
+----------------------------
 
 
     Generates the readme for a notebook.
@@ -974,7 +983,7 @@ ReadmeConverter.solution_dir : Unicode
         
 
 SourceConverter
-****************************
+----------------------------
 
 
     SourceConverter generates a teacher facing readme for an nbgrader assignment.
@@ -1005,11 +1014,13 @@ SourceConverter.solution_dir : Unicode
 
 **METHODS**
 
+
+--------------
 Preprocessors
-########
+--------------
 
 AddCellIndex
-****************************
+----------------------------
 
 
     AddCellIndex adds a metadata.index variable to a notebook and determines if a cell is a solution cell.
@@ -1056,7 +1067,7 @@ AddCellIndex.solution_tags : Set
         
 
 RemoveSolutions
-****************************
+----------------------------
 
 
     RemoveSolutions removes cells that contain a solution tag. 
@@ -1118,7 +1129,7 @@ RemoveSolutions.markdown_tags : Set
    No description
 
 RemoveLessonCells
-****************************
+----------------------------
 
 
     RemoveLessonCells removes cells that do not contain a tag included in the ``solution_tags`` variable.
@@ -1172,7 +1183,7 @@ RemoveLessonCells.solution_tags : Set
         
 
 SortCells
-****************************
+----------------------------
 
 
     Sorts the cells of a notebook according to the metadata.index variable
@@ -1212,7 +1223,7 @@ SortCells.enabled : Bool
    No description
 
 ClearOutput
-****************************
+----------------------------
 
 
     ClearOutput removes the outputs for notebook cells.
@@ -1248,7 +1259,7 @@ ClearOutput.remove_metadata_fields : Set
 **METHODS**
 
 ExecuteCells
-****************************
+----------------------------
 
 
     ExecuteCells runs code cells in a notebook.
