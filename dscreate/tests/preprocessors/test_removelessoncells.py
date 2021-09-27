@@ -1,7 +1,7 @@
 import pytest 
 from traitlets.config import Config
 from .base import BaseTestPreprocessor
-from ...dscreate.pipeline.preprocessors import RemoveLessonCells
+from ...pipeline.preprocessors import RemoveLessonCells
 from nbformat.v4 import new_notebook
 
 @pytest.fixture

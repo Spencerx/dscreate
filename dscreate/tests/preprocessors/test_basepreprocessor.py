@@ -1,6 +1,6 @@
 import pytest 
 from .base import BaseTestPreprocessor
-from ...dscreate.pipeline.preprocessors import DsCreatePreprocessor
+from ...pipeline.preprocessors import DsCreatePreprocessor
 
 
 @pytest.fixture
