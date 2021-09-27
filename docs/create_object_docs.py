@@ -57,7 +57,7 @@ if __name__ == '__main__':
     file.close()
 
     config_options = apps.DsCreate().document_config_options()
-    doc_path = os.path.join('docs', 'source', 'pages', 'config_options.rst')
+    doc_path = os.path.join('source', 'pages', 'config_options.rst')
     file = open(doc_path, 'w+')
     file.write(config_options)
     file.close()

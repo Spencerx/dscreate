@@ -4,5 +4,5 @@ from .BasePreprocessor import DsCreatePreprocessor
 class ClearOutput(DsCreatePreprocessor, ClearOutputPreprocessor):
     
     description = '''
-    ClearOutput removes the outputs for notebook cells.
+ClearOutput removes the outputs for notebook cells.
     '''
