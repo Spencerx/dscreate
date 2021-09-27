@@ -16,11 +16,13 @@ class AddCellIndex(DsCreatePreprocessor):
 
     def preprocess(self, nb, resources):
 
-        # Filter out cells that meet the conditions
-        nb.cells = [self.preprocess_cell(cell, resources, index)[0]
-                    for index, cell in enumerate(nb.cells)]
+        nb_copy = deepcopy(nb)
 
-        return nb, resources
+        # Filter out cells that meet the conditions
+        nb_copy.cells = [self.preprocess_cell(cell, resources, index)[0]
+                    for index, cell in enumerate(nb_copy.cells)]
+
+        return nb_copy, resources
 
     def preprocess_cell(self, cell, resources, cell_index):
         """

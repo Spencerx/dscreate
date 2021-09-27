@@ -1,4 +1,5 @@
 from traitlets import Set
+import warnings
 from .BasePreprocessor import DsCreatePreprocessor
 
 
@@ -34,24 +35,43 @@ class RemoveSolutions(DsCreatePreprocessor):
         lines = set(cell.source.split("\n"))
         return  self.markdown_tags.intersection(lines)
 
+    def found_tag(self, cell):
+        lines = set(cell.source.split("\n"))
+
+        for line in lines:
+            for tag in self.solution_tags:
+                if tag.lower() in line.lower():
+                    return True
+
     def preprocess(self, nb, resources):
 
         # Skip preprocessing if the list of patterns is empty
         if not self.code_tags.union(self.markdown_tags):
             return nb, resources
 
+        nb_copy = deepcopy(nb)
+
         cells = []
         # Filter out cells that meet the conditions
-        for cell in nb.cells:
+        for cell in nb_copy.cells:
             if self.is_code_solution(cell):
                 continue
             
             if self.is_markdown_solution(cell):
                 cell.source = 'YOUR ANSWER HERE'
 
+            if self.found_tag(cell):
+                warn("A solution tag was found that does not have it's own line."
+                    "Double check solution formatting.", UserWarning)
+
             cells.append(cell)
 
-        nb.cells = cells
+        nb_copy.cells = cells
             
-        return nb, resources
+        return nb_copy, resources
+
+"""
+    5. Test warning for when a solution tag is found but it was not found on its own line
+    6. Test warning for when a solution tag found once text  has been lowered.
+"""
 

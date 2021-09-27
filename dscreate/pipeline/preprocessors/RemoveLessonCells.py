@@ -1,4 +1,6 @@
 from traitlets import Set
+from warnings import warn
+from copy import deepcopy
 from .BasePreprocessor import DsCreatePreprocessor
 
 
@@ -24,7 +26,11 @@ class RemoveLessonCells(DsCreatePreprocessor):
 
         return self.solution_tags.intersection(lines)
 
+
+
     def preprocess(self, nb, resources):
+
+        nb_copy = deepcopy(nb)
 
         # Skip preprocessing if the list of patterns is empty
         if not self.solution_tags:
@@ -32,12 +38,21 @@ class RemoveLessonCells(DsCreatePreprocessor):
 
         # Filter out cells that meet the conditions
         cells = []
-        for cell in nb.cells:
+        for cell in nb_copy.cells:
             if self.is_solution(cell) or cell.cell_type == 'markdown':
                 cells.append(self.preprocess_cell(cell))
-        nb.cells = cells
+         
+        
+        if len(nb_copy.cells) == len(cells):
+            warn("No lesson cells were found in the notebook!" 
+            "Double check the solution tag placement and formatting if this is not correct.", UserWarning)
 
-        return nb, resources
+        
+        nb_copy.cells = cells
+
+
+
+        return nb_copy, resources
 
     def preprocess_cell(self, cell):
         """
