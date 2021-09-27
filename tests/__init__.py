@@ -1,4 +1,9 @@
+import os
+import io
+import pytest
+from nbformat import read
 from nbformat.v4 import new_code_cell, new_markdown_cell
+
 
 class CreateCells:
 
@@ -70,4 +75,30 @@ this is a markdown cell
         """
         cell = new_markdown_cell(source=source)
         return cell
+
+class LoadNotebooks:
+
+    dir_path = os.path.abspath(os.path.dirname(__file__))
+
+    def notebook_path(self, directory, file_name):
+        return os.path.join(LoadNotebooks.dir_path, directory, file_name)
+
+    def read_nb(self, filepath):
+        with io.open(filepath, mode="r", encoding="utf-8") as file:
+            nb = read(file, as_version=4)
+        return nb
+
+    @pytest.fixture
+    def base_notebook(self):
+        path = self.notebook_path('files', 'base_notebook.ipynb')
+        nb = self.read_nb(path)
+        return nb
+
+    @pytest.fixture
+    def no_lesson_cells_notebook(self):
+        path = self.notebook_path('files', 'no_lesson_cells_notebook.ipynb')
+        nb = self.read_nb(path)
+        return nb
+
+
 

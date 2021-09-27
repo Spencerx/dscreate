@@ -1,3 +1,4 @@
+from copy import deepcopy
 from .BasePreprocessor import DsCreatePreprocessor
 
 class SortCells(DsCreatePreprocessor):
@@ -8,19 +9,20 @@ class SortCells(DsCreatePreprocessor):
     '''
     
     def preprocess(self, nb, resources):
-
+        
+        nb_copy = deepcopy(nb)
         # Sort cells
-        cells = list(sorted(nb.cells, key=lambda x: x['metadata']['index']))
+        cells = list(sorted(nb_copy.cells, key=lambda x: x['metadata']['index']))
 
         # Remove duplicates
-        nb.cells = []
+        nb_copy.cells = []
         indices = []
         for idx, cell in enumerate(cells):
             if cell['metadata']['index'] not in indices:
-                nb.cells.append(self.preprocess_cell(cell, resources, idx)[0])
+                nb_copy.cells.append(self.preprocess_cell(cell, resources, idx)[0])
                 indices.append(cell['metadata']['index'])
 
-        return nb, resources
+        return nb_copy, resources
 
     def preprocess_cell(self, cell, resources, cell_index):
 
