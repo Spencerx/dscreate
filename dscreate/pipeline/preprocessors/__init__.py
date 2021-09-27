@@ -4,6 +4,7 @@ from .RemoveLessonCells import RemoveLessonCells
 from .SortCells import SortCells
 from .ClearOutput import ClearOutput
 from .ExecuteCells import ExecuteCells
+from .BasePreprocessor import DsCreatePreprocessor
 
 
 __all__ = [
@@ -12,6 +13,7 @@ __all__ = [
     'RemoveLessonCells',
     'SortCells',
     'ClearOutput',
-    'ExecuteCells'
+    'ExecuteCells',
+    'DsCreatePreprocessor'
 ]
 

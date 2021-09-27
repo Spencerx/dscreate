@@ -1,6 +1,5 @@
 import pytest 
 import os
-import sys
 from .base import BaseTestPreprocessor
 from ...dscreate.pipeline.preprocessors import AddCellIndex
 from nbformat.v4 import new_notebook
