@@ -11,18 +11,6 @@ def preprocessor():
 
 class TestAddCellIndex(BaseTestPreprocessor):
 
-    @pytest.fixture
-    def base_notebook(self):
-        path = os.path.join('files', 'base_notebook.ipynb')
-        nb = self.read_nb(path)
-        return nb
-
-    @pytest.fixture
-    def preprocess_base(self, preprocessor, base_notebook):
-        resources = {}
-        nb, resources = preprocessor.preprocess(base_notebook, resources)
-        return nb
-
     def test_has_index(self, preprocess_base) -> None:
         
         cells = preprocess_base.cells
