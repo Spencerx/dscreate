@@ -100,5 +100,11 @@ class LoadNotebooks:
         nb = self.read_nb(path)
         return nb
 
+    @pytest.fixture
+    def no_solution_cells_notebook(self):
+        path = self.notebook_path('files', 'no_solution_cells_notebook.ipynb')
+        nb = self.read_nb(path)
+        return nb
+
 
 

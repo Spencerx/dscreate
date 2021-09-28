@@ -1,7 +1,6 @@
 from .BaseConverter import BaseConverter
-from ..preprocessors import ClearOutput, RemoveSolutions
-
-from traitlets import default
+from ..preprocessors import ClearOutput, RemoveSolutionCells, AddCellIndex
+from traitlets import default, List
 
 class MasterConverter(BaseConverter):
 
@@ -13,9 +12,7 @@ class MasterConverter(BaseConverter):
     The preprocessors default to the nbconvert ClearOutput and dscreate RemoveSolutions preprocessors.
     '''
 
-    @default('preprocessors')
-    def preprocessors_default(self) -> list:
-        return [ClearOutput, RemoveSolutions]
+    preprocessors = List([ClearOutput, AddCellIndex, RemoveSolutionCells]).tag(config=True)
 
     def start(self) -> None:
 

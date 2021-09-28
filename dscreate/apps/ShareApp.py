@@ -17,10 +17,8 @@ class ShareApp(DsCreate):
     '''
 
 
-    edit_branch = Unicode(config=True)
-    @default('edit_branch')
-    def edit_branch_default(self) -> str:
-        return 'curriculum'
+    edit_branch = Unicode('curriculum').tag(config=True)
+
 
     def get_file_path(self, url):
         """

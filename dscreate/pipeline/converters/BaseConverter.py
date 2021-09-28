@@ -27,23 +27,11 @@ class BaseConverter(Configurable):
     preprocessors = List([], config=True)
     solution = Bool(False)
 
-    enabled = Bool(config=True)
-    @default('enabled')
-    def enabled_default(self) -> bool:
-        return True
-    
-    solution_dir = Unicode(config=True)
-    @default('solution_dir')
-    def solution_dir_default(self) -> None:
-        cwd = os.getcwd()
-        return u'{}'.format(os.path.join(cwd, '.solution_files'))
+    enabled = Bool(True).tag(config=True)
+    solution_dir = Unicode(os.path.join(os.getcwd(), '.solution_files')).tag(config=True)
+    output = Unicode(u'index').tag(config=True)
 
-    output = Unicode(config=True)
-    @default('output')
-    def output_name_default(self) -> str:
-        return u'index'
-
-    def __init__(self, **kwargs: typing.Any) -> None:
+    def __init__(self, **kwargs) -> None:
         """
         Set up configuration file.
         """
@@ -51,8 +39,6 @@ class BaseConverter(Configurable):
         c = Config()
         c.Exporter.default_preprocessors = []
         self.update_config(c)
-
-
 
     def start(self) -> None:
         """
@@ -80,7 +66,7 @@ class BaseConverter(Configurable):
         3. Write the notebook to file.
         """
         resources = self.init_notebook_resources()
-        output, resources = self.exporter.from_notebook_node(self.config.source_notebook, resources=resources)
+        output, resources = self.exporter.from_notebook_node(self.config.source_notebook, resources)
         self.write_notebook(output, resources)
 
     def init_notebook_resources(self) -> dict:
@@ -92,9 +78,13 @@ class BaseConverter(Configurable):
         The `output_name` value is required by nbconvert and is typically 
         the name of the original notebook.
         """
+
         resources = {}
         resources['unique_key'] = self.output
-        resources['output_files_dir'] = f'{self.output}_files'
+        if self.config.inline.enabled and self.config.inline.solution:
+            resources['output_files_dir'] = os.path.join(os.pardir, f'{self.output}_files')
+        else:
+            resources['output_files_dir'] = f'{self.output}_files'
         return resources
 
     def write_notebook(self, output, resources) -> None:
@@ -102,8 +92,8 @@ class BaseConverter(Configurable):
         Sets the output directory for the file write
         and writes the file to disk. 
         """
-        if self.config.inline.enabled and self.solution:
-            if not os.path.exists(self.solution_dir):
+        if self.config.inline.enabled and self.config.inline.solution:
+            if not os.path.isdir(self.solution_dir):
                 os.mkdir(self.solution_dir)
             self.writer.build_directory = self.solution_dir 
 

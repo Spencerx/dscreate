@@ -12,17 +12,8 @@ class CollectCurriculum(Configurable):
     configuration object.
     '''
     enabled = True
-    
-    edit_file = Unicode(config=True)
-    @default('edit_file')
-    def edit_file_default(self) -> str:
-        return 'index.ipynb'
-
-    edit_branch = Unicode(config=True)
-    @default('edit_branch')
-    def edit_branch_default(self) -> str:
-        return 'curriculum'
-
+    edit_file = Unicode('index.ipynb').tag(config=True)
+    edit_branch = Unicode('curriculum').tag(config=True)
 
     def start(self) -> None:
         notebook = nbformat.read(self.edit_file, as_version=4)

@@ -1,6 +1,6 @@
 from . import BaseConverter
 from nbconvert.exporters import MarkdownExporter
-from traitlets import default, Unicode
+from traitlets import default, Unicode, Type
 import os
 
 class ReadmeConverter(BaseConverter):
@@ -16,10 +16,11 @@ class ReadmeConverter(BaseConverter):
 
     No preprocessors are applied by the ReadmeConverter.
     '''
-    exporter_class = MarkdownExporter
-    notebook_path = Unicode(config=True)
-    output = 'README'
+    
+    exporter_class = Type(MarkdownExporter).tag(config=True)
+    output = Unicode('README').tag(config=True)
 
+    notebook_path = Unicode(config=True)
     @default('notebook_path')
     def notebook_path_default(self) -> str:
         if self.config.inline.enabled and self.config.inline.solution:

@@ -1,10 +1,10 @@
 from traitlets import Set
-import warnings
+from warnings import warn
 from copy import deepcopy
 from .BasePreprocessor import DsCreatePreprocessor
 
 
-class RemoveSolutions(DsCreatePreprocessor):
+class RemoveSolutionCells(DsCreatePreprocessor):
 
     description = '''
     RemoveSolutions removes cells that contain a solution tag. 
@@ -39,8 +39,10 @@ class RemoveSolutions(DsCreatePreprocessor):
     def found_tag(self, cell):
         lines = set(cell.source.split("\n"))
 
+        all_tags = self.markdown_tags.union(self.code_tags)
+
         for line in lines:
-            for tag in self.solution_tags:
+            for tag in all_tags:
                 if tag.lower() in line.lower():
                     return True
 
@@ -62,17 +64,15 @@ class RemoveSolutions(DsCreatePreprocessor):
                 cell.source = 'YOUR ANSWER HERE'
 
             if self.found_tag(cell):
-                warn("A solution tag was found that does not have it's own line."
-                    "Double check solution formatting.", UserWarning)
+                warn("A solution tag was found that does not have it's own line"
+                    "or is cased incorrectly. Double check solution tag formatting.", UserWarning)
 
             cells.append(cell)
+
+        if len(cells) == len(nb_copy.cells):
+            warn("No solution tags were found."
+                 "Double check solution tag formatting and placement", UserWarning)
 
         nb_copy.cells = cells
             
         return nb_copy, resources
-
-"""
-    5. Test warning for when a solution tag is found but it was not found on its own line
-    6. Test warning for when a solution tag found once text  has been lowered.
-"""
-

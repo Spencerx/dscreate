@@ -1,5 +1,5 @@
 from .AddCellIndex import AddCellIndex
-from .RemoveSolutions import RemoveSolutions
+from .RemoveSolutionCells import RemoveSolutionCells
 from .RemoveLessonCells import RemoveLessonCells
 from .SortCells import SortCells
 from .ClearOutput import ClearOutput
@@ -9,7 +9,7 @@ from .BasePreprocessor import DsCreatePreprocessor
 
 __all__ = [
     'AddCellIndex',
-    'RemoveSolutions',
+    'RemoveSolutionCells',
     'RemoveLessonCells',
     'SortCells',
     'ClearOutput',

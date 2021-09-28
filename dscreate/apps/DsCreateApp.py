@@ -13,7 +13,8 @@ from . import (
     DsCreate,
     CreateApp,
     GenerateApp,
-    ShareApp
+    ShareApp,
+    EditApp,
 )
 from traitlets.traitlets import MetaHasTraits
 from typing import List
@@ -68,6 +69,14 @@ class DsCreateApp(DsCreate):
                 """
                 Add a url to your clipboard that opens a github hosted jupyter notebook
                 in illumidesk.
+                """
+            )
+        ),
+        edit=(
+            EditApp,
+            dedent(
+                """
+                Generates an edit app for in-directory splits.
                 """
             )
         )

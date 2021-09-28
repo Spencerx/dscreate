@@ -10,6 +10,7 @@ from traitlets.config import Application, Config
 # Package objects
 from dscreate.utils import GitModel
 from .. import pipeline
+from .. import apps
 
 dscreate_flags = {
     'local': (
@@ -56,6 +57,8 @@ class DsCreate(Application):
     config_file_name = Unicode(u'dscreate_config.py', 
                                help="Specify a config file to load.").tag(config=True)
     log_level = Integer(logging.CRITICAL).tag(config=True)
+
+    inline = Bool(False).tag(config=True)
 
     dsconfig = Unicode(config=True)
     @default('dsconfig')
@@ -128,7 +131,7 @@ class DsCreate(Application):
             path, config_file_name = os.path.split(self.config_file)
             self.load_config_file(config_file_name, path=path)
         # Overwrite configurations with configs set via command line
-        self.config.merge(self.cli_config)
+        self.update_config(self.cli_config)
 
     def add_all_configurables(self) -> None:
         """
@@ -137,14 +140,20 @@ class DsCreate(Application):
         we loop over all of the dscreate applications and pipeline objects and add their configurable 
         traits to the application config, setting each trait to their default values.
         """
+        pass
         # Loop over the subcommand applications set by DsCreateApp
-        for _, (app, _) in self.subcommands.items():
+        for app_name in apps.__all__:
+            app = getattr(apps, app_name)
             # Collect the configurable traits for the subapp
             traits = app.class_traits(config=True)
             for trait in traits:
+                if trait == 'kernel_manager_class':
+                    continue
                 # Add each trait to the config with the format {Name of App: {name of trait: trait default}}
-                config = Config({app.__class__.__name__: Config({trait : traits[trait].default_value})})
-                self.config.merge(config)
+                trait_default = traits[trait].default()
+                if trait_default:
+                    config = Config({app.__name__: Config({trait : trait_default})})
+                    self.update_config(config)
 
         # Loop over all pipeline components
         for pp_name in pipeline.__all__:
@@ -153,9 +162,13 @@ class DsCreate(Application):
             # Collect the configurable traits
             traits = pp.class_traits(config=True)
             for trait in traits:
+                if trait == 'kernel_manager_class':
+                    continue
                 # Add each trait to the config with the format {Name of component: {name of trait: trait default}}
-                config = Config({pp.__class__.__name__: Config({trait : traits[trait].default_value})})
-                self.config.merge(config)
+                trait_default = traits[trait].default()
+                if trait_default:
+                    config = Config({pp.__name__: Config({trait : trait_default})})
+                    self.update_config(config)
 
     def start(self) -> None:
         """
@@ -164,6 +177,7 @@ class DsCreate(Application):
         """
         super(DsCreate, self).start()
         self._load_configs()
+        self.config.inline.enabled = self.inline
         
 
 

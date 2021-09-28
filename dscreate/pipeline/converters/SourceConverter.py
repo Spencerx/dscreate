@@ -12,12 +12,9 @@ class SourceConverter(BaseConverter):
     '''
     exporter_class = MarkdownExporter
 
-    notebook_path = Unicode(config=True)
+    notebook_path = Unicode('index.ipynb').tag(config=True)
     output = 'README'
 
-    @default('notebook_path')
-    def notebook_path_default(self) -> str:
-        return 'index.ipynb'
 
 
         

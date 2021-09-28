@@ -1,7 +1,6 @@
 from .BaseConverter import BaseConverter
 from ..preprocessors import *
-
-from traitlets import default
+from traitlets import default, List
 
 
 class SolutionConverter(BaseConverter):
@@ -16,12 +15,7 @@ class SolutionConverter(BaseConverter):
     def solution_default(self) -> bool:
         return True
 
-    @default('preprocessors')
-    def preprocessors_default(self) -> list:
-        if not self.config.inline.enabled:
-            return [RemoveLessonCells, ExecuteCells]
-        elif self.config.inline.enabled:
-            return [ClearOutput, AddCellIndex, RemoveLessonCells, ExecuteCells]
+    preprocessors = List([AddCellIndex, RemoveLessonCells, ExecuteCells]).tag(config=True)
 
     def start(self) -> None:
 

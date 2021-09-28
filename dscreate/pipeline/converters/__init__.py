@@ -4,6 +4,7 @@ from .ReleaseConverter import ReleaseConverter
 from .SolutionConverter import SolutionConverter
 from .ReadmeConverter import ReadmeConverter
 from .SourceConverter import SourceConverter
+from .MergeConverter import MergeConverter
 
 
 __all__ = [
@@ -12,5 +13,6 @@ __all__ = [
     'ReleaseConverter',
     'SolutionConverter',
     'ReadmeConverter',
-    'SourceConverter'
+    'SourceConverter',
+    'MergeConverter',
 ]

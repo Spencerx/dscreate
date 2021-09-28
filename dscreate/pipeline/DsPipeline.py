@@ -26,4 +26,4 @@ class DsPipeline(Configurable):
             if pipeline_step.enabled:
                 print(pipeline_step.printout)
                 pipeline_step.start()
-                self.config.merge(pipeline_step.config)
+                self.config.update(pipeline_step.config)

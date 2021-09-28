@@ -41,18 +41,13 @@ class GenerateApp(DsCreate):
     aliases = generate_aliases
 
 
-    edit_branch = Unicode(config=True,
-                          help="""Sets the name of the git branch used for curriculum development.
-                                  Default: 'curriculum'""")
-    @default('edit_branch')
-    def edit_branch_default(self) -> str:
-        return 'master'
+    edit_branch = Unicode('master',
+                          help="""
+                          Sets the name of the git branch used for curriculum development.
+                          Default: 'curriculum'
+                          """).tag(config=True)
 
-    pipeline_steps = List(config=True)
-    @default('pipeline_steps')
-    def pipeline_steps_default(self) -> TypingList:
-
-        return [
+    pipeline_steps = List([
             CollectCurriculum,
             BaseConverter,
             ReleaseConverter,
@@ -65,7 +60,8 @@ class GenerateApp(DsCreate):
             Commit,
             Push,
             CheckoutEditBranch,
-            ]
+            ]).tag(config=True)
+
 
 
     branches = List(['master', 'solution'],

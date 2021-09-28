@@ -4,8 +4,9 @@ from traitlets.config import Config
 from typing import List as TypingList
 from traitlets.traitlets import MetaHasTraits
 from ..pipeline import *
+from git.exc import InvalidGitRepositoryError
 from git import Repo
-import os
+import os 
 from .. import pipeline
 
 create_flags = {
@@ -13,6 +14,9 @@ create_flags = {
     {'DsCreate': {'inline': True},
      'CollectCurriculum': {'edit_file': 'curriculum.ipynb'}}, "Create inline directory split.")
 }
+
+dscreate_flags.update(create_flags)
+
 
 class CreateApp(DsCreate):
 
@@ -40,7 +44,6 @@ class CreateApp(DsCreate):
     
     flags = dscreate_flags
     aliases = dscreate_aliases
-    inline = Bool(False).tag(config=True)
     edit_branch = Unicode('curriculum').tag(config=True)
     
     pipeline_steps = List(config=True)
@@ -76,7 +79,20 @@ class CreateApp(DsCreate):
                 Push]
 
 
-    branches = List(['curriculum', 'master', 'solution']).tag(config=True)
+    branches = List(config=True)
+    @default('branches')
+    def branches_default(self) -> list:
+        try:
+            repo = Repo('.')
+        except InvalidGitRepositoryError:
+            repo = Repo.init('.')
+
+        if self.inline:
+            return [repo.active_branch.name.lower()]
+        else:
+            return ['curriculum',
+                    'master',
+                    'solution']
 
 
     def validate_branches(self) -> None:
@@ -102,14 +118,13 @@ class CreateApp(DsCreate):
     
     def start(self) -> None:
         super().start()
-        self.validate_branches()
+        if not self.inline:
+            self.validate_branches()
 
         c = Config()
-        c.inline.enabled = self.inline
-        self.config.merge(c)
         c.edit_branch = self.edit_branch
         c.DsPipeline.steps = self.pipeline_steps
         c.BaseController.branches = self.branches
-        c.merge(self.config)
-        pipeline = DsPipeline(config=c)
+        self.config.merge(c)
+        pipeline = DsPipeline(config=self.config)
         pipeline.start()
