@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 name = u'dscreate'
-version = '0.1.87'
+version = '0.2.0'
 description = 'Flatiron Iron School Data Science Tools'
 setup_args = dict(
     name=name,
