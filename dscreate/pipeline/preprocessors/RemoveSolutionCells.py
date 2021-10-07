@@ -29,6 +29,7 @@ class RemoveSolutionCells(DsCreatePreprocessor):
         True means cell should *not* be removed.
         """
         lines = set(cell.source.split("\n"))
+        lines = {line.strip().replace(' ', '') for line in lines}
 
         return self.code_tags.intersection(lines)
 

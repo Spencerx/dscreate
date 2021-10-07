@@ -1,6 +1,6 @@
 from . import BaseConverter
-from traitlets import default, Unicode
-from nbconvert.exporters import MarkdownExporter
+from traitlets import default, Unicode, Type
+from nbconvert.exporters import MarkdownExporter, Exporter
 from nbgrader.preprocessors import (ClearSolutions, LockCells, 
                                     ComputeChecksums, ClearOutput, 
                                     ClearHiddenTests, ClearMarkScheme)
@@ -12,19 +12,17 @@ class ReleaseConverter(BaseConverter):
     description = '''
     ReleaseConverter replicates ``nbgrader generate``
     '''
-    exporter_class = MarkdownExporter
+    exporter_class = Type(MarkdownExporter, klass=Exporter).tag(config=True)
 
     @default('preprocessors')
     def preprocessors_default(self) -> list:
         return [ClearSolutions, 
-                LockCells, 
-                ComputeChecksums, 
                 ClearOutput, 
                 ClearHiddenTests, 
                 ClearMarkScheme]
 
     notebook_path = Unicode('index.ipynb').tag(config=True)
-    output = 'README'
+    output = Unicode('README').tag(config=True)
 
     def convert_notebook(self) -> None:
         """

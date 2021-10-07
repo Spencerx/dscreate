@@ -23,6 +23,7 @@ class RemoveLessonCells(DsCreatePreprocessor):
         """
 
         lines = set(cell.source.split("\n"))
+        lines = {line.strip().replace(' ', '') for line in lines}
 
         return self.solution_tags.intersection(lines)
 
@@ -45,7 +46,7 @@ class RemoveLessonCells(DsCreatePreprocessor):
         
         if len(nb_copy.cells) == len(cells):
             warn("No lesson cells were found in the notebook!" 
-            "Double check the solution tag placement and formatting if this is not correct.", UserWarning)
+            " Double check the solution tag placement and formatting if this is not correct.", UserWarning)
 
         
         nb_copy.cells = cells
@@ -60,6 +61,6 @@ class RemoveLessonCells(DsCreatePreprocessor):
         """
 
         lines = cell.source.split('\n')
-        no_tags = [line for line in lines if line not in self.solution_tags]
+        no_tags = [line for line in lines if line.strip().replace(' ', '') not in self.solution_tags]
         cell.source = '\n'.join(no_tags)
         return cell

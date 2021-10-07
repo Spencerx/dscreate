@@ -1,6 +1,6 @@
 from . import BaseConverter
-from traitlets import default, Unicode
-from nbconvert.exporters import MarkdownExporter
+from traitlets import default, Unicode, Type
+from nbconvert.exporters import MarkdownExporter, Exporter
 
 
 class SourceConverter(BaseConverter):
@@ -10,10 +10,11 @@ class SourceConverter(BaseConverter):
     description = '''
     SourceConverter generates a teacher facing readme for an nbgrader assignment.
     '''
-    exporter_class = MarkdownExporter
+    exporter_class = Type(MarkdownExporter, klass=Exporter).tag(config=True)
+    
 
     notebook_path = Unicode('index.ipynb').tag(config=True)
-    output = 'README'
+    output = Unicode(u'README').tag(config=True)
 
 
 

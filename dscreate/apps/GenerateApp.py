@@ -1,4 +1,4 @@
-from .BaseApp import DsCreate, dscreate_aliases
+from .BaseApp import DsCreate, dscreate_aliases, dscreate_flags
 from traitlets import Bool, default, List, Unicode
 from traitlets.config import Config
 from typing import List as TypingList
@@ -6,12 +6,8 @@ from traitlets.traitlets import MetaHasTraits
 from ..pipeline import *
 from .. import pipeline
 
-generate_flags = {
-    'api': (
-        {'use_api' : {'enabled' : True}},
-        "If True the nbgrader API will be used to split the notebook, which requires that the assignment is placed in the source folder of an nbgrader course."
-    ),
-}
+generate_flags = {}
+generate_flags.update(dscreate_flags)
 
 generate_aliases = {}
 generate_aliases.update(dscreate_aliases)
@@ -87,6 +83,6 @@ class GenerateApp(DsCreate):
         c.edit_branch = self.edit_branch
         c.DsPipeline.steps = self.pipeline_steps
         c.BaseController.branches = self.branches
-        c.merge(self.config)
-        pipeline = DsPipeline(config=c)
+        self.config.merge(c)
+        pipeline = DsPipeline(config=self.config)
         pipeline.start()
