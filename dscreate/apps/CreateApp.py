@@ -49,8 +49,17 @@ class CreateApp(DsCreate):
     pipeline_steps = List(config=True)
     @default('pipeline_steps')
     def pipeline_steps_default(self) -> TypingList:
-        if not self.inline:
+        if self.inline:
             return [
+                CollectCurriculum,
+                SolutionConverter,
+                ReadmeConverter,
+                MasterConverter,
+                ReadmeConverter,
+                Commit, 
+                Push]
+
+        return [
                 CollectCurriculum,
                 ReadmeConverter,
                 Commit,
@@ -69,14 +78,6 @@ class CreateApp(DsCreate):
                 Push,
                 CheckoutEditBranch
                 ]
-
-        return [CollectCurriculum,
-                SolutionConverter,
-                ReadmeConverter,
-                MasterConverter,
-                ReadmeConverter,
-                Commit, 
-                Push]
 
 
     branches = List(config=True)

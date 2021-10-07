@@ -6,7 +6,7 @@ from traitlets import default, List
 class SolutionConverter(BaseConverter):
 
     name = 'SolutionConverter'
-    printout = 'Updating solution branch...'
+    printout = 'Updating solutions...'
     description = '''
     SolutionConverter generates the teacher facing  notebook.
     '''

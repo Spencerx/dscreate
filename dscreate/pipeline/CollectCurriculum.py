@@ -1,6 +1,7 @@
 from traitlets.config import Configurable
 from traitlets import Unicode, default
 import nbformat
+import os
 
 
 class CollectCurriculum(Configurable):
@@ -18,5 +19,8 @@ class CollectCurriculum(Configurable):
     def start(self) -> None:
         notebook = nbformat.read(self.edit_file, as_version=4)
         self.config.source_notebook = notebook
+        if self.config.inline.enabled:
+            os.remove(self.edit_file)
+
 
 
