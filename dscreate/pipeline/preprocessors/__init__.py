@@ -5,6 +5,7 @@ from .SortCells import SortCells
 from .ClearOutput import ClearOutput
 from .ExecuteCells import ExecuteCells
 from .BasePreprocessor import DsCreatePreprocessor
+from .AddLanguage import AddLanguage
 
 
 __all__ = [
@@ -14,6 +15,7 @@ __all__ = [
     'SortCells',
     'ClearOutput',
     'ExecuteCells',
-    'DsCreatePreprocessor'
+    'DsCreatePreprocessor',
+    'AddLanguage'
 ]
 

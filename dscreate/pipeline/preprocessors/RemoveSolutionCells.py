@@ -62,6 +62,8 @@ class RemoveSolutionCells(DsCreatePreprocessor):
                 continue
             
             if self.is_markdown_solution(cell):
+                # TODO Convert the answer to bytes
+                cell.metadata.answer = cell.source
                 cell.source = 'YOUR ANSWER HERE'
 
             if self.found_tag(cell):
