@@ -16,9 +16,10 @@ class AddLanguage(DsCreatePreprocessor):
 
         nb_copy = deepcopy(nb)
 
+        if not 'language_info' in nb_copy.metadata:
+            nb_copy.metadata['language_info'] = {}
 
-
-        nb_copy.metadata.language_info.name = self.language
+        nb_copy.metadata['language_info']['name'] = self.language
 
         return nb_copy, resources
 

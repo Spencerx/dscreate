@@ -15,7 +15,7 @@ class SolutionConverter(BaseConverter):
     def solution_default(self) -> bool:
         return True
 
-    preprocessors = List([AddCellIndex, RemoveLessonCells, ExecuteCells]).tag(config=True)
+    preprocessors = List([ClearOutput, AddCellIndex, RemoveLessonCells, ExecuteCells]).tag(config=True)
 
     def start(self) -> None:
 
