@@ -128,14 +128,28 @@ class TestBaseConverter(BaseTestConverter):
         cwd = os.getcwd()
         os.chdir(dir_test)
         assert cwd != os.getcwd()
-        converter = BaseConverter(config=inline_config)
         solution_dir = os.path.join(dir_test, '.solution_files')
+        inline_config.BaseConverter.solution_dir = solution_dir
+        converter = BaseConverter(config=inline_config)
         solution_dir_before = os.path.isdir(solution_dir)
-        converter.solution_dir = solution_dir
+        assert solution_dir_before == False
         converter.start()
         solution_dir_after = os.path.isdir(solution_dir)
-        assert converter.solution_dir == solution_dir_after
+        assert solution_dir_before != solution_dir_after
         os.chdir(cwd)
+
+    def test_output_config(self, config, dir_test):
+        cwd = os.getcwd()
+        os.chdir(dir_test)
+
+        config.BaseConverter.output = 'test_file'
+        converter = BaseConverter(config=config)
+        converter.start()
+
+        assert os.path.isfile('test_file.ipynb')
+
+        os.chdir(cwd)
+
 
 
 
