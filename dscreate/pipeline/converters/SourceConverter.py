@@ -11,7 +11,6 @@ class SourceConverter(BaseConverter):
     SourceConverter generates a teacher facing readme for an nbgrader assignment.
     '''
     exporter_class = Type(MarkdownExporter, klass=Exporter).tag(config=True)
-    
 
     notebook_path = Unicode('index.ipynb').tag(config=True)
     output = Unicode(u'README').tag(config=True)

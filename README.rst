@@ -30,6 +30,17 @@ Table of Contents
 CLI Tools
 -------------
 
+**Arguments that apply for all notebook split applications:**
+
+``--local``
+   - This argument disables the ``PushController``. Changes are committed but are not pushed.
+
+``--execute=<bool>``
+   - By default, the solution code cells are run when a notebook is split. ``--execute=False`` disables the ``ExecuteCells`` preprocessor. 
+
+``-m``
+   - This argument functions like the ``-m`` git argument, and allows you specify the commit message.
+
 
 -------------
 ``ds create``
@@ -60,14 +71,13 @@ CLI Tools
 
 **When this command is run the following things happen:**
 
-- The assignment is generated via the NbGrader API
-- The source notebook is convered to markdown and saved as a README on the `master` branch
+- The source notebook is converted to markdown and saved as a README on the `master` branch
 - The `master` branch is merged into the `solution` branch
 - The release notebook is converted to markdown and saved as a README on the `master` branch
 - Changes are pushed to github for each branch
 
 -------------
-``ds create -dir``
+``ds create --inline``
 -------------
 **Requirements**
 
@@ -79,7 +89,7 @@ CLI Tools
 - An ``index.ipynb`` file is added to the ``.solution_files`` subdirectory containing all solution content in the ``curriculum.ipynb`` file.
 - The ``curriculum.ipynb`` file is deleted
   
-   - To make future edits to this project, the curriculum notebook must be generated using `ds -edit`.
+   - To make future edits to this project, the curriculum notebook must be generated using `ds edit`.
 
 -------------
 ``ds edit``
@@ -89,7 +99,7 @@ When this command is run the following things happen:
 * The metadata inside the lesson and solution notebooks is used to recompile the ``curriculum.ipynb`` notebook.
 
 Once the curriculum notebook is compiled, edits to the lesson can be made inside ``curriculum.ipynb``.
-Once edits are complete, run ``ds -create`` to hide the solutions inside a hidden folder.
+Once edits are complete, run ``ds create --inline`` to hide the solutions inside a hidden folder.
 
 
 -------------
@@ -103,7 +113,7 @@ Once edits are complete, run ``ds -create`` to hide the solutions inside a hidde
 
 .. _creating-a-lesson:
 
-Creating A Directory Split Lesson 
+Creating an Inline Split Lesson 
 ==================
 
 **The overall proccess looks like this**
@@ -114,11 +124,10 @@ Creating A Directory Split Lesson
 4. Open the ``curriculum.ipynb`` jupyter notebook
 5. Create lesson using `solution tags <#creating-solution-cells>`_ 
 6. Save the curriculum notebook
-7. run ``ds create -dir``
-8. Push repository to github
-9. Copy link to the top level ``index.ipynb`` file on github.
-10. run ``ds share <github link>
-11. Share link with students. 
+7. run ``ds create --inline``
+8. Copy link to the top level ``index.ipynb`` file on github.
+9. run ``ds share <github link>
+10. Share link with students. 
 
 **To make new edits to a lesson after running ``ds -create``**
 
@@ -126,40 +135,13 @@ Creating A Directory Split Lesson
 2. Open the ``curriculum.ipynb`` notebook
 3. Make edits in curriculum notebook
 4. Save notebook
-5. run ``ds create``
-
-Lesson Structure
-==================
-
-This toolkit uses the following directory structure for all lessons::
-
-   lesson-directory 
-         |
-         index.ipynb
-         curriculum.ipynb
-         data
-            |
-            lesson_data.csv
-         .solution_files
-            |
-            index.ipynb
-            .test_obj
-               |
-               pickled_test.pkl 
-
-* The top level ``index.ipynb`` file contains all student facing materials.
-* The top level ``curriculum.ipynb` file is where all curriculum materials are created.
-* The `data/` folder is not required, but tends to be best practice for most data science projects.
-* The ``.solution_files`` hidden folder stores the solution content.
-* The ``.solution_files/index.ipynb`` file is the notebook containing all solution code and markdown.
-* The ``.test_obj`` folder contains all pickled test objects. See `Creating Tests <#creating-tests>`_
-
+5. run ``ds create --inline``
 
 Creating Solution Cells
 =======================
 
-What ``ds -create`` is used, all solution cells are removed from the top level ``index.ipynb`` file 
-and moved to the ``index.ipynb`` file in the ``.solution_files`` hidden folder. 
+What ``ds create`` is used, all solution cells are removed from the edit file 
+and moved to the ``index.ipynb`` file dedicated for solutions.
 
 Solution cells can be created for both code and Markdown cells in Jupyter Notebooks.
 
@@ -169,7 +151,7 @@ Place ``==SOLUTION==`` at the top of a Markdown cell. This tag should have its o
 
 **To create a solution code cell**
 
-Place ``#__SOLUTION__`` at the top of the code cell. This tag should have its own line.
+Place ``#__SOLUTION__`` or ``#==SOLUTION==`` at the top of the code cell. This tag should have its own line.
 
 .. _test-code:
 
