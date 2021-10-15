@@ -5,9 +5,9 @@ Creating Tests
 
 `dscreate` offers a couple options for adding tests to your curriculum materials.
 
-NOTE: All tests are created and run using the `Tests` class within the `tests` subdirectory.::
+NOTE: All tests are created and run using the `Tests` class within the `compose.tests` subdirectory.::
 
-         from dscreate.tests import Tests
+         from dscreate.compose.tests import Tests
          tests = Tests()
 
 Below, is an example of a test for a simple problem. In this scenario a student is
