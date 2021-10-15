@@ -77,4 +77,22 @@ Once edits are complete, run ``ds create`` to hide the solutions inside a hidden
 * This command accepts any link that points to a public notebook on github. When this command is run, a link is copied to your clipboard that points to the notebook on illumidesk.
 * This command can be used to create `url module items in canvas <https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-add-an-external-URL-as-a-module-item/ta-p/967>`_.
 
+-------------
+``ds config``
+-------------
+When this command is run, a path pointing to a dscreate configuration file is printed.
+
+**Printing the global configuration file**
+``ds config``
+
+**Printing the configuration file for a specific application**
+``ds config create``
+
+or 
+
+``ds config generate``
+
+
 -------------------------------------------------------
+
+
