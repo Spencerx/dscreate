@@ -57,7 +57,7 @@ In directory split
 - An ``index.ipynb`` file is added to the ``.solution_files`` subdirectory containing all solution content in the ``curriculum.ipynb`` file.
 - The ``curriculum.ipynb`` file is deleted
   
-   - To make future edits to this project, the curriculum notebook must be generated using `ds -edit`.
+   - To make future edits to this project, the curriculum notebook must be generated using `ds edit`.
 
 
 -------------
@@ -68,10 +68,10 @@ When this command is run the following things happen:
 * The metadata inside the lesson and solution notebooks is used to recompile the ``curriculum.ipynb`` notebook.
 
 Once the curriculum notebook is compiled, edits to the lesson can be made inside ``curriculum.ipynb``.
-Once edits are complete, run ``ds -create`` to hide the solutions inside a hidden folder.
+Once edits are complete, run ``ds create`` to hide the solutions inside a hidden folder.
 
 -------------
-``ds -share <Github notebook url>``
+``ds share <Github notebook url>``
 -------------
 
 * This command accepts any link that points to a public notebook on github. When this command is run, a link is copied to your clipboard that points to the notebook on illumidesk.

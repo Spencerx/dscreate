@@ -5,23 +5,22 @@ Inline Lessons
 
 * Create project folder
 * ``cd`` into the the project folder
-* Run ``ds -begin``
-* Open the ``curriculum.ipynb`` jupyter notebook
+* Open a ``curriculum.ipynb`` jupyter notebook
 * Create lesson using `solution tags <#solution-cells>`_ 
 * Save the curriculum notebook
-* run ``ds -create``
+* run ``ds create --inline``
 * Push repository to github
 * Copy link to the top level ``index.ipynb`` file on github.
-* run ``-ds share <github link>``
+* run ``ds share <github link>``
 * A student link is added to your clipboard. Then you share it!
 
-**To make new edits to a lesson after running** ``ds -create``
+**To make new edits to a lesson after running** ``ds create --inline``
 
-* run ``ds -edit``
+* run ``ds edit``
 * Open the ``curriculum.ipynb`` notebook
 * Make edits in curriculum notebook
 * Save notebook
-* run ``ds -create``
+* run ``ds create --inline``
 
 
 Lesson Structure

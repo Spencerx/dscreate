@@ -104,13 +104,9 @@ class DsCreateApp(DsCreate):
                 If not subcommand is provided, the global configuration file is printed.
                 """
             )
-        )
+        ),
     )
 
-
-    @default("classes")
-    def _classes_default(self) -> List[MetaHasTraits]:
-        return self.all_configurable_classes()
 
     @catch_config_error
     def initialize(self, argv: List[str] = None) -> None:

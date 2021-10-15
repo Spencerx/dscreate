@@ -71,6 +71,18 @@ which are found in the ``apps/`` directory on github. A breakdown of the differe
 .. image:: ../images/dspipeline.png
    :width: 600
 
+A DsPipeline consists of three components.
+
+1. A python object that reads in the curriculum jupyter notebook and
+adds the notebook data to a traitlets config object. This config
+Object is then passed to each step of the pipeline
+
+2. DsConverter obkects apply transformations to the curriculum
+notebook and saves the transformations to disk
+
+3. DsController objects manage version control. Controllers exist
+for git committing, pushing, merging, branch checkouts, etc.
+
 
 DsConverter
 -----------
@@ -84,3 +96,17 @@ lifting.
 .. image:: ../images/dsconverter.png
    :width: 600
 
+
+``dscreate`` uses an ``nbconvert`` pipeline for reading in
+a jupyter notebook and applying transformations to it.
+Each transformation to a notebook is applied
+via nbconvert preprocessors. Preprocessors apply cell
+specific transformations like running cells, clearing outputs,
+removing solution cells, removing hidden tests, and more.
+The preprocessors are applied to the notebook by an
+nbconvert exporter object which then outputs the
+transformed notebook in a desired format such as
+Markdown, HTML, or an updated Jupyter Notebook.
+The exported notebook is then passed to an nbconvert
+FilesWriter which handles saving the notebook to the
+specified filetype and, when converting to markdown, saving images to a subfolder.
