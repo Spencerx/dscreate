@@ -1,5 +1,6 @@
 import os
 import logging
+from textwrap import dedent
 from os.path import exists
 from appdirs import user_data_dir
 from typing import List as TypingList
@@ -32,6 +33,7 @@ class DsCreate(Application):
     name = 'DsCreate'
     aliases = dscreate_aliases
     flags = dscreate_flags
+
     description = """
         The base app for dscreate applications.
         This app primarily handles the set up of configuration files for dscreate.
@@ -80,6 +82,8 @@ class DsCreate(Application):
         classes = [DsCreate]
 
         for _, (app, _) in self.subcommands.items():
+            if not hasattr(app, 'class_traits'):
+                continue
             if len(app.class_traits(config=True)) > 0:
                 classes.append(app)
 

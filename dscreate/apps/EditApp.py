@@ -1,12 +1,11 @@
-from .BaseApp import DsCreate, dscreate_flags, dscreate_aliases
-from traitlets import Bool, default, List, Unicode
-from traitlets.config import Config
-from typing import List as TypingList
-from traitlets.traitlets import MetaHasTraits
-from ..pipeline import *
-import os
-from .. import pipeline
+from .BaseApp import DsCreate
+from traitlets import Bool, List
+from ..pipeline import MergeConverter, DsPipeline
 
+edit_flags = {
+    'old': (
+    {'MergeConverter': {'old': True}}, "Merge notebooks using deprecated merge technique.")
+}
 
 edit_aliases = {
     'output': 'MergeConverter.out',
@@ -22,12 +21,16 @@ class EditApp(DsCreate):
     
     **Behavior:**
 
-    1. 
+    1. Notebook filenames and the solution dir are set via BaseConverter traits
+    2. Lesson and solution notebooks are read in
+    3. Lesson cells and solution cells are concatenated into a single list
+    4. Cells are sorted according to cell.metadata.index
 
     '''
     
     aliases = edit_aliases
-    
+    flags = edit_flags
+
     pipeline_steps = List([MergeConverter]).tag(config=True)
           
     def start(self) -> None:

@@ -1,5 +1,7 @@
 from . import BaseConverter
 from nbconvert.exporters import MarkdownExporter
+from nbconvert.preprocessors import ExtractOutputPreprocessor
+from ..preprocessors import AddLanguage
 from traitlets import default, Unicode, Type
 import os
 
@@ -30,7 +32,7 @@ class ReadmeConverter(BaseConverter):
 
     @default('preprocessors')
     def preprocessors_default(self) -> list:
-        return []
+        return [ExtractOutputPreprocessor, AddLanguage]
 
     def convert_notebook(self) -> None:
         """

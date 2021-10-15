@@ -113,8 +113,8 @@ class CreateApp(DsCreate):
             if branch not in os.listdir(branches):
                 print(f'Creating {branch} branch...')
                 repo.create_head(branch)
-                origin = repo.remote()
-                origin.push(branch)
+                # origin = repo.remote()
+                # origin.push(branch)
         
     
     def start(self) -> None:

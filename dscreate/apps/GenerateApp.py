@@ -45,7 +45,6 @@ class GenerateApp(DsCreate):
 
     pipeline_steps = List([
             CollectCurriculum,
-            BaseConverter,
             ReleaseConverter,
             Commit,
             Push,

@@ -1,9 +1,6 @@
 Creating Solution Cells
 =======================
 
-What ``ds -create`` is used, all solution cells are removed from the top level ``index.ipynb`` file 
-and moved to the ``index.ipynb`` file in the ``.solution_files`` hidden folder. 
-
 Solution cells can be created for both code and Markdown cells in Jupyter Notebooks.
 
 **To create a solution Markdown cell**

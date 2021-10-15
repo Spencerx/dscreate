@@ -57,7 +57,7 @@ In directory split
 - An ``index.ipynb`` file is added to the ``.solution_files`` subdirectory containing all solution content in the ``curriculum.ipynb`` file.
 - The ``curriculum.ipynb`` file is deleted
   
-   - To make future edits to this project, the curriculum notebook must be generated using `ds -edit`.
+   - To make future edits to this project, the curriculum notebook must be generated using `ds edit`.
 
 
 -------------
@@ -68,13 +68,46 @@ When this command is run the following things happen:
 * The metadata inside the lesson and solution notebooks is used to recompile the ``curriculum.ipynb`` notebook.
 
 Once the curriculum notebook is compiled, edits to the lesson can be made inside ``curriculum.ipynb``.
-Once edits are complete, run ``ds -create`` to hide the solutions inside a hidden folder.
+Once edits are complete, run ``ds create`` to hide the solutions inside a hidden folder.
 
 -------------
-``ds -share <Github notebook url>``
+``ds share <Github notebook url>``
 -------------
 
 * This command accepts any link that points to a public notebook on github. When this command is run, a link is copied to your clipboard that points to the notebook on illumidesk.
 * This command can be used to create `url module items in canvas <https://community.canvaslms.com/t5/Instructor-Guide/How-do-I-add-an-external-URL-as-a-module-item/ta-p/967>`_.
 
+-------------
+``ds config``
+-------------
+When this command is run, a path pointing to a dscreate configuration file is printed.
+
+**Printing the global configuration file**
+``ds config``
+
+**Printing the configuration file for a specific application**
+``ds config create``
+
+or 
+
+``ds config generate``
+
+-------------
+``ds markdown <path to jupyter notebook>``
+-------------
+When this command is run, a jupyter notebook is converted to markdown.
+
+This command defaults to naming the resulting markdown file as ``README.md``, but 
+this can be customized by passing in ``--output=<name of notebook>``
+
+**Example:**
+``ds markdown index.ipynb``
+
+This produces a ``README.md`` version of `index.ipynb``
+
+``ds markdown index.ipynb --output=textfile.md``
+This produces a ``textfile.md`` version of ``index.ipynb``.
+
 -------------------------------------------------------
+
+

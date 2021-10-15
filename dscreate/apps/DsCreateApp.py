@@ -15,6 +15,9 @@ from . import (
     GenerateApp,
     ShareApp,
     EditApp,
+    MarkdownApp,
+    ConfigApp,
+
 )
 from traitlets.traitlets import MetaHasTraits
 from typing import List
@@ -32,14 +35,14 @@ flags.update({
 
 class DsCreateApp(DsCreate):
 
-    name = u'ds'
-    description = u'''
+    name = u"ds"
+    description = u"""
     The command line launch application for dscreate.
 
     This application parses the command line arguments via a traitlets ``Application`` object
     and uses the arguments to determine which sub application should be activated.
-    '''
-    version = '0.1.87'
+    """
+    version = "0.2.0"
 
     aliases = aliases
     flags = flags
@@ -79,13 +82,31 @@ class DsCreateApp(DsCreate):
                 Generates an edit app for in-directory splits.
                 """
             )
-        )
+        ),
+        markdown=(
+            MarkdownApp,
+            dedent(
+                """
+                Converts a notebook to markdown.
+
+                The name of notebook must be provided as an argument or via `--notebook`
+                The output file defaults to `README.md` but can be set via `--output`
+                """
+            )
+        ),
+        config=(
+            ConfigApp,
+            dedent(
+                """
+                Prints the path for a dscreate configuration file.
+                If a subcommand is provided, a configuration filepath is printed for that specific application.
+
+                If not subcommand is provided, the global configuration file is printed.
+                """
+            )
+        ),
     )
 
-
-    @default("classes")
-    def _classes_default(self) -> List[MetaHasTraits]:
-        return self.all_configurable_classes()
 
     @catch_config_error
     def initialize(self, argv: List[str] = None) -> None:

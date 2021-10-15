@@ -54,6 +54,11 @@ DsCreate.dsconfig : Unicode
 
     No description
 
+DsCreate.inline : Bool
+    Default: ``False``
+
+    No description
+
 DsCreate.log_datefmt : Unicode
     Default: ``'%Y-%m-%d %H:%M:%S'``
 
@@ -157,7 +162,7 @@ CreateApp.app_dir : Unicode
     No description
 
 CreateApp.branches : List
-    Default: ``['curriculum', 'master', 'solution']``
+    Default: ``[]``
 
     No description
 
@@ -294,10 +299,17 @@ GenerateApp.dsconfig : Unicode
     No description
 
 GenerateApp.edit_branch : Unicode
-    Default: ``''``
+    Default: ``'master'``
+
 
     Sets the name of the git branch used for curriculum development.
-                                      Default: 'curriculum'
+    Default: 'curriculum'
+
+
+GenerateApp.inline : Bool
+    Default: ``False``
+
+    No description
 
 GenerateApp.log_datefmt : Unicode
     Default: ``'%Y-%m-%d %H:%M:%S'``
@@ -315,7 +327,7 @@ GenerateApp.log_level : Int
     No description
 
 GenerateApp.pipeline_steps : List
-    Default: ``[]``
+    Default: ``[<class 'dscreate.pipeline.CollectCurriculum.CollectCurriculu...``
 
     No description
 
@@ -390,7 +402,12 @@ ShareApp.dsconfig : Unicode
     No description
 
 ShareApp.edit_branch : Unicode
-    Default: ``''``
+    Default: ``'curriculum'``
+
+    No description
+
+ShareApp.inline : Bool
+    Default: ``False``
 
     No description
 
@@ -449,6 +466,258 @@ ShareApp.system_config_path : Unicode
 
    No description
 
+EditApp
+----------------------------
+
+
+    Generates an edit file for an in directory notebook split.
+    
+    **Behavior:**
+
+    1. Notebook filenames and the solution dir are set via BaseConverter traits
+    2. Lesson and solution notebooks are read in
+    3. Lesson cells and solution cells are concatenated into a single list
+    4. Cells are sorted according to cell.metadata.index
+
+    
+
+**CONFIGURABLE VARIABLES:**
+
+EditApp.app_dir : Unicode
+    Default: ``''``
+
+    No description
+
+EditApp.classes : List
+    Default: ``[]``
+
+    No description
+
+EditApp.config_file : Unicode
+    Default: ``''``
+
+    No description
+
+EditApp.config_file_name : Unicode
+    Default: ``'dscreate_config.py'``
+
+    Specify a config file to load.
+
+EditApp.dsconfig : Unicode
+    Default: ``''``
+
+    No description
+
+EditApp.inline : Bool
+    Default: ``False``
+
+    No description
+
+EditApp.log_datefmt : Unicode
+    Default: ``'%Y-%m-%d %H:%M:%S'``
+
+    The date format used by logging formatters for %(asctime)s
+
+EditApp.log_format : Unicode
+    Default: ``'[%(name)s]%(highlevel)s %(message)s'``
+
+    The Logging format template
+
+EditApp.log_level : Int
+    Default: ``50``
+
+    No description
+
+EditApp.pipeline_steps : List
+    Default: ``[<class 'dscreate.pipeline.converters.MergeConverter.MergeCon...``
+
+    No description
+
+EditApp.show_config : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout
+
+EditApp.show_config_json : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout (as JSON)
+
+EditApp.system_config_path : Unicode
+    Default: ``''``
+
+    No description
+
+
+**METHODS**
+
+.. admonition:: start(self) -> None:
+
+   No description
+
+MarkdownApp
+----------------------------
+
+
+    Converts a notebook to markdown.
+
+    The name of notebook must be provided as an argument or via `--notebook`
+    The output file defaults to `README.md` but can be set via `--output`
+    
+
+**CONFIGURABLE VARIABLES:**
+
+MarkdownApp.app_dir : Unicode
+    Default: ``''``
+
+    No description
+
+MarkdownApp.classes : List
+    Default: ``[]``
+
+    No description
+
+MarkdownApp.config_file : Unicode
+    Default: ``''``
+
+    No description
+
+MarkdownApp.config_file_name : Unicode
+    Default: ``'dscreate_config.py'``
+
+    Specify a config file to load.
+
+MarkdownApp.dsconfig : Unicode
+    Default: ``''``
+
+    No description
+
+MarkdownApp.inline : Bool
+    Default: ``False``
+
+    No description
+
+MarkdownApp.log_datefmt : Unicode
+    Default: ``'%Y-%m-%d %H:%M:%S'``
+
+    The date format used by logging formatters for %(asctime)s
+
+MarkdownApp.log_format : Unicode
+    Default: ``'[%(name)s]%(highlevel)s %(message)s'``
+
+    The Logging format template
+
+MarkdownApp.log_level : Int
+    Default: ``50``
+
+    No description
+
+MarkdownApp.pipeline_steps : List
+    Default: ``[<class 'dscreate.pipeline.converters.ReadmeConverter.ReadmeC...``
+
+    No description
+
+MarkdownApp.show_config : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout
+
+MarkdownApp.show_config_json : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout (as JSON)
+
+MarkdownApp.system_config_path : Unicode
+    Default: ``''``
+
+    No description
+
+
+**METHODS**
+
+.. admonition:: start(self) -> None:
+
+   No description
+
+ConfigApp
+----------------------------
+
+
+    Prints the path for a dscreate configuration file.
+    If a subcommand is provided, a configuration filepath is printed for that specific application.
+
+    If not subcommand is provided, the global configuration file is printed.
+    
+
+**CONFIGURABLE VARIABLES:**
+
+ConfigApp.app_dir : Unicode
+    Default: ``''``
+
+    No description
+
+ConfigApp.classes : List
+    Default: ``[]``
+
+    No description
+
+ConfigApp.config_file : Unicode
+    Default: ``''``
+
+    No description
+
+ConfigApp.config_file_name : Unicode
+    Default: ``'dscreate_config.py'``
+
+    Specify a config file to load.
+
+ConfigApp.dsconfig : Unicode
+    Default: ``''``
+
+    No description
+
+ConfigApp.inline : Bool
+    Default: ``False``
+
+    No description
+
+ConfigApp.log_datefmt : Unicode
+    Default: ``'%Y-%m-%d %H:%M:%S'``
+
+    The date format used by logging formatters for %(asctime)s
+
+ConfigApp.log_format : Unicode
+    Default: ``'[%(name)s]%(highlevel)s %(message)s'``
+
+    The Logging format template
+
+ConfigApp.log_level : Int
+    Default: ``50``
+
+    No description
+
+ConfigApp.show_config : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout
+
+ConfigApp.show_config_json : Bool
+    Default: ``False``
+
+    Instead of starting the Application, dump configuration to stdout (as JSON)
+
+ConfigApp.system_config_path : Unicode
+    Default: ``''``
+
+    No description
+
+
+**METHODS**
+
+.. admonition:: start(self) -> None:
+
+   No description
+
 
 --------------
 Pipeline
@@ -500,12 +769,12 @@ CollectCurriculum
 **CONFIGURABLE VARIABLES:**
 
 CollectCurriculum.edit_branch : Unicode
-    Default: ``''``
+    Default: ``'curriculum'``
 
     No description
 
 CollectCurriculum.edit_file : Unicode
-    Default: ``''``
+    Default: ``'index.ipynb'``
 
     No description
 
@@ -740,7 +1009,7 @@ BaseConverter
 **CONFIGURABLE VARIABLES:**
 
 BaseConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
 
     No description
 
@@ -750,7 +1019,7 @@ BaseConverter.exporter_class : Type
     No description
 
 BaseConverter.output : Unicode
-    Default: ``''``
+    Default: ``'index'``
 
     No description
 
@@ -760,14 +1029,14 @@ BaseConverter.preprocessors : List
     No description
 
 BaseConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
 
 **METHODS**
 
-.. admonition:: __init__(self, **kwargs: Any) -> None:
+.. admonition:: __init__(self, **kwargs) -> None:
 
    
         Set up configuration file.
@@ -798,7 +1067,7 @@ BaseConverter.solution_dir : Unicode
 
    
         The resources argument, when passed into an exporter,
-        tell the exporter what directory to include in the url 
+        tell the exporter what directory to include in the path 
         for external images via `output_files_dir`. 
 
         The `output_name` value is required by nbconvert and is typically 
@@ -824,7 +1093,7 @@ MasterConverter
 **CONFIGURABLE VARIABLES:**
 
 MasterConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
 
     No description
 
@@ -834,17 +1103,17 @@ MasterConverter.exporter_class : Type
     No description
 
 MasterConverter.output : Unicode
-    Default: ``''``
+    Default: ``'index'``
 
     No description
 
 MasterConverter.preprocessors : List
-    Default: ``[]``
+    Default: ``[<class 'dscreate.pipeline.preprocessors.ClearOutput.ClearOut...``
 
     No description
 
 MasterConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
@@ -865,12 +1134,22 @@ ReleaseConverter
 **CONFIGURABLE VARIABLES:**
 
 ReleaseConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
+
+    No description
+
+ReleaseConverter.exporter_class : Type
+    Default: ``'nbconvert.exporters.markdown.MarkdownExporter'``
 
     No description
 
 ReleaseConverter.notebook_path : Unicode
-    Default: ``''``
+    Default: ``'index.ipynb'``
+
+    No description
+
+ReleaseConverter.output : Unicode
+    Default: ``'README'``
 
     No description
 
@@ -880,7 +1159,7 @@ ReleaseConverter.preprocessors : List
     No description
 
 ReleaseConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
@@ -905,7 +1184,7 @@ SolutionConverter
 **CONFIGURABLE VARIABLES:**
 
 SolutionConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
 
     No description
 
@@ -915,17 +1194,17 @@ SolutionConverter.exporter_class : Type
     No description
 
 SolutionConverter.output : Unicode
-    Default: ``''``
+    Default: ``'index'``
 
     No description
 
 SolutionConverter.preprocessors : List
-    Default: ``[]``
+    Default: ``[<class 'dscreate.pipeline.preprocessors.ClearOutput.ClearOut...``
 
     No description
 
 SolutionConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
@@ -952,12 +1231,22 @@ ReadmeConverter
 **CONFIGURABLE VARIABLES:**
 
 ReadmeConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
+
+    No description
+
+ReadmeConverter.exporter_class : Type
+    Default: ``'nbconvert.exporters.markdown.MarkdownExporter'``
 
     No description
 
 ReadmeConverter.notebook_path : Unicode
     Default: ``''``
+
+    No description
+
+ReadmeConverter.output : Unicode
+    Default: ``'README'``
 
     No description
 
@@ -967,7 +1256,7 @@ ReadmeConverter.preprocessors : List
     No description
 
 ReadmeConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
@@ -992,12 +1281,22 @@ SourceConverter
 **CONFIGURABLE VARIABLES:**
 
 SourceConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
+
+    No description
+
+SourceConverter.exporter_class : Type
+    Default: ``'nbconvert.exporters.markdown.MarkdownExporter'``
 
     No description
 
 SourceConverter.notebook_path : Unicode
     Default: ``''``
+
+    No description
+
+SourceConverter.output : Unicode
+    Default: ``'README'``
 
     No description
 
@@ -1007,12 +1306,70 @@ SourceConverter.preprocessors : List
     No description
 
 SourceConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
 
 **METHODS**
+
+.. admonition:: convert_notebook(self) -> None:
+
+   No description
+
+MergeConverter
+----------------------------
+
+
+    MergeConverter reads in lesson and solution notebooks and merges them into an edit file.
+    
+
+**CONFIGURABLE VARIABLES:**
+
+MergeConverter.enabled : Bool
+    Default: ``True``
+
+    No description
+
+MergeConverter.exporter_class : Type
+    Default: ``'nbconvert.exporters.notebook.NotebookExporter'``
+
+    No description
+
+MergeConverter.old : Bool
+    Default: ``False``
+
+    No description
+
+MergeConverter.output : Unicode
+    Default: ``'curriculum'``
+
+    No description
+
+MergeConverter.preprocessors : List
+    Default: ``[<class 'dscreate.pipeline.preprocessors.SortCells.SortCells'>]``
+
+    No description
+
+MergeConverter.solution_dir : Unicode
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
+
+    No description
+
+
+**METHODS**
+
+.. admonition:: read_notebook(self, filepath):
+
+   No description
+
+.. admonition:: paths(self):
+
+   No description
+
+.. admonition:: start(self) -> None:
+
+   No description
 
 
 --------------
@@ -1066,7 +1423,7 @@ AddCellIndex.solution_tags : Set
         No transformation is applied.
         
 
-RemoveSolutions
+RemoveSolutionCells
 ----------------------------
 
 
@@ -1080,17 +1437,17 @@ RemoveSolutions
 
 **CONFIGURABLE VARIABLES:**
 
-RemoveSolutions.code_tags : Set
+RemoveSolutionCells.code_tags : Set
     Default: ``{'#==SOLUTION==', '#__SOLUTION__'}``
 
     Tags indicating which cells are to be removed
 
-RemoveSolutions.default_language : Unicode
+RemoveSolutionCells.default_language : Unicode
     Default: ``'ipython'``
 
     Deprecated default highlight language as of 5.0, please use language_info metadata instead
 
-RemoveSolutions.display_data_priority : List
+RemoveSolutionCells.display_data_priority : List
     Default: ``['text/html', 'application/pdf', 'text/latex', 'image/svg+xml...``
 
 
@@ -1099,12 +1456,12 @@ RemoveSolutions.display_data_priority : List
     the others.
 
 
-RemoveSolutions.enabled : Bool
+RemoveSolutionCells.enabled : Bool
     Default: ``True``
 
     Whether to use this preprocessor when running dscreate
 
-RemoveSolutions.markdown_tags : Set
+RemoveSolutionCells.markdown_tags : Set
     Default: ``{'==SOLUTION==', '__SOLUTION__'}``
 
     No description
@@ -1121,6 +1478,10 @@ RemoveSolutions.markdown_tags : Set
         
 
 .. admonition:: is_markdown_solution(self, cell):
+
+   No description
+
+.. admonition:: found_tag(self, cell):
 
    No description
 
@@ -1226,7 +1587,7 @@ ClearOutput
 ----------------------------
 
 
-    ClearOutput removes the outputs for notebook cells.
+ClearOutput removes the outputs for notebook cells.
     
 
 **CONFIGURABLE VARIABLES:**
@@ -1460,4 +1821,75 @@ ExecuteCells.timeout_func : Any
 
 
 **METHODS**
+
+DsCreatePreprocessor
+----------------------------
+
+
+    The base preprocessor object for dscreate.
+    
+
+**CONFIGURABLE VARIABLES:**
+
+DsCreatePreprocessor.default_language : Unicode
+    Default: ``'ipython'``
+
+    Deprecated default highlight language as of 5.0, please use language_info metadata instead
+
+DsCreatePreprocessor.display_data_priority : List
+    Default: ``['text/html', 'application/pdf', 'text/latex', 'image/svg+xml...``
+
+
+    An ordered list of preferred output type, the first
+    encountered will usually be used when converting discarding
+    the others.
+
+
+DsCreatePreprocessor.enabled : Bool
+    Default: ``True``
+
+    Whether to use this preprocessor when running dscreate
+
+
+**METHODS**
+
+AddLanguage
+----------------------------
+
+
+    Adds name of coding language to code blocks.
+    
+
+**CONFIGURABLE VARIABLES:**
+
+AddLanguage.default_language : Unicode
+    Default: ``'ipython'``
+
+    Deprecated default highlight language as of 5.0, please use language_info metadata instead
+
+AddLanguage.display_data_priority : List
+    Default: ``['text/html', 'application/pdf', 'text/latex', 'image/svg+xml...``
+
+
+    An ordered list of preferred output type, the first
+    encountered will usually be used when converting discarding
+    the others.
+
+
+AddLanguage.enabled : Bool
+    Default: ``True``
+
+    Whether to use this preprocessor when running dscreate
+
+AddLanguage.language : Unicode
+    Default: ``'python'``
+
+    No description
+
+
+**METHODS**
+
+.. admonition:: preprocess(self, nb, resources):
+
+   No description
 

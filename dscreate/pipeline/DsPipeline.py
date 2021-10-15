@@ -1,3 +1,5 @@
+import os
+from . import CollectCurriculum
 from traitlets.config import Configurable
 from traitlets import List
 
@@ -27,3 +29,5 @@ class DsPipeline(Configurable):
                 print(pipeline_step.printout)
                 pipeline_step.start()
                 self.update_config(pipeline_step.config)
+        if self.config.inline.enabled:
+            os.remove(self.config.CollectCurriculum.edit_file)
