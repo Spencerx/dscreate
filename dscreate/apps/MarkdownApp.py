@@ -11,7 +11,12 @@ aliases = {
 class MarkdownApp(DsCreate):
 
     name = 'MarkdownApp'
-    description = ''
+    description ="""
+    Converts a notebook to markdown.
+
+    The name of notebook must be provided as an argument or via `--notebook`
+    The output file defaults to `README.md` but can be set via `--output`
+    """
 
     pipeline_steps = List([
 
