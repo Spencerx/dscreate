@@ -51,6 +51,11 @@ DsCreate.dsconfig : Unicode
 
     No description
 
+DsCreate.inline : Bool
+    Default: ``False``
+
+    No description
+
 DsCreate.log_datefmt : Unicode
     Default: ``'%Y-%m-%d %H:%M:%S'``
 
@@ -92,12 +97,12 @@ DsPipeline.steps : List
     No description
 
 CollectCurriculum.edit_branch : Unicode
-    Default: ``''``
+    Default: ``'curriculum'``
 
     No description
 
 CollectCurriculum.edit_file : Unicode
-    Default: ``''``
+    Default: ``'index.ipynb'``
 
     No description
 
@@ -172,7 +177,7 @@ CheckoutEditBranch.enabled : Bool
     No description
 
 BaseConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
 
     No description
 
@@ -182,7 +187,7 @@ BaseConverter.exporter_class : Type
     No description
 
 BaseConverter.output : Unicode
-    Default: ``''``
+    Default: ``'index'``
 
     No description
 
@@ -192,12 +197,12 @@ BaseConverter.preprocessors : List
     No description
 
 BaseConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
 MasterConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
 
     No description
 
@@ -207,27 +212,37 @@ MasterConverter.exporter_class : Type
     No description
 
 MasterConverter.output : Unicode
-    Default: ``''``
+    Default: ``'index'``
 
     No description
 
 MasterConverter.preprocessors : List
-    Default: ``[]``
+    Default: ``[<class 'dscreate.pipeline.preprocessors.ClearOutput.ClearOut...``
 
     No description
 
 MasterConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
 ReleaseConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
+
+    No description
+
+ReleaseConverter.exporter_class : Type
+    Default: ``'nbconvert.exporters.markdown.MarkdownExporter'``
 
     No description
 
 ReleaseConverter.notebook_path : Unicode
-    Default: ``''``
+    Default: ``'index.ipynb'``
+
+    No description
+
+ReleaseConverter.output : Unicode
+    Default: ``'README'``
 
     No description
 
@@ -237,12 +252,12 @@ ReleaseConverter.preprocessors : List
     No description
 
 ReleaseConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
 SolutionConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
 
     No description
 
@@ -252,27 +267,37 @@ SolutionConverter.exporter_class : Type
     No description
 
 SolutionConverter.output : Unicode
-    Default: ``''``
+    Default: ``'index'``
 
     No description
 
 SolutionConverter.preprocessors : List
-    Default: ``[]``
+    Default: ``[<class 'dscreate.pipeline.preprocessors.ClearOutput.ClearOut...``
 
     No description
 
 SolutionConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
 ReadmeConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
+
+    No description
+
+ReadmeConverter.exporter_class : Type
+    Default: ``'nbconvert.exporters.markdown.MarkdownExporter'``
 
     No description
 
 ReadmeConverter.notebook_path : Unicode
     Default: ``''``
+
+    No description
+
+ReadmeConverter.output : Unicode
+    Default: ``'README'``
 
     No description
 
@@ -282,17 +307,27 @@ ReadmeConverter.preprocessors : List
     No description
 
 ReadmeConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
 SourceConverter.enabled : Bool
-    Default: ``False``
+    Default: ``True``
+
+    No description
+
+SourceConverter.exporter_class : Type
+    Default: ``'nbconvert.exporters.markdown.MarkdownExporter'``
 
     No description
 
 SourceConverter.notebook_path : Unicode
     Default: ``''``
+
+    No description
+
+SourceConverter.output : Unicode
+    Default: ``'README'``
 
     No description
 
@@ -302,7 +337,37 @@ SourceConverter.preprocessors : List
     No description
 
 SourceConverter.solution_dir : Unicode
-    Default: ``''``
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
+
+    No description
+
+MergeConverter.enabled : Bool
+    Default: ``True``
+
+    No description
+
+MergeConverter.exporter_class : Type
+    Default: ``'nbconvert.exporters.notebook.NotebookExporter'``
+
+    No description
+
+MergeConverter.old : Bool
+    Default: ``False``
+
+    No description
+
+MergeConverter.output : Unicode
+    Default: ``'curriculum'``
+
+    No description
+
+MergeConverter.preprocessors : List
+    Default: ``[<class 'dscreate.pipeline.preprocessors.SortCells.SortCells'>]``
+
+    No description
+
+MergeConverter.solution_dir : Unicode
+    Default: ``'/Users/joel/Documents/scripts/dscreate/docs/.solution_files'``
 
     No description
 
@@ -382,17 +447,17 @@ AddCellIndex.solution_tags : Set
 
     Tags indicating which cells are to be removed
 
-RemoveSolutions.code_tags : Set
+RemoveSolutionCells.code_tags : Set
     Default: ``{'#==SOLUTION==', '#__SOLUTION__'}``
 
     Tags indicating which cells are to be removed
 
-RemoveSolutions.default_language : Unicode
+RemoveSolutionCells.default_language : Unicode
     Default: ``'ipython'``
 
     Deprecated default highlight language as of 5.0, please use language_info metadata instead
 
-RemoveSolutions.display_data_priority : List
+RemoveSolutionCells.display_data_priority : List
     Default: ``['text/html', 'application/pdf', 'text/latex', 'image/svg+xml...``
 
 
@@ -401,12 +466,12 @@ RemoveSolutions.display_data_priority : List
     the others.
 
 
-RemoveSolutions.enabled : Bool
+RemoveSolutionCells.enabled : Bool
     Default: ``True``
 
     Whether to use this preprocessor when running dscreate
 
-RemoveSolutions.markdown_tags : Set
+RemoveSolutionCells.markdown_tags : Set
     Default: ``{'==SOLUTION==', '__SOLUTION__'}``
 
     No description
@@ -1064,3 +1129,27 @@ ExecuteCells.timeout_func : Any
     default to using the ``timeout`` trait for all cells. The
     ``timeout_func`` trait overrides ``timeout`` if it is not ``None``.
 
+
+AddLanguage.default_language : Unicode
+    Default: ``'ipython'``
+
+    Deprecated default highlight language as of 5.0, please use language_info metadata instead
+
+AddLanguage.display_data_priority : List
+    Default: ``['text/html', 'application/pdf', 'text/latex', 'image/svg+xml...``
+
+
+    An ordered list of preferred output type, the first
+    encountered will usually be used when converting discarding
+    the others.
+
+
+AddLanguage.enabled : Bool
+    Default: ``True``
+
+    Whether to use this preprocessor when running dscreate
+
+AddLanguage.language : Unicode
+    Default: ``'python'``
+
+    No description

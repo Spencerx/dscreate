@@ -7,7 +7,7 @@ from dscreate import apps, pipeline
 def create_class_docs(dsobject):
     name = dsobject.__name__
     description = dsobject.description
-    configs = dsobject().class_config_rst_doc()
+    configs = dsobject.class_config_rst_doc()
     
     doc = f'''{name}\n----------------------------\n\n{description}\n\n**CONFIGURABLE VARIABLES:**\n\n{configs}'''
                       
@@ -51,7 +51,7 @@ def create_dsobject_docs():
 
 if __name__ == '__main__':
     docs  = create_dsobject_docs()
-    doc_path = os.path.join('docs', 'source', 'pages', 'code_documentation.rst')
+    doc_path = os.path.join('source', 'pages', 'code_documentation.rst')
     file = open(doc_path, 'w+')
     file.write(docs)
     file.close()
