@@ -115,9 +115,11 @@ Once edits are complete, run ``ds create --inline`` to hide the solutions inside
 When this command is run, a path pointing to a dscreate configuration file is printed.
 
 **Printing the global configuration file**
+
 ``ds config``
 
 **Printing the configuration file for a specific application**
+
 ``ds config create``
 
 or 
@@ -133,6 +135,7 @@ This command defaults to naming the resulting markdown file as ``README.md``, bu
 this can be customized by passing in ``--output=<name of notebook>``
 
 **Example:**
+
 ``ds markdown index.ipynb``
 
 This produces a ``README.md`` version of `index.ipynb``
