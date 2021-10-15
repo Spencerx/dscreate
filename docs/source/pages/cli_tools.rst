@@ -92,6 +92,21 @@ or
 
 ``ds config generate``
 
+-------------
+``ds markdown <path to jupyter notebook>``
+-------------
+When this command is run, a jupyter notebook is converted to markdown.
+
+This command defaults to naming the resulting markdown file as ``README.md``, but 
+this can be customized by passing in ``--output=<name of notebook>``
+
+**Example:**
+``ds markdown index.ipynb``
+
+This produces a ``README.md`` version of `index.ipynb``
+
+``ds markdown index.ipynb --output=textfile.md``
+This produces a ``textfile.md`` version of ``index.ipynb``.
 
 -------------------------------------------------------
 
