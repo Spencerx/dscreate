@@ -16,14 +16,9 @@ Installation
 ============
 * run ``pip install dscreate``
 
-Table of Contents
-==================
 
-.. _cli-tools:
-
--------------
 CLI Tools
--------------
+==================
 
 **Arguments that apply for all notebook split applications:**
 
