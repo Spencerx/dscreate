@@ -7,7 +7,7 @@
 `dscreate`
 ====================================
 
-*Flatiron Iron School Data Science Toolkit*
+*Flatiron School Data Science Toolkit*
 
 `Read the docs <https://dscreate.readthedocs.io/>`_
 
