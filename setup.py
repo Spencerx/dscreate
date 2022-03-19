@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 
 name = u'dscreate'
-version = '0.2.0'
-description = 'Flatiron Iron School Data Science Tools'
+version = '0.2.01'
+description = 'Flatiron School Data Science Tools'
 setup_args = dict(
     name=name,
     version=version,
